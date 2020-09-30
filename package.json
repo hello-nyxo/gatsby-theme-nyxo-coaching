@@ -1,12 +1,14 @@
 {
   "name": "@hello-nyxo/gatsby-theme-nyxo-coaching",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:gatsby": "tsc --project tsconfig.gatsby.json",
     "clean": "gatsby clean",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "prebuild": "yarn clean && yarn build:gatsby"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

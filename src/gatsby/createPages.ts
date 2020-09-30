@@ -1,3 +1,4 @@
+import type { GatsbyNode } from "gatsby"
 import { kebabCase } from "lodash"
 import path from "path"
 import {
@@ -7,16 +8,15 @@ import {
   ContentfulQuestionnaire,
   ContentfulWeek,
 } from "../../graphql-types"
-import { getLocalizedPath } from "../helpers/i18n"
-import { GatsbyCreatePages } from "../types/gatsby"
 import { contentfulData } from "../contentful/queries"
+import { getLocalizedPath } from "../helpers/i18n"
 // import { BlogPostNode } from "../typings/blog-types"
 
 type ContentfulTag = {
   fieldValue: string
 }
 
-export const createPages: GatsbyCreatePages = async ({
+export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
   boundActionCreators,
 }: any): Promise<null> => {

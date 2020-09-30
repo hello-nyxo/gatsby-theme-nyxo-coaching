@@ -1,11 +1,11 @@
 exports.onCreateNode = async (options) => {
   return Promise.all([
-    require("./src/gatsby/reading-time").onCreateNode(options),
-    require("./src/gatsby/excerpt").onCreateNode(options),
+    require("./.gatsby/src/gatsby/reading-time").onCreateNode(options),
+    require("./.gatsby/src/gatsby/excerpt").onCreateNode(options),
   ])
 }
 
-exports.createPages = require("./src/gatsby/createPages").createPages
+exports.createPages = require("./.gatsby/src/gatsby/createPages").createPages
 
 const ChildProcess = require("child_process")
 

@@ -1,7 +1,4 @@
-require("source-map-support").install()
-require("ts-node").register()
-
-exports.onCreateNode = async (options) => {
+exports.onCreateNode = async (options: any) => {
   return Promise.all([
     require("./src/lib/reading-time").onCreateNode(options),
     require("./src/lib/excerpt").onCreateNode(options),

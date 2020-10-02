@@ -90,8 +90,6 @@ export const getLessonCompleted = async (
         return true
       }
 
-      console.log("NOT COMPLTED")
-
       return false
     } catch (error) {
       return error
@@ -139,17 +137,6 @@ export const useUpdateCoaching = () => {
       queryCache.invalidateQueries("listCoaching")
       queryCache.setQueryData(["coaching", { id: data?.id }], data)
     },
-    // onMutate: (updatedCoaching) => {
-    //   queryCache.cancelQueries("listCoaching")
-    //   const previousCoaching = queryCache.getQueryData("listCoaching")
-
-    //   queryCache.setQueryData("listCoaching", (old) => [
-    //     ...old,
-    //     updatedCoaching,
-    //   ])
-    //   return () => queryCache.setQueryData("listCoaching", previousCoaching)
-    // },
-
     onSettled: () => {
       queryCache.invalidateQueries("listCoaching")
     },

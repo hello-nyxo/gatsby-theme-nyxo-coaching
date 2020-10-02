@@ -61,8 +61,8 @@ const Logo = styled.div`
   font-weight: 500;
   font-style: normal;
   font-family: var(--semibold);
-
   a {
+    white-space: nowrap;
     color: hsl(255deg, 85%, 30%);
   }
 

@@ -1,17 +1,13 @@
 import { graphql, useStaticQuery } from "gatsby"
 
 type Data = {
-  site: {
-    siteMetadata: {
-      author: string
-      title: string
-      description: string
-      siteUrl: string
-      social: {
-        twitter: string
-        linkedIn: string
-      }
-    }
+  author: string
+  title: string
+  description: string
+  siteUrl: string
+  social: {
+    twitter: string
+    linkedIn: string
   }
 }
 

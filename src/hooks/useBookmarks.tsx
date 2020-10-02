@@ -97,6 +97,7 @@ export const fetchWeekBookmarks = async () => {
 
 export const fetchLessonBookmarks = async (
   key: string,
+  type: string,
   { slug }: { slug: string }
 ) => {
   try {
@@ -202,7 +203,7 @@ const addBookmark = async ({ name, slug, type }: CreateLikedContentInput) => {
 export const useDeleteBookmark = () => {
   return useMutation(removeBookmark, {
     onSuccess: ({ slug }, { type }) =>
-      queryCache.setQueryData([type, { slug: slug }], {
+      queryCache.setQueryData(["bookmark", type, { slug: slug }], {
         bookmarked: false,
         id: "",
       }),
@@ -212,7 +213,7 @@ export const useDeleteBookmark = () => {
 export const useAddBookmark = () => {
   return useMutation(addBookmark, {
     onSuccess: ({ slug, id }, { type }) =>
-      queryCache.setQueryData([type, { slug: slug }], {
+      queryCache.setQueryData(["bookmark", type, { slug: slug }], {
         bookmarked: true,
         id: id,
       }),
@@ -221,13 +222,17 @@ export const useAddBookmark = () => {
 
 export const useGetBookmark = (slug: string, type: string) => {
   if (isLoggedIn()) {
-    return useQuery([type, { slug: slug as string }], fetchLessonBookmarks, {
-      initialData: () => ({
-        bookmarked: false,
-        id: "",
-      }),
-      initialStale: true,
-    })
+    return useQuery(
+      ["bookmark", type, { slug: slug as string }],
+      fetchLessonBookmarks,
+      {
+        initialData: () => ({
+          bookmarked: false,
+          id: "",
+        }),
+        initialStale: true,
+      }
+    )
   } else {
     return {
       isLoading: false,

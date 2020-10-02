@@ -24,7 +24,7 @@ export const CompleteLessonButton: FC<Props> = ({
         completed={completed}
         viewBox="0 0 30 30"
       />
-      <Text>{completed ? t("COMPLETE_LESSON") : t("COMPLETE_LESSON")}</Text>
+      <Text>{completed ? t("COMPLETED") : t("COMPLETE_LESSON")}</Text>
     </Container>
   )
 }
@@ -80,7 +80,7 @@ export const HeartIcon = styled(Icon).attrs(
   ({ completed }: HeartIconProps) => ({
     fill: "var(--radiantBlue)",
     stroke: "none",
-    name: completed ? "checkSquare" : "heartBookmarkOutline",
+    name: completed ? "checkSquare" : "square",
   })
 )<HeartIconProps>`
   margin: 0px;

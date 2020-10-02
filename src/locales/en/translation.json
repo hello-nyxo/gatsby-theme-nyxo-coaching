@@ -171,6 +171,9 @@
   "REMOVE_BOOKMARK": "Remove bookmark",
   "LOADING_DATA": "Loading data...",
 
+  "COMPLETE_LESSON": "Complete lesson",
+  "COMPLETED": "Completed",
+
   "ABOUT": {
     "TITLE": "We’re on a mission to make the world sleep better",
     "NYXO": "Our Story",
@@ -191,20 +194,20 @@
     "TABLET": "Sleep Tracking & Coaching",
     "DESKTOP": "Track your sleep and get personalized sleep coaching",
     "BUTTON": "Get Nyxo"
-	},
-	
-	"USER":{
-		"EMAIL": "Email",
-		"ID":"ID",
-		"INTERCOM":"Intercom ID",
-		"LINK":"Link code",
-		"ACTIVE_COACHING":"Coaching",
-		"CREATED":"Account created",
-		"UPDATED":"Account updated",
-		"COACHING":"Coaching",
-		"CURRENTLY_ACTIVE":"Currently Active Coaching",
-		"ALL_COACHING_DATA":"All Coaching Periods"
-	},
+  },
+
+  "USER": {
+    "EMAIL": "Email",
+    "ID": "ID",
+    "INTERCOM": "Intercom ID",
+    "LINK": "Link code",
+    "ACTIVE_COACHING": "Coaching",
+    "CREATED": "Account created",
+    "UPDATED": "Account updated",
+    "COACHING": "Coaching",
+    "CURRENTLY_ACTIVE": "Currently Active Coaching",
+    "ALL_COACHING_DATA": "All Coaching Periods"
+  },
 
   "en": "english",
   "fi": "Suomeksi"

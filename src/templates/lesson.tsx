@@ -60,7 +60,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   const { data: activeCoaching } = useGetActiveCoaching()
   const { data: lessonCompleted } = useGetLesson(slug as string)
 
-  console.log("lessonCompleted", lessonCompleted)
+  console.log(lessonCompleted, "lessonCompleted")
 
   const handleBookmarking = async () => {
     if (bookmarked) {
@@ -77,7 +77,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   const handleComplete = async () => {
     await update({
       coaching: {
-        id: activeCoaching?.id,
+        id: activeCoaching?.id as string,
         lessons: [slug],
       },
     })

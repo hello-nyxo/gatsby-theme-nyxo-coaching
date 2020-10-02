@@ -8,7 +8,7 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     author: `Pietari Nurmi`,
-    title: `Univalmentaja`,
+    title: `Univalmentajat Oy`,
     description: `Univalmentaja`,
     siteUrl: `https://pietari.nyxo.app`,
     social: {

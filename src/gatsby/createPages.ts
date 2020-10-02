@@ -16,11 +16,23 @@ type ContentfulTag = {
   fieldValue: string
 }
 
+const templatesDirectory = path.resolve(__dirname, `../templates`)
+
+const tagTemplate = path.resolve(templatesDirectory, `tag.tsx`)
+const lessonTemplate = path.resolve(templatesDirectory, `lesson.tsx`)
+const weekTemplate = path.resolve(templatesDirectory, `week.tsx`)
+const habitTemplate = path.resolve(templatesDirectory, `habit.tsx`)
+const questionnaireTemplate = path.resolve(
+  templatesDirectory,
+  `questionnaire.tsx`
+)
+const authorTemplate = path.resolve(templatesDirectory, `author.tsx`)
+
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
-  boundActionCreators,
-}: any): Promise<null> => {
-  const { createPage } = boundActionCreators
+  actions,
+}): Promise<null> => {
+  const { createPage } = actions
 
   // const allMarkdown = await graphql(markdownQuery)
   const {
@@ -32,7 +44,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
       allContentfulQuestionnaire: { nodes: questionnaires },
       contentfulTagsQuery: { group: contentfulTags },
     },
-  } = await graphql(contentfulData)
+  } = (await graphql(contentfulData)) as any
 
   // if (allMarkdown.errors) {
   //   throw allMarkdown.errors
@@ -70,7 +82,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     if (typeof tag !== undefined) {
       createPage({
         path: `/tags/${kebabCase(tag)}/`,
-        component: path.resolve(`./src/templates/tag.tsx`),
+        component: tagTemplate,
         context: {
           locale: "en-US",
           tag: tag,
@@ -86,7 +98,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
     createPage({
       path: getLocalizedPath(`/week/${week.slug}`, week.node_locale),
-      component: path.resolve(`./src/templates/week.tsx`),
+      component: weekTemplate,
       context: {
         slug: week.slug,
         locale: week.node_locale,
@@ -103,7 +115,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
     createPage({
       path: getLocalizedPath(`/lesson/${lesson.slug}`, lesson.node_locale),
-      component: path.resolve(`./src/templates/lesson.tsx`),
+      component: lessonTemplate,
       context: {
         slug: lesson.slug,
         locale: lesson.node_locale,
@@ -120,7 +132,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
     createPage({
       path: getLocalizedPath(`/habit/${habit.slug}`, habit.node_locale),
-      component: path.resolve(`./src/templates/habit.tsx`),
+      component: habitTemplate,
       context: {
         locale: habit.node_locale,
         slug: habit.slug,
@@ -141,7 +153,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
           `/questionnaire/${questionnaire.slug}`,
           questionnaire.node_locale
         ),
-        component: path.resolve(`./src/templates/questionnaire.tsx`),
+        component: questionnaireTemplate,
         context: {
           locale: questionnaire.node_locale,
           slug: questionnaire.slug,
@@ -157,7 +169,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
     createPage({
       path: getLocalizedPath(`/author/${author.slug}`, author.node_locale),
-      component: path.resolve(`./src/templates/author.tsx`),
+      component: authorTemplate,
       context: {
         slug: author.slug,
         locale: author.node_locale,

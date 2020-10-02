@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { FC, ReactNode } from "react"
 import {
   Block,
   BLOCKS,
@@ -116,7 +116,7 @@ const options: Options = {
   },
 }
 
-const HtmlContent = ({ document }: Props) => {
+const HtmlContent: FC<Props> = ({ document }) => {
   return documentToReactComponents(document as Document, options)
 }
 

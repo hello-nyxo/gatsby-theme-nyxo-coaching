@@ -2,21 +2,18 @@ import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject } from "gatsby-image"
 import React, { FC } from "react"
 import styled from "styled-components"
-import {
-  ContentfulLesson,
-  MarkdownRemarkFrontmatter,
-} from "../../graphql-types"
+import { ContentfulLesson } from "../../graphql-types"
 // import BlogPost from "../components/BlogPost"
 import { H1 } from "../components/html/Html"
 import Layout from "../components/Layout/Layout"
 import LessonCard from "../components/lesson/LessonCard"
 import { Container } from "../components/Primitives"
-import TagSection from "../components/tags/Tags"
-import getFirstAuthor from "../helpers/author"
 // import { BlogPostNode } from "../typings/blog-types"
 import SEO from "../components/SEO/SEO"
+import TagSection from "../components/tags/Tags"
+import getFirstAuthor from "../helpers/author"
 
-const first = (list: BlogPostNode[] | ContentfulLesson[]) => {
+const first = (list: ContentfulLesson[]) => {
   for (const i in list) return list[i]
 }
 
@@ -27,7 +24,7 @@ const combineTags = (
   const tags: string[] = []
   if (lessons) {
     lessons?.forEach((node) =>
-      node.keywords?.forEach((keyword) => tags.push(keyword))
+      node.keywords?.forEach((keyword) => tags.push(keyword as string))
     )
   }
 
@@ -65,14 +62,14 @@ const Tag: FC<PageProps<Props, Context>> = ({
   // const firstPost = first(blogPosts) as
   //   | undefined
   //   | { frontmatter: MarkdownRemarkFrontmatter }
-  const firstLesson = first(lessons) as undefined | ContentfulLesson
+  const firstLesson = first(lessons) as ContentfulLesson
 
   const combinedTags = combineTags(lessons)
 
   const spotlight = {
-    cover: firstLesson.cover?.fluid,
-    title: firstLesson.lessonName,
-    author: getFirstAuthor(firstLesson.authorCard),
+    cover: firstLesson?.cover?.fluid,
+    title: firstLesson?.lessonName,
+    author: getFirstAuthor(firstLesson?.authorCard),
   }
   // : {
   //     cover: firstPost?.frontmatter?.thumbnailBlog?.childImageSharp?.fluid,

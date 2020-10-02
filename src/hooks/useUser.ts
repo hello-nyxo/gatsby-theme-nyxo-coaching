@@ -14,7 +14,7 @@ import {
 } from "../API"
 import { updateUser } from "../graphql/mutations"
 import { getUser } from "../graphql/queries"
-import { getActiveCoaching } from "../graphql/custom/queries"
+import { getActiveCoaching } from "@graphql/custom/queries"
 
 export const updateUserData = async ({
   user,
@@ -55,9 +55,10 @@ export const getUserData = async (): Promise<GetUserQuery["getUser"]> => {
   }
 }
 
-export const getUserActiveCoaching = async (): Promise<
-  GetActiveCoachingQuery["getUser"]
-> => {
+export const getUserActiveCoaching = async (): Promise<Exclude<
+  Exclude<GetActiveCoachingQuery["getUser"], null>["activeCoaching"],
+  null
+> | null> => {
   try {
     const { username } = await Auth.currentUserInfo()
     const {
@@ -67,7 +68,12 @@ export const getUserActiveCoaching = async (): Promise<
     )) as {
       data: GetActiveCoachingQuery
     }
-    return data
+
+    if (data?.activeCoaching) {
+      return data?.activeCoaching
+    }
+
+    return null
   } catch (error) {
     return error
   }
@@ -86,8 +92,9 @@ export const useUpdateUser = (): MutationFunction<
   return useMutation(updateUserData)
 }
 
-export const useGetActiveCoaching = (): QueryResult<
-  GetActiveCoachingQuery["getUser"]
-> => {
+export const useGetActiveCoaching = (): QueryResult<Exclude<
+  Exclude<GetActiveCoachingQuery["getUser"], null>["activeCoaching"],
+  null
+> | null> => {
   return useQuery("userActiveCoaching", getUserActiveCoaching)
 }

@@ -6,6 +6,16 @@ require("dotenv").config({
 })
 
 module.exports = {
+  siteMetadata: {
+    author: `Pietari Nurmi`,
+    title: `Univalmentaja`,
+    description: `Univalmentaja`,
+    siteUrl: `https://pietari.nyxo.app`,
+    social: {
+      twitter: `pietnurm`,
+      linkedIn: `pietnurm`,
+    },
+  },
   plugins: [
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-typescript`,

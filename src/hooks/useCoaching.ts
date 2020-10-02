@@ -1,15 +1,18 @@
-import { API, graphqlOperation } from "aws-amplify"
+import { getActiveCoaching } from "@graphql/custom/queries"
+import { API, Auth, graphqlOperation } from "aws-amplify"
 import { queryCache, QueryResult, useMutation, useQuery } from "react-query"
 import {
   CreateCoachingDataInput,
   CreateCoachingDataMutation,
+  GetActiveCoachingQuery,
   GetCoachingDataQuery,
   ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation,
 } from "../API"
-import { createCoachingData, updateCoachingData } from "../graphql/mutations"
-import { getCoachingData, listCoachingDatas } from "../graphql/queries"
+import { createCoachingData, updateCoachingData } from "@graphql/mutations"
+import { getCoachingData, listCoachingDatas } from "@graphql/queries"
+import { isLoggedIn } from "@auth/auth"
 
 export type CoachingData = Omit<
   Exclude<GetCoachingDataQuery["getCoachingData"], null>,
@@ -17,7 +20,7 @@ export type CoachingData = Omit<
 > | null
 
 export const listCoaching = async (): Promise<
-  Exclude<ListCoachingDatasQuery["listCoachingDatas"]["items"], null>
+  Exclude<ListCoachingDatasQuery["listCoachingDatas"], null>["items"]
 > => {
   try {
     const {
@@ -68,6 +71,35 @@ export const createCoaching = async ({
   }
 }
 
+export const getLessonCompleted = async (
+  _: string,
+  { slug }: { slug: string }
+): Promise<boolean> => {
+  if (isLoggedIn()) {
+    try {
+      const { username } = await Auth.currentUserInfo()
+      const {
+        data: { getUser: data },
+      } = (await API.graphql(
+        graphqlOperation(getActiveCoaching, { id: username })
+      )) as {
+        data: GetActiveCoachingQuery
+      }
+
+      if (data?.activeCoaching?.lessons?.some((lesson) => lesson === slug)) {
+        return true
+      }
+
+      console.log("NOT COMPLTED")
+
+      return false
+    } catch (error) {
+      return error
+    }
+  } else {
+    return false
+  }
+}
 export const updateCoaching = async ({
   coaching,
 }: {
@@ -81,8 +113,10 @@ export const updateCoaching = async ({
     )) as {
       data: UpdateCoachingDataMutation
     }
+    console.log(data)
     return data
   } catch (error) {
+    console.log(error)
     return error
   }
 }
@@ -95,10 +129,6 @@ export const useListCoaching = (): QueryResult<
   return useQuery("listCoaching", listCoaching)
 }
 
-export const useGetCoaching = (id: string) => {
-  return useQuery(["coaching", { id }], getCoaching)
-}
-
 export const useCreateCoaching = () => {
   return useMutation(createCoaching)
 }
@@ -109,20 +139,23 @@ export const useUpdateCoaching = () => {
       queryCache.invalidateQueries("listCoaching")
       queryCache.setQueryData(["coaching", { id: data?.id }], data)
     },
-    onMutate: (updatedCoaching) => {
-      queryCache.cancelQueries("listCoaching")
-      const previousCoaching = queryCache.getQueryData("listCoaching")
+    // onMutate: (updatedCoaching) => {
+    //   queryCache.cancelQueries("listCoaching")
+    //   const previousCoaching = queryCache.getQueryData("listCoaching")
 
-      queryCache.setQueryData("listCoaching", (old) => [
-        ...old,
-        updatedCoaching,
-      ])
-      return () => queryCache.setQueryData("listCoaching", previousCoaching)
-    },
-    onError: (error, updatedCoaching, rollback) => rollback(),
+    //   queryCache.setQueryData("listCoaching", (old) => [
+    //     ...old,
+    //     updatedCoaching,
+    //   ])
+    //   return () => queryCache.setQueryData("listCoaching", previousCoaching)
+    // },
 
     onSettled: () => {
       queryCache.invalidateQueries("listCoaching")
     },
   })
+}
+
+export const useGetLesson = (slug: string): QueryResult<boolean> => {
+  return useQuery(["lesson", { slug: slug as string }], getLessonCompleted)
 }

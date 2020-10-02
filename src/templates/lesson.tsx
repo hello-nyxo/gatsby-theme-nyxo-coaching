@@ -1,24 +1,27 @@
+import { CompleteLessonButton } from "@components/coaching/CompleteLessonButton"
+import { useGetLesson, useUpdateCoaching } from "@hooks/useCoaching"
+import { useGetActiveCoaching } from "@hooks/useUser"
 import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import { ContentfulLesson, LessonByIdQuery } from "../../graphql-types"
-import AuthorCard from "../components/author/AuthorCard"
-import BookmarkButton from "../components/bookmark/Bookmark"
-import HabitCard from "../components/habit/HabitCard"
-import HtmlContent, { H1, H3, H4 } from "../components/html/Html"
-import Layout from "../components/Layout/Layout"
-import LargeLessonCard from "../components/lesson/LargeLessonCard"
-import { Container, TextContainer } from "../components/Primitives"
-import SEO from "../components/SEO/SEO"
-import TagSection from "../components/tags/Tags"
-import getFirstAuthor from "../helpers/author"
+import AuthorCard from "@components/author/AuthorCard"
+import BookmarkButton from "@components/bookmark/Bookmark"
+import HabitCard from "@components/habit/HabitCard"
+import HtmlContent, { H1, H3, H4 } from "@components/html/Html"
+import Layout from "@components/Layout/Layout"
+import LargeLessonCard from "@components/lesson/LargeLessonCard"
+import { Container, TextContainer } from "@components/Primitives"
+import SEO from "@components/SEO/SEO"
+import TagSection from "@components/tags/Tags"
+import getFirstAuthor from "@helpers/author"
 import {
   useAddBookmark,
   useDeleteBookmark,
   useGetBookmark,
-} from "../hooks/useBookmarks"
+} from "@hooks/useBookmarks"
 
 const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   data,
@@ -53,6 +56,11 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   } = useGetBookmark(slug as string, "lesson")
   const [remove, { isLoading: removeLoading }] = useDeleteBookmark()
   const [add, { isLoading: addLoading }] = useAddBookmark()
+  const [update, { isLoading: completeLoading }] = useUpdateCoaching()
+  const { data: activeCoaching } = useGetActiveCoaching()
+  const { data: lessonCompleted } = useGetLesson(slug as string)
+
+  console.log("lessonCompleted", lessonCompleted)
 
   const handleBookmarking = async () => {
     if (bookmarked) {
@@ -64,6 +72,15 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
         type: "lesson",
       })
     }
+  }
+
+  const handleComplete = async () => {
+    await update({
+      coaching: {
+        id: activeCoaching?.id,
+        lessons: [slug],
+      },
+    })
   }
 
   return (
@@ -90,6 +107,11 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
         </Cover>
 
         <ActionRow>
+          <CompleteLessonButton
+            onClick={handleComplete}
+            loading={completeLoading}
+            completed={lessonCompleted}
+          />
           <BookmarkButton
             onClick={handleBookmarking}
             bookmarked={bookmarked}
@@ -155,13 +177,6 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
 
 export default Lesson
 
-export const Authors = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin: 2rem -0.5rem;
-  flex-wrap: wrap;
-`
-
 export const pageQuery = graphql`
   query LessonById(
     $slug: String!
@@ -185,6 +200,13 @@ export const pageQuery = graphql`
       ...LessonFragment
     }
   }
+`
+
+export const Authors = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 2rem -0.5rem;
+  flex-wrap: wrap;
 `
 
 const ActionRow = styled.div`

@@ -17,10 +17,36 @@ export const createSleepData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -65,10 +91,36 @@ export const updateSleepData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -113,10 +165,36 @@ export const deleteSleepData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -207,6 +285,24 @@ export const createUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          activeCoaching {
+            id
+            userId
+            stage
+            activeWeek
+            started
+            ended
+            lessons
+            createdAt
+            updatedAt
+            owner
+          }
+          sleepPoints {
+            efficiency
+            duration
+            socialJetLag
+            timing
+          }
           createdAt
           updatedAt
         }
@@ -218,6 +314,24 @@ export const createUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          activeCoaching {
+            id
+            userId
+            stage
+            activeWeek
+            started
+            ended
+            lessons
+            createdAt
+            updatedAt
+            owner
+          }
+          sleepPoints {
+            efficiency
+            duration
+            socialJetLag
+            timing
+          }
           createdAt
           updatedAt
         }
@@ -265,6 +379,24 @@ export const updateUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          activeCoaching {
+            id
+            userId
+            stage
+            activeWeek
+            started
+            ended
+            lessons
+            createdAt
+            updatedAt
+            owner
+          }
+          sleepPoints {
+            efficiency
+            duration
+            socialJetLag
+            timing
+          }
           createdAt
           updatedAt
         }
@@ -276,6 +408,24 @@ export const updateUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          activeCoaching {
+            id
+            userId
+            stage
+            activeWeek
+            started
+            ended
+            lessons
+            createdAt
+            updatedAt
+            owner
+          }
+          sleepPoints {
+            efficiency
+            duration
+            socialJetLag
+            timing
+          }
           createdAt
           updatedAt
         }
@@ -323,6 +473,24 @@ export const deleteUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          activeCoaching {
+            id
+            userId
+            stage
+            activeWeek
+            started
+            ended
+            lessons
+            createdAt
+            updatedAt
+            owner
+          }
+          sleepPoints {
+            efficiency
+            duration
+            socialJetLag
+            timing
+          }
           createdAt
           updatedAt
         }
@@ -334,6 +502,24 @@ export const deleteUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          activeCoaching {
+            id
+            userId
+            stage
+            activeWeek
+            started
+            ended
+            lessons
+            createdAt
+            updatedAt
+            owner
+          }
+          sleepPoints {
+            efficiency
+            duration
+            socialJetLag
+            timing
+          }
           createdAt
           updatedAt
         }
@@ -377,10 +563,36 @@ export const createCoachingData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -406,10 +618,36 @@ export const createCoachingData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -455,10 +693,36 @@ export const updateCoachingData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -484,10 +748,36 @@ export const updateCoachingData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -533,10 +823,36 @@ export const deleteCoachingData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -562,10 +878,36 @@ export const deleteCoachingData = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -611,10 +953,36 @@ export const createHabit = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -662,10 +1030,36 @@ export const updateHabit = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -713,10 +1107,36 @@ export const deleteHabit = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -764,10 +1184,36 @@ export const createNight = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -809,10 +1255,36 @@ export const updateNight = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -854,10 +1326,36 @@ export const deleteNight = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -938,10 +1436,36 @@ export const createNightRating = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -979,10 +1503,36 @@ export const updateNightRating = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -1020,10 +1570,36 @@ export const deleteNightRating = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -1145,10 +1721,36 @@ export const createNightNote = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -1190,10 +1792,36 @@ export const updateNightNote = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt
@@ -1235,10 +1863,36 @@ export const deleteNightNote = /* GraphQL */ `
         activeCoaching {
           id
           userId
+          user {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           stage
+          active {
+            connectionId
+            id
+            email
+            nickname
+            darkMode
+            intercomId
+            createdAt
+            updatedAt
+          }
           activeWeek
           started
           ended
+          weeks {
+            started
+            ended
+            locked
+            slug
+          }
           lessons
           createdAt
           updatedAt

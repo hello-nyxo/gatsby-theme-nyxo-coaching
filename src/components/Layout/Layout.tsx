@@ -1,5 +1,6 @@
 import React, { FC } from "react"
 import { createGlobalStyle } from "styled-components"
+import Header from "@components/header/Header"
 
 type Props = {
   children: JSX.Element | JSX.Element[]
@@ -8,6 +9,7 @@ type Props = {
 const Layout: FC<Props> = ({ children }) => {
   return (
     <>
+      <Header />
       <GlobalStyle />
       <main>{children}</main>
     </>

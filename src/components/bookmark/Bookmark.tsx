@@ -40,13 +40,13 @@ const BookmarkContainer = styled.button<HeartIconProps>`
   cursor: pointer;
   border-radius: 0.5rem;
   padding: 0.8rem 1rem;
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
   color: var(--morningAccent);
   outline: var(--morningAccent);
-  box-shadow: var(--shadow);
 
   &:hover {
     background-color: var(--morning);
+    box-shadow: var(--shadow);
     transition: 0.2s;
   }
   &:active {
@@ -56,7 +56,6 @@ const BookmarkContainer = styled.button<HeartIconProps>`
   ${({ bookmarked }) =>
     bookmarked &&
     css`
-      box-shadow: var(--shadow);
       background-color: var(--morning);
       &:active {
         box-shadow: inset 1px 1px 3px 3px #6d676712;

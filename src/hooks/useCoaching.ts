@@ -1,4 +1,5 @@
 import { getActiveCoaching } from "@graphql/custom/queries"
+import { navigate } from "@reach/router"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { queryCache, QueryResult, useMutation, useQuery } from "react-query"
 import {
@@ -98,6 +99,36 @@ export const getLessonCompleted = async (
     return false
   }
 }
+
+export const completeLesson = async ({
+  lesson,
+  existingLessons,
+  id,
+}: {
+  lesson: string
+  existingLessons: string[]
+  id: string
+}): Promise<string> => {
+  const coaching: UpdateCoachingDataInput = {
+    id,
+    lessons: [...new Set([lesson, ...existingLessons])],
+  }
+
+  try {
+    const {
+      data: { updateCoachingData: data },
+    } = (await API.graphql(
+      graphqlOperation(updateCoachingData, { input: coaching })
+    )) as {
+      data: UpdateCoachingDataMutation
+    }
+
+    return lesson
+  } catch (error) {
+    return error
+  }
+}
+
 export const updateCoaching = async ({
   coaching,
 }: {
@@ -122,13 +153,31 @@ export const updateCoaching = async ({
 // HOOKS
 
 export const useListCoaching = (): QueryResult<
-  ListCoachingDatasQuery["listCoachingDatas"]
+  Exclude<ListCoachingDatasQuery["listCoachingDatas"], null>["items"]
 > => {
   return useQuery("listCoaching", listCoaching)
 }
 
 export const useCreateCoaching = () => {
   return useMutation(createCoaching)
+}
+
+export const useCompleteLesson = () => {
+  return useMutation(completeLesson, {
+    onMutate: (data) => {
+      console.log(data)
+
+      const previousLesson = queryCache.getQueryData("lesson", [
+        { slug: data.lesson },
+      ])
+      queryCache.setQueryData("lesson", [{ slug: data.lesson }])
+
+      return () => queryCache.setQueryData("lessons", previousLesson)
+    },
+    onSettled: () => {
+      queryCache.invalidateQueries("lesson")
+    },
+  })
 }
 
 export const useUpdateCoaching = () => {

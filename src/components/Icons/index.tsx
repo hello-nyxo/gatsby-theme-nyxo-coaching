@@ -109,6 +109,11 @@ const Icons: Icons = {
       <path d="M 23.18,6.71l-2.1-0.9l1.1-2.4l-2.56,0.85c-0.815-0.76-1.885-1.188-3-1.2c-2.483,0.005-4.495,2.017-4.5,4.5v1 c-3.54,0.73-6.63-1.2-9.5-4.5c-0.5,2.667,0,4.667,1.5,6l-3.29-0.5c0.262,2.186,2.052,3.871,4.25,4l-2.75,1c1,2,2.82,2.31,5.25,2.5 c-1.986,1.355-4.346,2.054-6.75,2c12.76,5.67,20.25-2.66,20.25-10V8.23L23.18,6.71z"></path>
     </g>
   ),
+  facebook: (
+    <g>
+      <path d="M18.13,7.75H13.87V5.84a1,1,0,0,1,1-1.1h3v-4H13.54c-3.93,0-4.67,3-4.67,4.86V7.75h-3v4h3v11.5h5V11.75h3.85Z"></path>
+    </g>
+  ),
   linkedIn: (
     <g>
       <path d="M 5.67,22.63H0.81V8.7h4.86V22.63z "></path>
@@ -189,6 +194,7 @@ interface Props {
   height?: string | number
   viewBox?: string
   strokeWidth?: string
+  strokeLinejoin?: "round" | "inherit" | "miter" | "bevel" | undefined
   strokeLinecap?: "butt" | "round" | "square" | "inherit"
   style?: CSSProperties
   className?: string
@@ -203,6 +209,7 @@ export const Icon: FC<Props> = ({
   strokeWidth = "1.5",
   strokeLinecap = "round",
   viewBox = `0 0 ${30} ${30}`,
+  strokeLinejoin = "round",
   className,
   style,
 }) => {
@@ -218,6 +225,7 @@ export const Icon: FC<Props> = ({
       fill={fill}
       stroke={stroke}
       strokeLinecap={strokeLinecap}
+      strokeLinejoin={strokeLinejoin}
       xmlns="http://www.w3.org/2000/svg">
       {Icons[name]}
     </SVG>

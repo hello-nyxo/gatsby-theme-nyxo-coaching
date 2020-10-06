@@ -4,7 +4,7 @@ import styled, { css } from "styled-components"
 import { Icon } from "../Icons"
 
 type Props = {
-  completed: boolean | undefined
+  completed: boolean | undefined | null
   loading: boolean
   onClick: EventHandler<MouseEvent<HTMLButtonElement>>
 }
@@ -17,11 +17,11 @@ export const CompleteLessonButton: FC<Props> = ({
   const { t } = useTranslation()
 
   return (
-    <Container disabled={loading} onClick={onClick} completed={completed}>
-      <HeartIcon
+    <Container disabled={loading} onClick={onClick} completed={!!completed}>
+      <CompleteIcon
         height="25px"
         width="25px"
-        completed={completed}
+        completed={!!completed}
         viewBox="0 0 30 30"
       />
       <Text>{completed ? t("COMPLETED") : t("COMPLETE_LESSON")}</Text>
@@ -37,18 +37,20 @@ const Container = styled.button<HeartIconProps>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
   border-radius: 0.5rem;
   padding: 0.8rem 1rem;
-  transition: 0.2s ease-in-out;
-  color: var(--radiantBlue);
+  transition: all 0.2s ease-in-out;
+  border: 1px solid ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
   outline: var(--radiantBlue);
-  box-shadow: var(--shadow);
   margin-right: 1rem;
 
   &:hover {
-    background-color: var(--radiantBlue);
-    transition: 0.2s;
-    color: white;
+    box-shadow: var(--shadow);
+    border: 1px solid white;
+
+    color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
   }
   &:active {
     box-shadow: inset 1px 1px 3px 3px #6d676712;
@@ -57,7 +59,6 @@ const Container = styled.button<HeartIconProps>`
   ${({ completed }) =>
     completed &&
     css`
-      box-shadow: var(--shadow);
       background-color: white;
       &:active {
         box-shadow: inset 1px 1px 3px 3px #6d676712;
@@ -76,9 +77,9 @@ type HeartIconProps = {
   completed: boolean
 }
 
-export const HeartIcon = styled(Icon).attrs(
+export const CompleteIcon = styled(Icon).attrs(
   ({ completed }: HeartIconProps) => ({
-    fill: "var(--radiantBlue)",
+    fill: "currentColor",
     stroke: "none",
     name: completed ? "checkSquare" : "square",
   })

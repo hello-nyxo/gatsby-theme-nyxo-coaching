@@ -1,3 +1,4 @@
+import { SharingOptions } from "@components/sharing/SharingOptions"
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
 import { Document } from "@contentful/rich-text-types"
 import { graphql, PageProps } from "gatsby"
@@ -150,7 +151,10 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
         <Cover>
           <CoverImage fluid={coverPhoto?.fluid as FluidObject} />
         </Cover>
-
+        <SharingOptions
+          title={title as string}
+          summary={description as string}
+        />
         <BookmarkButton
           loading={removeLoading || addLoading || getLoading}
           onClick={handleBookmark}
@@ -376,7 +380,7 @@ const Column = styled.div`
 `
 
 const Cover = styled.div`
-  margin: 5rem 0rem;
+  margin: 5rem 0rem 2.5rem;
   height: 30rem;
   max-height: 50vh;
   width: 100%;

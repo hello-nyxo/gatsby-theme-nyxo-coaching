@@ -1,5 +1,9 @@
 import { CompleteLessonButton } from "@components/coaching/CompleteLessonButton"
-import { useGetLesson, useUpdateCoaching } from "@hooks/useCoaching"
+import {
+  useCompleteLesson,
+  useGetLesson,
+  useUpdateCoaching,
+} from "@hooks/useCoaching"
 import { useGetActiveCoaching } from "@hooks/useUser"
 import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject } from "gatsby-image"
@@ -57,11 +61,9 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   } = useGetBookmark(slug as string, "lesson")
   const [remove, { isLoading: removeLoading }] = useDeleteBookmark()
   const [add, { isLoading: addLoading }] = useAddBookmark()
-  const [update, { isLoading: completeLoading }] = useUpdateCoaching()
+  const [update, { isLoading: completeLoading }] = useCompleteLesson()
   const { data: activeCoaching } = useGetActiveCoaching()
   const { data: lessonCompleted } = useGetLesson(slug as string)
-
-  console.log(lessonCompleted, "lessonCompleted")
 
   const handleBookmarking = async () => {
     if (bookmarked) {
@@ -76,11 +78,11 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   }
 
   const handleComplete = async () => {
+    const existingLessons = activeCoaching?.lessons ?? []
     await update({
-      coaching: {
-        id: activeCoaching?.id as string,
-        lessons: [slug],
-      },
+      lesson: slug,
+      id: activeCoaching?.id,
+      existingLessons,
     })
   }
 
@@ -107,18 +109,20 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           <CoverImage fluid={cover?.fluid as FluidObject} />
         </Cover>
 
-        <ActionRow>
-          <CompleteLessonButton
-            onClick={handleComplete}
-            loading={completeLoading}
-            completed={lessonCompleted}
-          />
-          <BookmarkButton
-            onClick={handleBookmarking}
-            bookmarked={bookmarked}
-            loading={removeLoading || addLoading || isLoading}
-          />
-        </ActionRow>
+        {isLoggedIn() ? (
+          <ActionRow>
+            <CompleteLessonButton
+              onClick={handleComplete}
+              loading={completeLoading}
+              completed={lessonCompleted}
+            />
+            <BookmarkButton
+              onClick={handleBookmarking}
+              bookmarked={bookmarked}
+              loading={removeLoading || addLoading || isLoading}
+            />
+          </ActionRow>
+        ) : null}
 
         {isLoggedIn() ? <HtmlContent document={content?.json} /> : null}
 
@@ -219,7 +223,7 @@ const ActionRow = styled.div`
 `
 
 const Cover = styled.div`
-  margin: 5rem 0rem;
+  margin: 5rem 0rem 2.5rem;
   height: 30rem;
   max-height: 50vh;
   width: 100%;

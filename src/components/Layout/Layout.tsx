@@ -1,6 +1,7 @@
 import React, { FC } from "react"
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
 import Header from "@components/header/Header"
+import { lightTheme } from "@styles/themes"
 
 type Props = {
   children: JSX.Element | JSX.Element[]
@@ -8,11 +9,11 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <>
+    <ThemeProvider theme={lightTheme}>
       <Header />
       <GlobalStyle />
       <main>{children}</main>
-    </>
+    </ThemeProvider>
   )
 }
 

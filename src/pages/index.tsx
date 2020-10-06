@@ -1,14 +1,14 @@
+import { H1, H2, H3 } from "@components/html/Html"
+import Layout from "@components/Layout/Layout"
+import { Container, P } from "@components/Primitives"
+import SEO from "@components/SEO/SEO"
+import { WideWeekCard } from "@components/week/WideWeekCard"
 import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import { ContentfulWeek } from "../../graphql-types"
-import { H1, H2, H3 } from "@components/html/Html"
-import Layout from "@components/Layout/Layout"
-import { Container, P } from "@components/Primitives"
-import SEO from "@components/SEO/SEO"
-import WeekCard from "@components/week/WeekCard"
 
 type Props = {
   weeksFI: {
@@ -73,7 +73,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
         <Weeks>
           {weeks.map((week: ContentfulWeek) => {
             return (
-              <WeekCard
+              <WideWeekCard
                 bookmarked={false}
                 key={`${week?.slug}`}
                 path={`/week/${week?.slug}`}
@@ -83,6 +83,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
                 lessons={week?.lessons}
                 coverPhoto={week?.coverPhoto?.fluid as FluidObject}
                 slug={week.slug}
+                description={week.weekDescription}
               />
             )
           })}
@@ -120,8 +121,7 @@ const Cover = styled(Image)`
 
 export const Weeks = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   margin: 2rem -1rem;
 `
 

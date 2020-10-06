@@ -22,6 +22,7 @@ import {
   useDeleteBookmark,
   useGetBookmark,
 } from "@hooks/useBookmarks"
+import { isLoggedIn } from "@auth/auth"
 
 const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   data,
@@ -119,7 +120,8 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           />
         </ActionRow>
 
-        <HtmlContent document={content?.json} />
+        {isLoggedIn() ? <HtmlContent document={content?.json} /> : null}
+
         {habits && <H3>{t("HABITS_TO_TRY")}</H3>}
 
         <Habits>

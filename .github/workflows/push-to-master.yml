@@ -53,7 +53,7 @@ jobs:
       - name: "Pump version"
         uses: "phips28/gh-action-bump-version@master"
           with:
-          tag-prefix: ''  
+            tag-prefix: ''  
     
       - uses: actions/setup-node@v1
         with:

@@ -18,10 +18,10 @@ const Me: FC<PageProps> = () => {
     <Layout>
       <Router>
         <PrivateRoute path={`${basepath}/details`} component={Details} />
-        <PrivateRoute path="/sleep" component={Sleep} />
-        <Login path="/login" />
-        <SignUp path="/register" />
-        <Reset path="/reset" />
+        <PrivateRoute path={`${basepath}/sleep`} component={Sleep} />
+        <Login path={`${basepath}/login`} />
+        <SignUp path={`${basepath}/register`} />
+        <Reset path={`${basepath}/reset`} />
       </Router>
     </Layout>
   )

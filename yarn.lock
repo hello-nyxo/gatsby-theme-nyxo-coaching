@@ -10108,6 +10108,13 @@ gatsby-page-utils@^0.2.25:
     lodash "^4.17.20"
     micromatch "^3.1.10"
 
+gatsby-plugin-create-client-paths@^2.3.13:
+  version "2.3.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-create-client-paths/-/gatsby-plugin-create-client-paths-2.3.13.tgz#d75f2477688aa6032452572f72a81c645df2ec73"
+  integrity sha512-7MYVDNcGdIVjoV3ymYsrDafRxOv+l0Agcz0KS6cT4+8RIiXM0tVglvCKCxnqNAjhLQmp1JFCryyl/jM2/6jzRQ==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+
 gatsby-plugin-graphql-codegen@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-graphql-codegen/-/gatsby-plugin-graphql-codegen-2.7.1.tgz#60683ef5508bc7e23c8e288f6d320b3f2b7f5d00"
@@ -10218,10 +10225,10 @@ gatsby-plugin-react-helmet@^3.3.10:
   dependencies:
     "@babel/runtime" "^7.11.2"
 
-gatsby-plugin-react-i18next@^0.0.25:
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-i18next/-/gatsby-plugin-react-i18next-0.0.25.tgz#e4e835b021044b743dc14aac3bd6850a3de587cd"
-  integrity sha512-u+uvvwxDWuZ8KPTuNosa4VoZEtqsYEVXX7Ps98SmTZ2p4/EYeTfAdN42ufzAQcBt8J995i/PRMrzt3CEco3lWA==
+gatsby-plugin-react-i18next@^0.0.27:
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-react-i18next/-/gatsby-plugin-react-i18next-0.0.27.tgz#6141fba1d74bc87c04c4fde4221ce88fbbfc5d66"
+  integrity sha512-tjLO6bKZuXvZx0gdDxZ4fmc780G+2hnt6atj+9h8XLwtTrUkumjUORkFw8Wx5DCeNqtI5pRHFQ7KlQq5Pt0Bgw==
   dependencies:
     bluebird "^3.7.2"
     browser-lang "^0.1.0"

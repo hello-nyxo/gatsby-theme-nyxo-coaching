@@ -209,6 +209,11 @@
     "ALL_COACHING_DATA": "All Coaching Periods"
   },
 
+  "GOOD_MORNING": "Good morning!",
+  "GOOD_AFTERNOON": "Good afternoon",
+  "GOOD_EVENING": "Good evening",
+  "GOOD_NIGHT": "Good night!",
+
   "en": "english",
   "fi": "Suomeksi"
 }

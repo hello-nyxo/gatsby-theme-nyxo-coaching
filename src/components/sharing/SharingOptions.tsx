@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import {
   FacebookShareCount,
   EmailShareButton,
@@ -47,7 +47,18 @@ const Container = styled.div`
   flex-direction: row;
 `
 
-const Email = styled(EmailShareButton)``
+const sharedStyle = css`
+  transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  :hover {
+    transform: translateY(-2px);
+    text-shadow: 1px 1px black;
+  }
+`
+
+const Email = styled(EmailShareButton)`
+  ${sharedStyle}
+`
 
 export const EmailIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
@@ -59,7 +70,9 @@ export const EmailIcon = styled(Icon).attrs(({ theme }) => ({
   flex: 1;
 `
 
-const Facebook = styled(FacebookShareButton)``
+const Facebook = styled(FacebookShareButton)`
+  ${sharedStyle}
+`
 
 const FacebookIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
@@ -71,7 +84,9 @@ const FacebookIcon = styled(Icon).attrs(({ theme }) => ({
   flex: 1;
 `
 
-const LinkedIn = styled(LinkedinShareButton)``
+const LinkedIn = styled(LinkedinShareButton)`
+  ${sharedStyle}
+`
 
 const LinkedInIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
@@ -85,7 +100,9 @@ const LinkedInIcon = styled(Icon).attrs(({ theme }) => ({
   flex: 1;
 `
 
-const Twitter = styled(TwitterShareButton)``
+const Twitter = styled(TwitterShareButton)`
+  ${sharedStyle}
+`
 
 const TwitterIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",

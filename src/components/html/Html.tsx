@@ -127,6 +127,7 @@ export const P = styled.p`
   line-height: 2rem;
   margin-bottom: 2rem;
   white-space: pre-wrap;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Bold = styled.b`
@@ -144,7 +145,7 @@ export const H1 = styled.h1`
   font-family: var(--semibold);
   font-weight: bold;
   font-style: normal;
-  color: hsl(255deg, 85%, 30%);
+  color: ${({ theme }) => theme.titleColor};
   line-height: 5rem;
 `
 
@@ -154,7 +155,7 @@ export const H2 = styled.h2`
   font-weight: bold;
   font-style: normal;
   font-size: 2rem;
-  color: hsl(255deg, 85%, 30%);
+  color: ${({ theme }) => theme.titleColor};
 `
 
 export const H3 = styled.h3`
@@ -163,25 +164,25 @@ export const H3 = styled.h3`
   font-family: var(--semibold);
   font-weight: bold;
   font-style: normal;
-  color: hsl(255deg, 85%, 30%);
+  color: ${({ theme }) => theme.titleColor};
 `
 
 export const H4 = styled.h4`
   margin: 3.5rem 0rem 2rem;
   font-size: 1.6rem;
-  color: hsl(255deg, 85%, 30%);
+  color: ${({ theme }) => theme.titleColor};
 `
 
 export const H5 = styled.h5`
   margin: 3.5rem 0rem 2rem;
   font-size: 1.4rem;
-  color: hsl(255deg, 85%, 30%);
+  color: ${({ theme }) => theme.titleColor};
 `
 
 export const H6 = styled.h6`
   margin: 2.5rem 0rem 1rem;
   font-size: 1.2rem;
-  color: hsl(255deg, 85%, 30%);
+  color: ${({ theme }) => theme.titleColor};
 `
 
 const Ol = styled.ol`
@@ -199,7 +200,7 @@ const Ol = styled.ol`
       font-size: 1.3rem;
       position: absolute;
       content: counter(list) ". ";
-      color: hsl(255deg, 85%, 30%);
+      color: ${({ theme }) => theme.titleColor};
       font-weight: bold;
       font-family: "Montserrat", sans-serif;
     }

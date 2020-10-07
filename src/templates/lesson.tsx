@@ -27,6 +27,7 @@ import {
   useGetBookmark,
 } from "@hooks/useBookmarks"
 import { isLoggedIn } from "@auth/auth"
+import { SharingOptions } from "@components/sharing/SharingOptions"
 
 const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   data,
@@ -108,7 +109,10 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
         <Cover>
           <CoverImage fluid={cover?.fluid as FluidObject} />
         </Cover>
-
+        <SharingOptions
+          title={title as string}
+          summary={description as string}
+        />
         {isLoggedIn() ? (
           <ActionRow>
             <CompleteLessonButton

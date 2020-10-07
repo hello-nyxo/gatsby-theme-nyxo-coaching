@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { minDevice } from "@components/Primitives"
 import { isLoggedIn } from "@auth/auth"
 import useSiteMetadata from "@hooks/useSiteMetaData"
+import { Hello } from "@components/personalization/Hello"
 
 const Header: FC = () => {
   const { title } = useSiteMetadata()
@@ -23,14 +24,13 @@ const Header: FC = () => {
         <Link to="/" title={title}>
           {title}
         </Link>
+        <Hello />
       </Logo>
       <Links>
         {links.map(({ title, path }) => (
           <Li key={title}>
             {title === "LOGIN" || title === "ME" ? (
-              <NonLocalizedMenuLink to={`/${path}`}>
-                {t(`NAVIGATION.${title}`)}
-              </NonLocalizedMenuLink>
+              <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
             ) : (
               <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
             )}
@@ -150,21 +150,6 @@ const MenuLink = styled(Link)`
 
   color: var(--radiantBlue);
   opacity: 0.9;
-  &:hover,
-  &:active {
-    opacity: 1;
-    color: var(--radiantBlue);
-    border-bottom: 3px solid var(--radiantBlue);
-    padding-bottom: 10px;
-  }
-`
-
-const NonLocalizedMenuLink = styled(NonLocalizedLink)`
-  transition: 0.2s opacity cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  color: var(--radiantBlue);
-  opacity: 0.9;
-
   &:hover,
   &:active {
     opacity: 1;

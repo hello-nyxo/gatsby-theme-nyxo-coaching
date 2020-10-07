@@ -70,6 +70,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
         <H2>{t("COACHING.WEEKS")}</H2>
         <P>{t("COACHING.WEEKS_TEXT")}</P>
+
         <Weeks>
           {weeks.map((week: ContentfulWeek) => {
             return (

@@ -157,8 +157,7 @@ export const fetchWeekNLessonBookmarks = async (
         }
       })
     } catch (error) {
-      console.log(error)
-      return error
+      return initialLessons
     }
   } else {
     return initialLessons

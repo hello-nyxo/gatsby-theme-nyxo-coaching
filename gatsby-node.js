@@ -7,15 +7,6 @@ exports.onCreateNode = async (options) => {
   ])
 }
 
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions
-
-  if (page.path.match(/^\/me/)) {
-    page.matchPath = `/me/*`
-    createPage(page)
-  }
-}
-
 exports.createPages = require("./src/gatsby/createPages").createPages
 
 const ChildProcess = require("child_process")

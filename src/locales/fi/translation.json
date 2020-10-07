@@ -207,6 +207,11 @@
     "ALL_COACHING_DATA": "Kaikki valmennusjaksot"
   },
 
+  "GOOD_MORNING": "Hyvää huomenta",
+  "GOOD_AFTERNOON": "Hyvää iltapäivää",
+  "GOOD_EVENING": "Hyvää iltaa",
+  "GOOD_NIGHT": "Hyvää yötä",
+
   "en": "In English",
   "fi": "Suomeksi"
 }

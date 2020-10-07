@@ -1,5 +1,6 @@
 import { H1, H2, H3 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
+import { SuggestedContent } from "@components/personalization/SuggestedContent"
 import { Container, P } from "@components/Primitives"
 import SEO from "@components/SEO/SEO"
 import { WideWeekCard } from "@components/week/WideWeekCard"
@@ -57,12 +58,14 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
       />
 
       <Container>
-        <Title>{t("COACHING.TITLE")}</Title>
-        <Subtitle>{t("COACHING.SUBTITLE")}</Subtitle>
+        <SuggestedContent />
 
         {/* <CoverPhotoContainer>
           <Cover fluid={coachingCover.childImageSharp.fluid} />
         </CoverPhotoContainer> */}
+
+        <Title>{t("COACHING.TITLE")}</Title>
+        <Subtitle>{t("COACHING.SUBTITLE")}</Subtitle>
 
         <P>{t("COACHING.INTRODUCTION")}</P>
         <H3>{t("COACHING.HOW_IT_WORKS")}</H3>

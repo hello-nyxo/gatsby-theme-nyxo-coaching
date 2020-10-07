@@ -1,4 +1,4 @@
-import Image, { FluidObject } from "gatsby-image"
+import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
 import { Link } from "gatsby-plugin-react-i18next"
 import React, { EventHandler, FC, MouseEvent } from "react"
 import styled from "styled-components"
@@ -140,7 +140,7 @@ const ImageContainer = styled.div`
   margin-bottom: 1rem;
   position: relative;
 `
-const Cover = styled(Image)`
+const Cover = styled(Image)<GatsbyImageProps>`
   height: 100%;
   width: 100%;
 `

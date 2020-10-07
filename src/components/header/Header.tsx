@@ -20,36 +20,38 @@ const Header: FC = () => {
 
   return (
     <HeaderContainer>
-      <Logo>
-        <Link to="/" title={title}>
-          {title}
-        </Link>
-        <Hello />
-      </Logo>
-      <Links>
-        {links.map(({ title, path }) => (
-          <Li key={title}>
-            {title === "LOGIN" || title === "ME" ? (
-              <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
-            ) : (
-              <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
-            )}
-          </Li>
-        ))}
-        {language === "en" ? (
-          <Li key={"fi"}>
-            <MenuLink to={originalPath} language={"fi"}>
-              {t("fi")}
-            </MenuLink>
-          </Li>
-        ) : (
-          <Li key={"en"}>
-            <MenuLink to={originalPath} language={"en"}>
-              {t("en")}
-            </MenuLink>
-          </Li>
-        )}
-      </Links>
+      <InnerContainer>
+        <Logo>
+          <Link to="/" title={title}>
+            {title}
+          </Link>
+          <Hello />
+        </Logo>
+        <Links>
+          {links.map(({ title, path }) => (
+            <Li key={title}>
+              {title === "LOGIN" || title === "ME" ? (
+                <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
+              ) : (
+                <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
+              )}
+            </Li>
+          ))}
+          {language === "en" ? (
+            <Li key={"fi"}>
+              <MenuLink to={originalPath} language={"fi"}>
+                {t("fi")}
+              </MenuLink>
+            </Li>
+          ) : (
+            <Li key={"en"}>
+              <MenuLink to={originalPath} language={"en"}>
+                {t("en")}
+              </MenuLink>
+            </Li>
+          )}
+        </Links>
+      </InnerContainer>
     </HeaderContainer>
   )
 }
@@ -76,7 +78,13 @@ const Logo = styled.div`
   }
 `
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.header``
+
+const InnerContainer = styled.div`
+  box-sizing: border-box;
+  max-width: var(--maxWidth);
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;

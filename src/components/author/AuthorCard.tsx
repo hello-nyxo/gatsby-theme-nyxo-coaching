@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import styled from "styled-components"
 import { ContentfulAuthor, Maybe } from "../../../graphql-types"
-import Image, { FluidObject } from "gatsby-image"
+import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
 import { device } from "../Primitives"
 import { Link } from "gatsby-plugin-react-i18next"
 
@@ -110,7 +110,7 @@ const Credentials = styled.span`
   margin-top: 0.5rem;
   color: var(--textSecondary);
 `
-const Avatar = styled(Image)`
+const Avatar = styled(Image)<GatsbyImageProps>`
   width: 2rem;
   min-width: 2rem;
   height: 2rem;

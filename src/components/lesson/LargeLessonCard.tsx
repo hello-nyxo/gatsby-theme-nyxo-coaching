@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import Image from "gatsby-image"
+import Image, { GatsbyImageProps } from "gatsby-image"
 import React, { FC } from "react"
 import styled from "styled-components"
 import { ContentfulLesson } from "../../../graphql-types"
@@ -118,7 +118,7 @@ const ImageContainer = styled.div`
   margin-bottom: 1rem;
   position: relative;
 `
-const Cover = styled(Image)`
+const Cover = styled(Image)<GatsbyImageProps>`
   height: 100%;
   width: 100%;
 `

@@ -1,7 +1,8 @@
-name: "Build, test, and release"
+name: "Build & Release"
 on:
-  release:
-    types: ["published"]
+  push:
+    branches:
+      - master
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
@@ -38,13 +39,8 @@ jobs:
       - run: yarn build
         env:
           GATSBY_TELEMETRY_DISABLED: 1
-          INSTAGRAM_API_TOKEN: ${{ secrets.INSTAGRAM_API_TOKEN }}
-          INSTAGRAM_BUSINES_ID: ${{ secrets.INSTAGRAM_BUSINES_ID }}
-          GTAG_ID: ${{ secrets.GTAG_ID }}
-          GOOGLE_ANALYTICS: ${{ secrets.GOOGLE_ANALYTICS }}
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
 
       - uses: netlify/actions/cli@master
         env:
@@ -54,6 +50,20 @@ jobs:
           args: deploy --dir=public --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
 
+      - name: "Pump version"
+        uses: "phips28/gh-action-bump-version@master"
+          with:
+          tag-prefix: ''  
+    
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          registry-url: 'https://npm.pkg.github.com'
+          
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Spam Slack
         if: always()
         uses: adamkdean/simple-slack-notify@1.0.4
@@ -61,10 +71,12 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         with:
           channel: "#development"
+          username: "coaching.nyxo.app"
           status: ${{ job.status }}
-          success_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) of nyxo.app completed successfully. Go see nyxo.app to see it in action"
-          failure_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) of nyxo.app failed. Please go see what's wrong with this build"
+          success_text: "New version (#${env.GITHUB_RUN_NUMBER}) of Nyxo theme completed successfully. Go to coaching.nyxo.app to see it in action"
+          failure_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) of Nyxo theme failed. Please go see what's wrong with this build"
           cancelled_text: "Deployment (#${env.GITHUB_RUN_NUMBER}) was cancelled"
           fields: |
             [{ "title": "Host", "value": "${{ secrets.DEPLOY_HOST }}"},
             { "title": "Action URL", "value": "${env.GITHUB_SERVER_URL}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}"}]
+    

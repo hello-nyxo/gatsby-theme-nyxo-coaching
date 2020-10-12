@@ -58,7 +58,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
       />
 
       <Container>
-        <SuggestedContent />
+        {/* <SuggestedContent /> */}
 
         {/* <CoverPhotoContainer>
           <Cover fluid={coachingCover.childImageSharp.fluid} />

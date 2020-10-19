@@ -1,0 +1,122 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "nyxocloud-dev-20190813125556-authRole",
+			"UnauthRoleArn": "arn:aws:iam::110360201054:role/nyxocloud-dev-20190813125556-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::110360201054:role/nyxocloud-dev-20190813125556-authRole",
+			"Region": "eu-central-1",
+			"DeploymentBucketName": "nyxocloud-dev-20190813125556-deployment",
+			"UnauthRoleName": "nyxocloud-dev-20190813125556-unauthRole",
+			"StackName": "nyxocloud-dev-20190813125556",
+			"StackId": "arn:aws:cloudformation:eu-central-1:110360201054:stack/nyxocloud-dev-20190813125556/8ba6f7e0-bdb0-11e9-bd65-0a0ca1a48442",
+			"AmplifyAppId": "d1r0vh3u8r2si0"
+		},
+		"categories": {
+			"auth": {
+				"nyxodev": {}
+			}
+		}
+	},
+	"auth": {
+		"nyxodev": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"output": {
+				"AppClientSecret": "14t17k0nnilaqt255316ao83tuee6huvk2ku40t0hhgklb3ij2j0",
+				"UserPoolId": "eu-central-1_5U2zJXaxF",
+				"AppClientIDWeb": "28d7erfbsalf20klcbt7rmh6oo",
+				"AppClientID": "5o7ofivojo7rvc9qnknecpggho",
+				"IdentityPoolId": "eu-central-1:aa8cd3b0-b8a7-47ec-ad38-2906466d3888",
+				"IdentityPoolName": "nyxodev__dev",
+				"UserPoolName": "nyxo_dev_userpool"
+			},
+			"lastPushTimeStamp": "2020-09-24T13:02:44.591Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/nyxocloud-dev-20190813125556-deployment/amplify-cfn-templates/auth/nyxodev-cloudformation-template.yml",
+				"logicalId": "authnyxodev"
+			}
+		}
+	},
+	"api": {
+		"nyxoDev": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [
+						{
+							"authenticationType": "AWS_IAM"
+						}
+					],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authnyxodev"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "2zgwshwhzvcnjedshx3gugjbou",
+				"GraphQLAPIEndpointOutput": "https://fhpj3t5lwfcixhdbx34mfu5qsy.appsync-api.eu-central-1.amazonaws.com/graphql"
+			},
+			"lastPushTimeStamp": "2020-09-24T13:02:47.406Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/nyxocloud-dev-20190813125556-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apinyxoDev"
+			},
+			"lastPushDirHash": "bwFil4xGp0QQXj06nfSy7z8Hknw="
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"CloudFrontSecureURL": "https://d2g9fq48iqudep.cloudfront.net",
+				"S3BucketSecureURL": "https://nyxo-cloud-preprod-dev.s3.amazonaws.com",
+				"WebsiteURL": "http://nyxo-cloud-preprod-dev.s3-website.eu-central-1.amazonaws.com",
+				"CloudFrontDistributionID": "E11PMVL6P3LKT5",
+				"Region": "eu-central-1",
+				"HostingBucketName": "nyxo-cloud-preprod-dev",
+				"CloudFrontDomainName": "d2g9fq48iqudep.cloudfront.net"
+			},
+			"lastPushTimeStamp": "2020-09-24T13:02:44.594Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/nyxocloud-dev-20190813125556-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			}
+		}
+	},
+	"function": {
+		"nyxoPoints": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "api",
+					"resourceName": "nyxoDev",
+					"attributes": [
+						"GraphQLAPIIdOutput",
+						"GraphQLAPIEndpointOutput"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2020-09-23T14:27:26.574Z",
+			"lastPackageTimeStamp": "2020-09-23T14:27:31.104Z",
+			"distZipFilename": "nyxoPoints-3268676d4c3831685364-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/nyxocloud-dev-20190813125556-deployment/amplify-cfn-templates/function/nyxoPoints-cloudformation-template.json",
+				"logicalId": "functionnyxoPoints"
+			},
+			"lastPushTimeStamp": "2020-09-24T13:02:44.595Z",
+			"output": {
+				"Region": "eu-central-1",
+				"Arn": "arn:aws:lambda:eu-central-1:110360201054:function:nyxoPoints-dev",
+				"Name": "nyxoPoints-dev",
+				"LambdaExecutionRole": "nyxocloudLambdaRole1658507e-dev"
+			},
+			"lastPushDirHash": "XnN1TcerrVnFpc0s5kBCHFPK43s="
+		}
+	}
+}

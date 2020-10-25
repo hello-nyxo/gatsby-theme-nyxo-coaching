@@ -14,7 +14,6 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
 
-      - name: Decrypt team setting
       - uses: actions/checkout@v2
         run: ./.github/scripts/decrypt-team-provider.sh
         env:
@@ -36,9 +35,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-central-1
 
-      - name: Install theme dependencies
-        run: yarn install --frozen-lockfile --non-interactive
-        run: yarn build
+      - run: yarn install --frozen-lockfile --non-interactive
+      - run: yarn build
         env:
           GATSBY_TELEMETRY_DISABLED: 1
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

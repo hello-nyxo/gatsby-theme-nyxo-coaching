@@ -14,8 +14,8 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
           submodules: recursive
 
-      - uses: actions/checkout@v2
       - name: Decrypt team setting
+        uses: actions/checkout@v2
         run: ./.github/scripts/decrypt-team-provider.sh
         env:
           PASS_PHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
@@ -39,7 +39,6 @@ jobs:
       - name: Install theme dependencies
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn build
-        working-directory: site
         env:
           GATSBY_TELEMETRY_DISABLED: 1
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

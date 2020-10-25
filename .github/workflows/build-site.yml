@@ -37,8 +37,8 @@ jobs:
           AWS_REGION: eu-central-1
 
       - name: Install theme dependencies
-      - run: yarn install --frozen-lockfile --non-interactive
-      - run: yarn build
+        run: yarn install --frozen-lockfile --non-interactive
+        run: yarn build
         env:
           GATSBY_TELEMETRY_DISABLED: 1
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}

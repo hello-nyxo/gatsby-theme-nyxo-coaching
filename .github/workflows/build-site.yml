@@ -52,13 +52,6 @@ jobs:
           args: deploy --dir=public --prod
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
 
-      - name: "Pump version"
-        uses: "phips28/gh-action-bump-version@master"
-        with:
-          tag-prefix: ""
-        env:
-          PACKAGEJSON_DIR: "site"
-
       - name: Spam Slack
         if: always()
         uses: adamkdean/simple-slack-notify@1.0.4

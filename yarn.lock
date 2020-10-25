@@ -5225,14 +5225,6 @@ available-typed-arrays@^1.0.0, available-typed-arrays@^1.0.2:
   dependencies:
     array-filter "^1.0.0"
 
-aws-amplify-react@^4.1.20:
-  version "4.2.7"
-  resolved "https://registry.yarnpkg.com/aws-amplify-react/-/aws-amplify-react-4.2.7.tgz#675a4298022926f3971e46302d5a21dc6f199062"
-  integrity sha512-EHS/7lY39CqIFVYPwCMxCTXRMwJ4/tIJVKNUacEEmASfaH667EiHeYPG4NPKtvWvMQObPr/NZgHW42/+c65itw==
-  dependencies:
-    qrcode.react "^0.8.0"
-    regenerator-runtime "^0.11.1"
-
 aws-amplify@^3.0.21:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-3.3.3.tgz#f5999334af75f40d79b188765830e1cb28a1465d"
@@ -16532,19 +16524,6 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qr.js@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
-  integrity sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=
-
-qrcode.react@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/qrcode.react/-/qrcode.react-0.8.0.tgz#413b31cc3b62910e39513f7bead945e01c4c34fb"
-  integrity sha512-16wKpuFvLwciIq2YAsfmPUCnSR8GrYPsXRK5KVdcIuX0+W/MKZbBkFhl44ttRx4TWZHqRjfztoWOxdPF0Hb9JA==
-  dependencies:
-    prop-types "^15.6.0"
-    qr.js "0.0.0"
-
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
@@ -17198,7 +17177,7 @@ regenerate@^1.4.0:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.1.tgz#cad92ad8e6b591773485fbe05a485caf4f457e6f"
   integrity sha512-j2+C8+NtXQgEKWk49MMP5P/u2GhnahTtVkRIHr5R5lVRlbKvmQ+oS+A5aLKWp2ma5VkT8sh6v+v4hbH0YHR66A==
 
-regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
+regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==

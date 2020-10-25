@@ -1,11 +1,13 @@
+const path = require("path");
+
+process.env.GATSBY_SSR_DIRNAME = __dirname;
+
 module.exports = {
   plugins: [
     {
       resolve: "@hello-nyxo/gatsby-theme-nyxo-coaching",
-      options: {
-        contentPath: "events",
-        basePath: "/events",
-      },
+      options: {},
     },
+    `gatsby-plugin-typescript`,
   ],
 };

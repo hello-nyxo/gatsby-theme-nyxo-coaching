@@ -20,10 +20,6 @@ export default function useSiteMetadata(): Data {
           title
           description
           siteUrl
-          social {
-            twitter
-            linkedIn
-          }
         }
       }
     }

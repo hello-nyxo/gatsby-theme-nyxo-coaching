@@ -13,18 +13,21 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
-        working-directory: ./gatsby-theme-nyxo-coaching
         with:
           node-version: "10.x"
 
+
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn build:gatsby
+          working-directory: gatsby-theme-nyxo-coaching
 
       - name: "Pump version"
         uses: "phips28/gh-action-bump-version@master"
         with:
           tag-prefix: ""
-
+        env:
+          PACKAGEJSON_DIR: "gatsby-theme-nyxo-coaching"
+          
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"

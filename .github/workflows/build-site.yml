@@ -22,6 +22,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
+          registry-url: https://npm.pkg.github.com
+          scope: "@hello-nyxo"
 
       - name: Configure amplify
         uses: ambientlight/amplify-cli-action@0.2.1

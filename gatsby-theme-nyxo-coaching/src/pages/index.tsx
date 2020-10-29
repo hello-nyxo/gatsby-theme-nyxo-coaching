@@ -4,12 +4,21 @@ import { SuggestedContent } from "@components/personalization/SuggestedContent"
 import { Container, P } from "@components/Primitives"
 import SEO from "@components/SEO/SEO"
 import { WideWeekCard } from "@components/week/WideWeekCard"
+import useSiteMetadata from "@hooks/useSiteMetaData"
 import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import { ContentfulWeek } from "../../graphql-types"
+import { Router, Redirect } from "@reach/router"
+import Details from "@components/user/pages/Details"
+import Login from "@components/user/pages/Login"
+import PrivateRoute from "@components/auth/PrivateRoute"
+import SignUp from "@components/user/pages/Register"
+import Reset from "@components/user/pages/Reset"
+import Sleep from "@components/user/pages/Sleep"
+import { I18nextContext } from "gatsby-plugin-react-i18next"
 
 type Props = {
   weeksFI: {
@@ -46,11 +55,15 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
   const { t } = useTranslation()
   const weeks = language === "fi" ? fiWeeks : enWeeks
-
+  const { title } = useSiteMetadata()
   return (
     <Layout>
+      <Router>
+        <PrivateRoute path={`fi/me`} component={Details} />
+        <Login path={`fi/me/login`} />
+      </Router>
       <SEO
-        title={t("COACHING.TITLE")}
+        title={title}
         description={t("COACHING.DESCRIPTION")}
         pathName={pathname}
         // image={coachingMeta?.childImageSharp?.fixed?.src}

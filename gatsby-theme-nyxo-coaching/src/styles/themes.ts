@@ -14,6 +14,7 @@ declare module "styled-components" {
     SECONDARY_BACKGROUND_COLOR_TRANSPARENT?: string
 
     titleColor: string
+    errorColor: string
     PRIMARY_TEXT_COLOR?: string
     SECONDARY_TEXT_COLOR?: string
 
@@ -38,6 +39,7 @@ export const lightTheme: DefaultTheme = {
   SECONDARY_BACKGROUND_COLOR_TRANSPARENT: "rgba(255,255,255,0.3)",
 
   titleColor: "hsl(255deg, 85%, 30%)",
+  errorColor: "#e71934",
   PRIMARY_TEXT_COLOR: "#202125",
   SECONDARY_TEXT_COLOR: "#5e6267",
   ICON_COLOR: "#f7f8fb",
@@ -62,6 +64,7 @@ export const darkTheme: DefaultTheme = {
   SECONDARY_BACKGROUND_COLOR_TRANSPARENT: "rgba(51,51,51,0.3)",
 
   titleColor: "hsl(255deg, 85%, 30%)",
+  errorColor: "#e71934",
   PRIMARY_TEXT_COLOR: "white",
   SECONDARY_TEXT_COLOR: "rgba(255,255,255,0.75)",
   ICON_COLOR: "#f7f8fb",

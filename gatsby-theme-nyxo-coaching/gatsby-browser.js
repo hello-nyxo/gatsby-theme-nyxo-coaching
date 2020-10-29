@@ -2,7 +2,6 @@
 import { createElement } from "react"
 import { setUser } from "@auth/auth"
 import Auth from "@aws-amplify/auth"
-import Amplify from "aws-amplify"
 import { get } from "lodash"
 import "prism-theme-night-owl"
 import Modal from "react-modal"

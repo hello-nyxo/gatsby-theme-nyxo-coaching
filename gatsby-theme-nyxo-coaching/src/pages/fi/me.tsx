@@ -11,14 +11,17 @@ import { I18nextContext } from "gatsby-plugin-react-i18next"
 import { PageProps } from "gatsby"
 
 const Me: FC<PageProps> = () => {
+  const { language } = useContext(I18nextContext)
+  const basepath = language === "en" ? "/me" : `${language}/me`
+
   return (
     <Layout>
       <Router>
-        <PrivateRoute path={`me/`} component={Details} />
-        <PrivateRoute path={`me/sleep`} component={Sleep} />
-        <Login path={`me/login`} />
-        <SignUp path={`me/register`} />
-        <Reset path={`me/reset`} />
+        <PrivateRoute path={`fi/me`} component={Details} />
+        <PrivateRoute path={`fi/sleep`} component={Sleep} />
+        <Login path={`fi/me/login`} />
+        <SignUp path={`fi/me/register`} />
+        <Reset path={`fi/me/reset`} />
       </Router>
     </Layout>
   )

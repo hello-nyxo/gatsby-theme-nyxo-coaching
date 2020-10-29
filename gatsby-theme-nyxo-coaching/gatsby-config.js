@@ -9,7 +9,8 @@ module.exports = (options) => {
   return {
     siteMetadata: {
       author: `Pietari Nurmi`,
-      title: `Univalmentajat Oy`,
+      company: `Univalmentajat Oy`,
+      title: `Univalmennus`,
       description: `Univalmentaja`,
       siteUrl: `https://pietari.nyxo.app`,
       social: {
@@ -50,6 +51,13 @@ module.exports = (options) => {
         options: { prefixes: [`/me/*`, `/fi/me/*`] },
       },
       {
+        resolve: "gatsby-plugin-i18n",
+        options: {
+          langKeyDefault: "en",
+          useLangKeyLayout: false,
+        },
+      },
+      {
         resolve: `gatsby-plugin-react-i18next`,
         options: {
           path: `${__dirname}/src/locales`,
@@ -69,6 +77,12 @@ module.exports = (options) => {
           pages: [
             {
               matchPath: "/:lang?/week/:uid",
+              getLanguageFromPath: true,
+              excludeLanguages: ["fi"],
+            },
+            { matchPath: "/:lang?/me", getLanguageFromPath: true },
+            {
+              matchPath: "/:lang?/author/:uid",
               getLanguageFromPath: true,
               excludeLanguages: ["fi"],
             },

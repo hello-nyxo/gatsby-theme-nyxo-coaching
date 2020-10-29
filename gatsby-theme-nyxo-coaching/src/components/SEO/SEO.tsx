@@ -1,6 +1,7 @@
 import React, { FC } from "react"
 import { Helmet } from "react-helmet"
 import { useI18next } from "gatsby-plugin-react-i18next"
+import useSiteMetadata from "@hooks/useSiteMetaData"
 
 interface HelmetProps {
   children?: React.ReactChildren
@@ -55,6 +56,7 @@ const SEO: FC<HelmetProps> = ({
     defaultLanguage,
     siteUrl = "",
   } = useI18next()
+  const { company } = useSiteMetadata()
 
   const createUrlWithLang = (lng: string) => {
     const url = `${siteUrl}${
@@ -68,7 +70,7 @@ const SEO: FC<HelmetProps> = ({
     : `${siteUrl}${originalPath.replace(`/${language}`, "")}`
 
   return (
-    <Helmet htmlAttributes={{ lang: language }} title={`${title} – Nyxo`}>
+    <Helmet htmlAttributes={{ lang: language }} title={`${title} – ${company}`}>
       {children}
       <link rel="canonical" href={canonicalUrl} />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />

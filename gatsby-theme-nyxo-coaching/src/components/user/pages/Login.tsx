@@ -1,31 +1,26 @@
-import React, { FC, useState } from "react"
-import { navigate } from "@reach/router"
-import styled from "styled-components"
 import { isLoggedIn, setUser } from "@auth/auth"
-import { Link } from "gatsby"
+import { H1 } from "@components/html/Html"
+import { navigate } from "@reach/router"
 import { Auth } from "aws-amplify"
-import colors from "@styles/colors"
-import { ContentContainer } from "@components/Primitives"
+import { Formik } from "formik"
+import { Link } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import React, { FC } from "react"
+import styled from "styled-components"
+import * as Yup from "yup"
 
 type Props = {
   path?: string
 }
 
 const Login: FC<Props> = () => {
-  const [password, setPassword] = useState()
-  const [email, setEmail] = useState("")
-
-  const handleEmail = (event: any) => {
-    setEmail(event.target.value)
+  const { t } = useTranslation()
+  const defaultValues = {
+    email: "",
+    password: "",
   }
 
-  const handlePassword = (event: any) => {
-    setPassword(event.target.value)
-  }
-
-  const login = async (event: any) => {
-    event.preventDefault()
-
+  const login = async ({ email, password }) => {
     try {
       await Auth.signIn(email, password)
       const user = await Auth.currentAuthenticatedUser()
@@ -34,43 +29,60 @@ const Login: FC<Props> = () => {
         username: user.username,
       }
       setUser(userInfo)
-      navigate("/me/details")
+      navigate("/me/")
     } catch (err) {
       console.log(err)
     }
   }
-  if (isLoggedIn()) {
-    navigate("/me/details")
-    return null
-  }
+
   return (
     <Container>
       <OverlayDiv>
-        <NewContentContainer>
-          <h1>Login</h1>
-          <form onSubmit={login}>
-            <InputField
-              onChange={handleEmail}
-              placeholder="Email"
-              autoComplete="username"
-              name="email"
-              value={email}
-            />
-            <InputField
-              onChange={handlePassword}
-              placeholder="Password"
-              type="password"
-              autoComplete="current-password"
-              name="password"
-              value={password}
-            />
-
-            <Submit type="submit" value="Login" />
-          </form>
-          <p>
-            No account with us yet? <Link to="/me/register">Register</Link>.
-          </p>
-        </NewContentContainer>
+        <H1>{t("LOGIN.TITLE")}</H1>
+        <Formik
+          initialValues={defaultValues}
+          onSubmit={login}
+          validationSchema={LoginSchema}>
+          {({ handleChange, submitForm, values, errors, touched }) => (
+            <>
+              <InputContainer>
+                <Title>{t("LOGIN.EMAIL_FIELD")}</Title>
+                <InputField
+                  onChange={handleChange("email")}
+                  placeholder="Email"
+                  autoComplete="username"
+                  name="email"
+                  value={values.email}
+                />
+                <Errors>
+                  {touched.email && errors.email && (
+                    <Error>{t(errors.email)}</Error>
+                  )}
+                </Errors>
+              </InputContainer>
+              <InputContainer>
+                <Title>{t("LOGIN.PASSWORD")}</Title>
+                <InputField
+                  onChange={handleChange("password")}
+                  placeholder="Password"
+                  type="password"
+                  autoComplete="current-password"
+                  name="password"
+                  value={values.password}
+                />
+                <Errors>
+                  {touched.password && errors.password && (
+                    <Error>{t(errors.password)}</Error>
+                  )}
+                </Errors>
+              </InputContainer>
+              <Submit type="submit" onClick={submitForm} value="Login" />
+            </>
+          )}
+        </Formik>
+        <p>
+          Not a member? <Link to="/me/register">Sign up now</Link>.
+        </p>
       </OverlayDiv>
     </Container>
   )
@@ -90,49 +102,74 @@ const OverlayDiv = styled.div`
   margin: auto;
   height: 500px;
   position: relative;
-  background-color: #fff;
-  box-shadow: var(--shadow);
-  z-index: 2;
 
-  @media screen and (max-width: 720px) {
-    width: 90%;
-    box-shadow: var(--shadowFull);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 const InputField = styled.input`
-  border-radius: 3px;
-  border: 2px solid var(--bg);
-  width: 60%;
+  border-radius: 7px;
+  width: 100%;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  margin: 1rem;
-  &:focus {
-    border: 2px solid var(--radiantBlue);
-  }
-  @media screen and (max-width: 720px) {
-    width: 80%;
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  transition: background-color 200ms ease, outline 200ms ease, color 200ms ease,
+    box-shadow 200ms ease, -webkit-box-shadow 200ms ease;
+
+  &:focus,
+  :hover {
+    background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+    box-shadow: 0 0 0 4px rgba(76, 132, 234, 0.1);
   }
 `
 const Submit = styled.input`
   padding: 1rem;
   background-color: var(--radiantBlue);
   color: white;
-  border-radius: 5px;
+  border-radius: 7px;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1.4px;
   border: none;
   display: block;
-  font-size: 1rem;
-  /* margin: 1rem auto 3rem auto;
-   */
-  margin: 20px auto 45px auto;
+  padding: 1rem 2.5rem;
   cursor: pointer;
 `
-const ErrorMsg = styled.p`
-  color: ${colors.morningAccent};
-  line-height: 24px;
-  font-weight: 700;
+
+const InputContainer = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
 `
-const NewContentContainer = styled(ContentContainer)`
-  margin: auto;
-  text-align: center;
-  padding-top: 50px;
+
+const Title = styled.label`
+  display: block;
+  font-size: 0.9rem;
+  padding-bottom: 0.5rem;
+  font-family: ${({ theme }) => theme.FONT_BOLD};
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("LOGIN.INVALID_EMAIL")
+    .required("LOGIN.REQUIRED_EMAIL"),
+  password: Yup.string()
+    .required("LOGIN.PASSWORD_REQUIRED")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+})
+
+const Errors = styled.div`
+  padding: 0.5rem 0rem;
+`
+
+const Error = styled.span`
+  color: ${({ theme }) => theme.errorColor};
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-size: 0.6rem;
 `

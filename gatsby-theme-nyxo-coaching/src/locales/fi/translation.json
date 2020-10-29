@@ -212,6 +212,14 @@
   "GOOD_EVENING": "Hyvää iltaa",
   "GOOD_NIGHT": "Hyvää yötä",
 
+  "LOGIN": {
+    "TITLE": "Kirjaudu",
+    "EMAIL_FIELD": "Käyttäjänimi tai sähköposti",
+    "PASSWORD": "Password",
+    "BUTTON": "Kirjaudu",
+    "NOT_A_MEMBER": "Rekisteröidy"
+  },
+
   "en": "In English",
   "fi": "Suomeksi"
 }

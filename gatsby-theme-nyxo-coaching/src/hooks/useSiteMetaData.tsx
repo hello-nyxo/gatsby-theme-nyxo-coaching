@@ -4,6 +4,7 @@ type Data = {
   author: string
   title: string
   description: string
+  company: string
   siteUrl: string
   social: {
     twitter: string
@@ -18,6 +19,7 @@ export default function useSiteMetadata(): Data {
         siteMetadata {
           author
           title
+          company
           description
           siteUrl
         }

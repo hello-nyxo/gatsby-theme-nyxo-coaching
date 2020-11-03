@@ -12,7 +12,6 @@ const Coaching: FC = () => {
   const { data: active } = useGetActiveCoaching()
   const [mutate] = useUpdateUser()
 
-  // console.log(status, data, error)
   console.log("listCoaching", coaching)
 
   const setActive = (id: string) => {
@@ -34,7 +33,7 @@ const Coaching: FC = () => {
         </>
       )}
 
-      <pre>{JSON.stringify(active, undefined, 4)}</pre>
+      {/* <pre>{JSON.stringify(active, undefined, 4)}</pre> */}
 
       <H4>{t("USER.ALL_COACHING_DATA")}</H4>
       {coaching?.items?.map((item) => (
@@ -51,7 +50,7 @@ const Coaching: FC = () => {
 export default Coaching
 
 const Container = styled.div`
-  padding: 1rem;
+  padding: 1rem 0rem;
 `
 
 const ID = styled.div`

@@ -110,6 +110,9 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
         <SharingOptions
           title={title as string}
           summary={description as string}
+          bookmark={handleBookmarking}
+          bookmarked={bookmarked}
+          loading={removeLoading || addLoading || isLoading}
         />
         <Cover>
           <CoverImage fluid={cover?.fluid as FluidObject} />
@@ -121,11 +124,6 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
               onClick={handleComplete}
               loading={completeLoading}
               completed={lessonCompleted}
-            />
-            <BookmarkButton
-              onClick={handleBookmarking}
-              bookmarked={bookmarked}
-              loading={removeLoading || addLoading || isLoading}
             />
           </ActionRow>
         ) : null}

@@ -13,7 +13,7 @@ const Header: FC = () => {
   const { originalPath, language } = useI18next()
 
   const links = isLoggedIn()
-    ? [{ path: "me/details", title: "ME" }]
+    ? [{ path: "me/", title: "ME" }]
     : [{ path: "me/login", title: "LOGIN" }]
 
   return (

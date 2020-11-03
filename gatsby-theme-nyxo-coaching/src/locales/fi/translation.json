@@ -109,7 +109,9 @@
     "HABITS_TEXT": "Alla pieni läpileikkaus Nyxo Univalmennuksessa valittavista harjoitteista ja tavoitteista.",
     "AUTHORS": "Kirjoittajat",
     "AUTHORS_TEXT": "Alla olevat henkilöt ovat luoneet Nyxo Univalmennuksen.",
-    "SLEEP_COACHING": "Univalmennus"
+    "SLEEP_COACHING": "Univalmennus",
+
+    "ACTIVE_WEEK": "Aktiivinen viikko:"
   },
 
   "BLOG": {

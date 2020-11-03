@@ -1,14 +1,13 @@
-import { Router, Redirect } from "@reach/router"
-import React, { FC, useContext } from "react"
+import PrivateRoute from "@components/auth/PrivateRoute"
+import Layout from "@components/Layout/Layout"
 import Details from "@components/user/pages/Details"
 import Login from "@components/user/pages/Login"
-import PrivateRoute from "@components/auth/PrivateRoute"
 import SignUp from "@components/user/pages/Register"
 import Reset from "@components/user/pages/Reset"
-import Layout from "@components/Layout/Layout"
 import Sleep from "@components/user/pages/Sleep"
-import { I18nextContext } from "gatsby-plugin-react-i18next"
+import { Router } from "@reach/router"
 import { PageProps } from "gatsby"
+import React, { FC } from "react"
 
 const Me: FC<PageProps> = () => {
   return (

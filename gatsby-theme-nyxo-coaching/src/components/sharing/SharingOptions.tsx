@@ -1,3 +1,4 @@
+import BookmarkButton from "@components/bookmark/Bookmark"
 import { Icon } from "@components/Icons"
 import React, { FC } from "react"
 import {
@@ -12,9 +13,20 @@ type Props = {
   shareUrl?: string
   summary: string
   title: string
+
+  bookmarked: boolean
+  loading: boolean
+  bookmark: EventHandler<MouseEvent<HTMLButtonElement>>
 }
 
-export const SharingOptions: FC<Props> = ({ shareUrl, title, summary }) => {
+export const SharingOptions: FC<Props> = ({
+  shareUrl,
+  title,
+  summary,
+  bookmarked,
+  loading,
+  bookmark,
+}) => {
   const url = typeof window !== "undefined" ? window.location.href : ""
 
   return (
@@ -35,8 +47,8 @@ export const SharingOptions: FC<Props> = ({ shareUrl, title, summary }) => {
         <TwitterIcon />
       </Twitter>
 
-      <Bookmark>
-        <BookmarkIcon />
+      <Bookmark disabled={loading} onClick={bookmark} bookmarked={bookmarked}>
+        <BookmarkIcon bookmarked={bookmarked} />
       </Bookmark>
     </Container>
   )
@@ -124,10 +136,10 @@ const Bookmark = styled.button`
   border: none;
 `
 
-const BookmarkIcon = styled(Icon).attrs(({ theme }) => ({
+const BookmarkIcon = styled(Icon).attrs(({ theme, bookmarked }) => ({
   fill: theme.SECONDARY_TEXT_COLOR,
   stroke: "none",
-  name: "heartBookmarkFilled",
+  name: bookmarked ? "heartBookmarkFilled" : "heartBookmarkOutline",
   height: 30,
 }))`
   margin: 0px;

@@ -2,7 +2,7 @@ import { SharingOptions } from "@components/sharing/SharingOptions"
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
 import { Document } from "@contentful/rich-text-types"
 import { graphql, PageProps } from "gatsby"
-import Image, { FluidObject } from "gatsby-image"
+import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { groupBy } from "lodash"
 import React, { FC } from "react"
@@ -86,7 +86,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
   const description = documentToPlainTextString(weekDescription?.json)
   const groupedLessons = groupBy(data, (lesson) => lesson?.section?.title)
 
-  const sectionData: Section[] = data?.map((item: Lesson) => ({
+  const sectionData: Section[] | undefined = data?.map((item: Lesson) => ({
     title: item?.section?.title,
     id: item?.section?.id,
     description: item?.section?.description,
@@ -94,7 +94,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
   }))
 
   const sections = Object.entries(groupedLessons).map((group) => {
-    const header = sectionData.find((section) => section.title === group[0])
+    const header = sectionData?.find((section) => section.title === group[0])
     return {
       header: header,
       lessons: group[1],
@@ -154,10 +154,8 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
         <SharingOptions
           title={title as string}
           summary={description as string}
-        />
-        <BookmarkButton
           loading={removeLoading || addLoading || getLoading}
-          onClick={handleBookmark}
+          bookmark={handleBookmark}
           bookmarked={weekBookmarked}
         />
 
@@ -388,7 +386,7 @@ const Cover = styled.div`
     0 18px 36px -18px rgba(0, 0, 0, 0.22);
 `
 
-const CoverImage = styled(Image)`
+const CoverImage = styled(Image)<GatsbyImageProps>`
   height: 100%;
   width: 100%;
 `

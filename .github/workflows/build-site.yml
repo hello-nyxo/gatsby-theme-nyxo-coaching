@@ -2,7 +2,10 @@ name: "Site: Build and deploy"
 on:
   push:
     branches:
-      - master
+			- master
+	defaults:
+		run:
+			working-directory: gatsby-theme-nyxo-coaching
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest

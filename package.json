@@ -3,5 +3,10 @@
   "workspaces": [
     "gatsby-theme-nyxo-coaching",
     "site"
-  ]
+  ],
+  "scripts": {
+    "build": "cd site && gatsby build",
+    "develop": "gatsby develop",
+    "clean": "gatsby clean"
+  }
 }

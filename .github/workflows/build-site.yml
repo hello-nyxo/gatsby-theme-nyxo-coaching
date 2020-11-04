@@ -2,8 +2,8 @@ name: "Site: Build and deploy"
 on:
   push:
     branches:
-			- master
-			
+      - master
+
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
@@ -30,24 +30,24 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-central-1
 
-			- name: Setup Node.js
-				uses: actions/setup-node@v1
-				with:
-					node-version: "12.x"
-					registry-url: "https://npm.pkg.github.com"
-					scope: "@hello-nyxo"
-				env:
-					NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-	
-				- name: Build
-					working-directory: site
-					run: |
-						yarn build
-					env:
-						GATSBY_TELEMETRY_DISABLED: 1
-						CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-						CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-						GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@hello-nyxo"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build
+        working-directory: site
+        run: |
+          yarn build
+        env:
+          GATSBY_TELEMETRY_DISABLED: 1
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: netlify/actions/cli@master
         env:

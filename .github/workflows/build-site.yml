@@ -2,12 +2,11 @@ name: "Site: Build and deploy"
 on:
   push:
     branches:
-			- master
-			
+      - master
 defaults:
-	run:
-		working-directory: site
-		
+  run:
+    working-directory: site
+
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest

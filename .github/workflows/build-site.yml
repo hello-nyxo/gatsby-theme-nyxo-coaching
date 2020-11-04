@@ -39,6 +39,13 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+			- name: Install dependencies
+        working-directory: site
+        run: |
+          yarn install --frozen-lockfile --non-interactive
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
       - name: Build
         working-directory: site
         run: |

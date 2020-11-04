@@ -5,7 +5,7 @@
     "site"
   ],
   "scripts": {
-    "build": "cd site && gatsby build",
+    "build": "cd site && yarn build",
     "develop": "gatsby develop",
     "clean": "gatsby clean"
   }

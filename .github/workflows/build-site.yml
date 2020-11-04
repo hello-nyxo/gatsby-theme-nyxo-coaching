@@ -3,9 +3,11 @@ on:
   push:
     branches:
 			- master
+			
 defaults:
 	run:
 		working-directory: site
+		
 jobs:
   build-test-deploy:
     runs-on: ubuntu-latest

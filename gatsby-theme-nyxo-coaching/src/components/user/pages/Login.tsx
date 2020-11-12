@@ -1,4 +1,4 @@
-import { isLoggedIn, setUser } from "@auth/auth"
+import { setUser } from "@auth/auth"
 import { H1 } from "@components/html/Html"
 import { navigate } from "@reach/router"
 import { Auth } from "aws-amplify"
@@ -20,7 +20,13 @@ const Login: FC<Props> = () => {
     password: "",
   }
 
-  const login = async ({ email, password }) => {
+  const login = async ({
+    email,
+    password,
+  }: {
+    email: string
+    password: string
+  }) => {
     try {
       await Auth.signIn(email, password)
       const user = await Auth.currentAuthenticatedUser()
@@ -43,7 +49,14 @@ const Login: FC<Props> = () => {
           initialValues={defaultValues}
           onSubmit={login}
           validationSchema={LoginSchema}>
-          {({ handleChange, submitForm, values, errors, touched }) => (
+          {({
+            handleChange,
+            submitForm,
+            values,
+            errors,
+            touched,
+            isSubmitting,
+          }) => (
             <>
               <InputContainer>
                 <Title>{t("LOGIN.EMAIL_FIELD")}</Title>
@@ -76,18 +89,35 @@ const Login: FC<Props> = () => {
                   )}
                 </Errors>
               </InputContainer>
-              <Submit type="submit" onClick={submitForm} value="Login" />
+
+              <Submit type="submit" onClick={submitForm}>
+                {t("LOGIN.TITLE")}
+                {isSubmitting && <Loader />}
+              </Submit>
             </>
           )}
         </Formik>
-        <p>
-          Not a member? <Link to="/me/register">Sign up now</Link>.
-        </p>
+        <RegisterContainer>
+          <p>
+            Not a member? <Link to="/me/register">Sign up now</Link>.
+          </p>
+        </RegisterContainer>
       </OverlayDiv>
     </Container>
   )
 }
+
 export default Login
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("LOGIN.INVALID_EMAIL")
+    .required("LOGIN.REQUIRED_EMAIL"),
+  password: Yup.string()
+    .required("LOGIN.PASSWORD_REQUIRED")
+    .min(8, "Password is too short - should be 8 chars minimum.")
+    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
+})
 
 const Container = styled.div`
   position: relative;
@@ -125,7 +155,7 @@ const InputField = styled.input`
     box-shadow: 0 0 0 4px rgba(76, 132, 234, 0.1);
   }
 `
-const Submit = styled.input`
+const Submit = styled.button`
   padding: 1rem;
   background-color: var(--radiantBlue);
   color: white;
@@ -138,12 +168,16 @@ const Submit = styled.input`
   display: block;
   padding: 1rem 2.5rem;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 1rem;
 `
 
 const InputContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 0rem 1rem 1rem;
 `
 
 const Title = styled.label`
@@ -154,22 +188,63 @@ const Title = styled.label`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
-const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("LOGIN.INVALID_EMAIL")
-    .required("LOGIN.REQUIRED_EMAIL"),
-  password: Yup.string()
-    .required("LOGIN.PASSWORD_REQUIRED")
-    .min(8, "Password is too short - should be 8 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
-})
-
 const Errors = styled.div`
   padding: 0.5rem 0rem;
+  height: 1rem;
 `
 
 const Error = styled.span`
   color: ${({ theme }) => theme.errorColor};
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   font-size: 0.6rem;
+`
+
+const RegisterContainer = styled.div`
+  margin: 2rem 0rem 0rem;
+`
+
+const Loader = styled.div`
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+
+  &:after {
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 0.2rem solid rgba(255, 255, 255, 0.2);
+  border-right: 0.2rem solid rgba(255, 255, 255, 0.2);
+  border-bottom: 0.2rem solid rgba(255, 255, 255, 0.2);
+  border-left: 0.2rem solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+
+  @-webkit-keyframes load8 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes load8 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
 `

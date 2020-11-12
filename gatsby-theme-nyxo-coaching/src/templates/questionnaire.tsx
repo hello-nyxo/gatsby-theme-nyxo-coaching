@@ -1,6 +1,6 @@
 import { Formik } from "formik"
 import { graphql, PageProps } from "gatsby"
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
 import Select from "react-select"
 import styled from "styled-components"
 import {
@@ -33,14 +33,15 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
     location: { pathname },
   } = props
 
-  // console.log(props)
+  const [score, setScore] = useState(0)
+  console.log(props)
 
   const defaultValues = questions?.map((question) => {
     const score = question?.answers ? question?.answers[0]?.score : 0
     const title = question?.answers ? question?.answers[0]?.title : "title"
 
     return {
-      [question?.title]: {
+      [question?.title as string]: {
         title: question?.title,
         answer: {
           value: score,
@@ -50,15 +51,18 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
     }
   })
 
+  const calculateResult = (values: [any]) => {
+    values.forEach((value, index) => {
+      console.log(value[`Question_${index + 1}`]["answer"]["value"])
+      setScore(score + value[`Question_${index + 1}`]["answer"]["value"])
+    })
+  }
+
   return (
     <Layout>
       <SEO pathName={pathname} title={title} description={excerpt} />
       <Container>
-        <Formik
-          initialValues={defaultValues}
-          onSubmit={(something) => {
-            // console.log(something)
-          }}>
+        <Formik initialValues={defaultValues} onSubmit={calculateResult}>
           {({ handleChange, submitForm, values }) => (
             <>
               {questions?.map((q) => {
@@ -78,12 +82,11 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
                   // const defaultValue = values.find(value => )
                   return (
                     <Question key={title as string}>
-                      <H4>{question}</H4>
+                      <QuestionTitle>{question}</QuestionTitle>
 
                       <Select
                         className="basic-single"
                         classNamePrefix="select"
-                        // defaultValue={values[title].answer.title}
                         isDisabled={false}
                         isLoading={false}
                         isClearable={true}
@@ -123,6 +126,7 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
               ))}
 
               <button onClick={submitForm}>get results</button>
+              {score}
             </>
           )}
         </Formik>
@@ -136,6 +140,8 @@ export default Questionnaire
 const Question = styled.div``
 const Answer = styled.div``
 const Result = styled.div``
+
+const QuestionTitle = styled.h5``
 
 export const pageQuery = graphql`
   query QuestionById($slug: String!) {
@@ -168,6 +174,10 @@ export const pageQuery = graphql`
         }
         details {
           json
+        }
+        scoreRange {
+          highEnd
+          lowEnd
         }
         title
       }

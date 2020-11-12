@@ -46,7 +46,7 @@ const LessonCard: FC<Props> = ({
         />
         <Wrap>
           <Icon height="15px" width="15px" name="clock" />
-          <ReadingTime>{Math.ceil(readingTime as number)}m</ReadingTime>
+          <ReadingTime>{JSON.stringify(readingTime)}m</ReadingTime>
           {!!countHabits && (
             <Habits>
               <Icon height="20px" width="20px" name="task" />

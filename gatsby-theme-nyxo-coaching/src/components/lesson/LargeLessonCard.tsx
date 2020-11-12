@@ -22,7 +22,7 @@ const LargeLessonCard: FC<Props> = ({ path = `/`, lesson }) => {
         <Wrap>
           <Icon height="15px" width="15px" name="clock" />
           <ReadingTime>
-            {Math.ceil(lesson?.lessonContent?.fields?.readingTime?.minutes)}m
+            {Math.ceil(lesson?.lessonContent?.fields?.readingTime ?? 5)}m
           </ReadingTime>
           {!!countHabits && (
             <Habits>

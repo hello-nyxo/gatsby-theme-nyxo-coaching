@@ -90,9 +90,7 @@ const Details: FC = () => {
                 loading={false}
                 path={`/lesson/${lesson?.slug}`}
                 lesson={lesson}
-                readingTime={
-                  lesson?.lessonContent?.fields?.readingTime?.minutes
-                }
+                readingTime={lesson?.lessonContent?.fields?.readingTime}
                 cover={lesson?.cover?.fluid as FluidObject}
                 excerpt={lesson?.lessonContent?.fields?.excerpt}
               />

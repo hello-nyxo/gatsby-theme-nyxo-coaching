@@ -1,98 +1,94 @@
+import HabitListItem from "@components/habit/HabitListItem"
 import { H5 } from "@components/html/Html"
 import { LessonItem } from "@components/lesson/LessonItem"
-import { graphql, useStaticQuery } from "gatsby"
-import { Link } from "gatsby-plugin-react-i18next"
-import React, { FC } from "react"
-import styled from "styled-components"
+import { device } from "@components/Primitives"
 import Image, { GatsbyImageProps } from "gatsby-image"
+import { Link } from "gatsby-plugin-react-i18next"
+import { ContentfulHabit, ContentfulLesson } from "graphql-types"
+import { isNumber, shuffle } from "lodash"
+import React, { FC } from "react"
+import styled, { css } from "styled-components"
 
-export const SuggestedContent: FC = () => {
-  const data = useStaticQuery(graphql`
-    {
-      allContentfulLesson(
-        sort: { fields: updatedAt }
-        limit: 6
-        filter: { node_locale: { eq: "en-US" } }
-      ) {
-        nodes {
-          lessonName
-          slug
-          lessonContent {
-            fields {
-              readingTime {
-                minutes
-              }
-            }
-          }
-          authorCard {
-            slug
-            name
-            avatar {
-              fluid(maxWidth: 50) {
-                ...GatsbyContentfulFluid_withWebp
-              }
-            }
-          }
-          cover {
-            fluid(maxWidth: 500) {
-              ...GatsbyContentfulFluid_withWebp
-            }
-          }
-          week {
-            slug
-            weekName
-          }
-        }
-      }
-    }
-  `)
+type Props = {
+  lessons: ContentfulLesson[]
+  habits: ContentfulHabit[]
+}
 
-  const highlightLesson = data.allContentfulLesson.nodes[0]
-  const lessons = data.allContentfulLesson.nodes.slice(1, -1)
+const getSelectedContent = ({ habits, lessons }) => {
+  const shuffledLessons = shuffle(lessons)
+  const highlightedLesson = shuffledLessons[0]
+  const selectedLessons = shuffledLessons.slice(1, 5)
+
+  const selectedHabits = shuffle(habits).slice(0, 3)
+
+  return {
+    highlightedLesson: highlightedLesson,
+    selectedHabits: selectedHabits,
+    selectedLessons: selectedLessons,
+  }
+}
+
+export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
+  const {
+    selectedLessons,
+    selectedHabits,
+    highlightedLesson,
+  } = getSelectedContent({ lessons, habits })
+
   return (
     <Container>
       <Column>
         <TopPick>
-          <Cover fluid={highlightLesson.cover.fluid} />
+          <Cover fluid={highlightedLesson.cover.fluid} />
           <Row>
-            <AuthorPhoto fluid={highlightLesson.authorCard[0].avatar.fluid} />
+            <AuthorPhoto fluid={highlightedLesson.authorCard[0].avatar.fluid} />
             <LessonFrom>
-              <Author to={highlightLesson.authorCard[0].slug}>
-                {highlightLesson.authorCard[0].name}
+              <Author to={`/author/${highlightedLesson.authorCard[0].slug}`}>
+                {highlightedLesson.authorCard[0].name}
               </Author>
               {` in `}
-              <Week to={`week/${highlightLesson.week[0].slug}`}>
-                {highlightLesson.week[0].weekName}
+              <Week to={`/week/${highlightedLesson.week[0].slug}`}>
+                {highlightedLesson?.week[0].weekName}
               </Week>
             </LessonFrom>
           </Row>
-          <Title>{highlightLesson.lessonName}</Title>
-          <Text>
-            Using React Native to build our core app has taught us a lot. In
-            this post, we explore the highs and the lows of our experience.
-          </Text>
+          <Title>{highlightedLesson.lessonName}</Title>
+          <Text>{highlightedLesson.lessonContent.fields.excerpt}...</Text>
 
-          <ReadingTime>{`${Math.ceil(
-            highlightLesson.lessonContent.fields.readingTime.minutes
-          )} min read`}</ReadingTime>
+          <ReadingTime>{`${highlightedLesson?.lessonContent?.fields?.readingTime} min read`}</ReadingTime>
+          <ReadMore />
         </TopPick>
       </Column>
       <Column>
         <TopPicks>
-          {lessons.map((lesson) => (
+          {selectedLessons.map((lesson) => (
             <LessonItem
-              author={lesson.authorCard}
+              updatedAt={lesson.updatedAt}
+              weekSlug={lesson.week[0].slug}
+              weekName={lesson.week[0].weekName}
+              author={lesson.authorCard[0]}
               key={lesson.slug}
               title={lesson.lessonName}
-              readingTime={lesson.lessonContent.fields.readingTime.minutes}
+              readingTime={lesson.lessonContent.fields.readingTime}
               cover={lesson.cover}
             />
           ))}
         </TopPicks>
       </Column>
 
-      <Column>
-        <ReadingList></ReadingList>
+      <Column hide={device.laptop}>
+        <ReadingList>
+          {selectedHabits.map((habit) => (
+            <HabitListItem
+              link
+              key={`${habit?.slug}`}
+              title={habit?.title}
+              period={habit?.period}
+              slug={`/habit/${habit?.slug}`}
+              excerpt={habit?.description?.fields?.excerpt}
+            />
+          ))}
+        </ReadingList>
       </Column>
     </Container>
   )
@@ -103,11 +99,27 @@ const Container = styled.div`
   flex-direction: row;
   padding-bottom: 2rem;
   border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
-
   margin: 4rem -1rem 5rem;
+
+  @media ${device.tablet} {
+    flex-direction: column;
+  }
 `
 
-const Column = styled.div`
+type ColumnProps = {
+  hide?: string
+}
+
+const Column = styled.div<ColumnProps>`
+  ${({ hide }) =>
+    hide
+      ? css`
+          @media ${hide} {
+            display: none;
+          }
+        `
+      : css``};
+
   flex: 1;
   box-sizing: border-box;
   padding: 0rem 1rem;
@@ -131,6 +143,7 @@ const Title = styled(H5)`
 
 const Text = styled.p`
   margin-bottom: 0.5rem;
+  line-height: 1.4rem;
 `
 
 const Row = styled.div`
@@ -171,3 +184,5 @@ const ReadingList = styled.div`
   height: 100%;
   border-left: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
 `
+
+const ReadMore = styled(Link)``

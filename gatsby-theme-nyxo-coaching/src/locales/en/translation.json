@@ -216,6 +216,14 @@
   "GOOD_EVENING": "Good evening",
   "GOOD_NIGHT": "Good night!",
 
+  "LOGIN": {
+    "TITLE": "Login",
+    "EMAIL_FIELD": "Username or Email",
+    "PASSWORD": "Password",
+    "BUTTON": "Login",
+    "NOT_A_MEMBER": "Register"
+  },
+
   "en": "english",
   "fi": "Suomeksi"
 }

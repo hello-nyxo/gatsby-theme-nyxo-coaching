@@ -42,15 +42,14 @@ export const lessonFragment = graphql`
       json
       fields {
         excerpt
-        readingTime {
-          minutes
-        }
+        readingTime
       }
     }
     additionalInformation {
       json
     }
     week {
+      weekName
       slug
     }
   }
@@ -99,10 +98,7 @@ export const weekFragment = graphql`
       lessonContent {
         fields {
           excerpt
-          readingTime {
-            text
-            minutes
-          }
+          readingTime
         }
       }
       habit {

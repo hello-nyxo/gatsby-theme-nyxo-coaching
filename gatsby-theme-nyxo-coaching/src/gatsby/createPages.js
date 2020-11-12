@@ -19,32 +19,8 @@ exports.createPages = async ({ graphql, actions, }) => {
     const { createPage } = actions;
     // const allMarkdown = await graphql(markdownQuery)
     const { data: { allContentfulWeek: { nodes: weeks }, allContentfulLesson: { nodes: lessons }, allContentfulHabit: { nodes: habits }, allContentfulAuthor: { nodes: authors }, allContentfulQuestionnaire: { nodes: questionnaires }, contentfulTagsQuery: { group: contentfulTags }, }, } = (await graphql(queries_1.contentfulData));
-    // if (allMarkdown.errors) {
-    //   throw allMarkdown.errors
-    // }
-    // const posts = allMarkdown.data.allBlogPosts.nodes
-    // /* TAGS */
-    // const tags = allMarkdown.data.tagsGroup.group
-    // posts.forEach((post: any, index: number) => {
-    //   const previous = index === posts.length - 1 ? null : posts[index + 1].slug
-    //   const next = index === 0 ? null : posts[index - 1].slug
-    //   createPage({
-    //     path: post.fields.slug as string,
-    //     component: path.resolve(`./src/templates/blog-post.tsx`),
-    //     context: {
-    //       next,
-    //       previous,
-    //       author: post.frontmatter.authorSlug,
-    //       slug: post.fields.slug,
-    //     },
-    //   })
-    // })
-    // Merge different types of tags
     const allTags = [
-        ...new Set([
-            // ...tags.map((tag: ContentfulTag) => tag.fieldValue),
-            ...contentfulTags.map((tag) => tag.fieldValue),
-        ]),
+        ...new Set([...contentfulTags.map((tag) => tag.fieldValue)]),
     ];
     allTags.forEach((tag) => {
         if (typeof tag !== undefined) {

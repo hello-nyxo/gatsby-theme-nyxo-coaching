@@ -12,8 +12,6 @@ const Coaching: FC = () => {
   const { data: active } = useGetActiveCoaching()
   const [mutate] = useUpdateUser()
 
-  console.log("listCoaching", coaching)
-
   const setActive = (id: string) => {
     mutate({
       user: {

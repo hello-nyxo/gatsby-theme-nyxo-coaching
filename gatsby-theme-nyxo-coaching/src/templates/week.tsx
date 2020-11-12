@@ -206,9 +206,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
                     onClick={bookmark}
                     lesson={lesson}
                     loading={isLoading}
-                    readingTime={
-                      lesson?.lessonContent?.fields?.readingTime?.minutes
-                    }
+                    readingTime={lesson?.lessonContent?.fields?.readingTime}
                     cover={lesson?.cover?.fluid as FluidObject}
                     excerpt={lesson?.lessonContent?.fields?.excerpt}
                   />

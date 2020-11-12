@@ -75,7 +75,7 @@ const Author: FC<PageProps<Props>> = ({
                   path={`/lesson/${ln.slug}`}
                   lesson={ln}
                   excerpt={ln.lessonContent.fields.excerpt}
-                  readingTime={ln.lessonContent.fields.readingTime.minutes}
+                  readingTime={ln.lessonContent.fields.readingTime}
                 />
               ))}
             </Lessons>

@@ -5,7 +5,7 @@ import ModalRoutingContext from "./modal-routing-context"
 type Props = {
   to: string
   asModal: true
-  state: any
+  state?: any
 }
 
 export const ModalRoutingLink: FC<Props> = ({

@@ -217,7 +217,7 @@
   "LOGIN": {
     "TITLE": "Kirjaudu",
     "EMAIL_FIELD": "Käyttäjänimi tai sähköposti",
-    "PASSWORD": "Password",
+    "PASSWORD": "Salasana",
     "BUTTON": "Kirjaudu",
     "NOT_A_MEMBER": "Rekisteröidy"
   },

@@ -1,16 +1,26 @@
-import { H5, H6 } from "@components/html/Html"
+import { H6 } from "@components/html/Html"
+import { format } from "date-fns"
+import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
 import { Link } from "gatsby-plugin-react-i18next"
-import Image, { GatsbyImageProps } from "gatsby-image"
-import { FluidObject } from "gatsby-image"
+import {
+  ContentfulAsset,
+  ContentfulAuthor,
+  ContentfulLessonLessonContentRichTextNodeFieldsReadingTime,
+  Maybe,
+} from "graphql-types"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulAuthor } from "graphql-types"
 
 type Props = {
-  title: string
-  cover: FluidObject
-  readingTime: number
-  author: ContentfulAuthor
+  title?: string | null
+  cover?: ContentfulAsset | null
+  readingTime?: Maybe<
+    ContentfulLessonLessonContentRichTextNodeFieldsReadingTime
+  >
+  author?: ContentfulAuthor | null
+  weekName?: string | null
+  weekSlug?: string | null
+  updatedAt: string
 }
 
 export const LessonItem: FC<Props> = ({
@@ -18,24 +28,33 @@ export const LessonItem: FC<Props> = ({
   cover,
   readingTime,
   author,
+  weekName,
+  weekSlug,
+  updatedAt,
 }) => {
   return (
     <Container>
       <Column flex={1}>
         <Row>
-          <AuthorPhoto fluid={cover.fluid} />
+          <AuthorPhoto
+            as={Link}
+            to={`/author/${author?.slug}`}
+            fluid={author?.avatar?.fluid as FluidObject}
+          />
           <LessonFrom>
-            <Author to={author.slug}>Pietari Nurmi </Author>
+            <Author to={`/author/${author?.slug}`}>{author?.name} </Author>
             in
-            <Week to="pietari-nurmi"> Understanding Sleep</Week>
+            <Week to={`/week/${weekSlug}`}> {weekName}</Week>
           </LessonFrom>
         </Row>
         <Title>{title}</Title>
-        <ReadingTime>{`${Math.ceil(readingTime)} min read`}</ReadingTime>
+        {updatedAt && <Info>{format(new Date(updatedAt), "MMM, dd")}</Info>}
+        <Info> · </Info>
+        {readingTime && <Info>{`${readingTime} min read`}</Info>}
       </Column>
 
-      <Column>
-        <Cover fluid={cover.fluid} />
+      <Column as={Link} to={`/week/${weekSlug}`}>
+        <Cover fluid={cover?.fluid as FluidObject} />
       </Column>
     </Container>
   )
@@ -43,12 +62,14 @@ export const LessonItem: FC<Props> = ({
 
 const Title = styled(H6)`
   margin: 0;
+  font-size: 1rem;
 `
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 2.5rem;
+  flex: 1;
 `
 
 type ColumnProps = {
@@ -65,10 +86,10 @@ const Row = styled.div`
   margin-bottom: 0.5rem;
 `
 
-const ReadingTime = styled.span`
-  font-size: 0.9rem;
+const Info = styled.span`
+  font-size: 0.75rem;
   display: inline-block;
-  margin-top: 0.5rem;
+  margin: 0.5rem 0.2rem 0.5rem 0.2rem;
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
@@ -79,8 +100,8 @@ const LessonFrom = styled.div`
 `
 
 const AuthorPhoto = styled(Image)<GatsbyImageProps>`
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.2rem;
+  width: 1.2rem;
   border-radius: 0.3rem;
   margin-right: 0.5rem;
   background-color: black;

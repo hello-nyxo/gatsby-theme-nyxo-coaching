@@ -5,7 +5,7 @@ import { GatsbyNode } from "gatsby"
 export const onCreateNode: GatsbyNode["onCreateNode"] = async ({
   node,
   loadNodeContent,
-  actions,
+  actions: { createNodeField },
 }) => {
   const { internal } = node
   const { owner, mediaType } = internal
@@ -14,6 +14,12 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = async ({
   }
   const doc = JSON.parse(await loadNodeContent(node))
   const text = documentToPlainTextString(doc)
-  const result = readingTime(text)
-  actions.createNodeField({ node, name: "readingTime", value: result })
+  const { minutes } = readingTime(text)
+  const value = Math.ceil(minutes) + 1
+
+  createNodeField({
+    node,
+    name: "readingTime",
+    value,
+  })
 }

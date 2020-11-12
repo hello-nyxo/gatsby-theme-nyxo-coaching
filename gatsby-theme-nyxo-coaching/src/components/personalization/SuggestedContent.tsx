@@ -39,21 +39,23 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
     <Container>
       <Column>
         <TopPick>
-          <Cover fluid={highlightedLesson.cover.fluid} />
+          <Cover fluid={highlightedLesson?.cover?.fluid} />
           <Row>
-            <AuthorPhoto fluid={highlightedLesson.authorCard[0].avatar.fluid} />
+            <AuthorPhoto
+              fluid={highlightedLesson?.authorCard[0].avatar?.fluid}
+            />
             <LessonFrom>
-              <Author to={`/author/${highlightedLesson.authorCard[0].slug}`}>
-                {highlightedLesson.authorCard[0].name}
+              <Author to={`/author/${highlightedLesson?.authorCard[0].slug}`}>
+                {highlightedLesson?.authorCard[0].name}
               </Author>
               {` in `}
-              <Week to={`/week/${highlightedLesson.week[0].slug}`}>
+              <Week to={`/week/${highlightedLesson?.week[0].slug}`}>
                 {highlightedLesson?.week[0].weekName}
               </Week>
             </LessonFrom>
           </Row>
-          <Title>{highlightedLesson.lessonName}</Title>
-          <Text>{highlightedLesson.lessonContent.fields.excerpt}...</Text>
+          <Title>{highlightedLesson?.lessonName}</Title>
+          <Text>{highlightedLesson?.lessonContent?.fields.excerpt}...</Text>
 
           <ReadingTime>{`${highlightedLesson?.lessonContent?.fields?.readingTime} min read`}</ReadingTime>
           <ReadMore />

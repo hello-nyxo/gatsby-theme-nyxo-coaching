@@ -142,7 +142,6 @@ export const updateCoaching = async ({
     )) as {
       data: UpdateCoachingDataMutation
     }
-    console.log(data)
     return data
   } catch (error) {
     console.log(error)
@@ -165,8 +164,6 @@ export const useCreateCoaching = () => {
 export const useCompleteLesson = () => {
   return useMutation(completeLesson, {
     onMutate: (data) => {
-      console.log(data)
-
       const previousLesson = queryCache.getQueryData("lesson", [
         { slug: data.lesson },
       ])

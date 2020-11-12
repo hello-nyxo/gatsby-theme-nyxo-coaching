@@ -34,8 +34,6 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
   } = props
 
   const [score, setScore] = useState(0)
-  console.log(props)
-
   const defaultValues = questions?.map((question) => {
     const score = question?.answers ? question?.answers[0]?.score : 0
     const title = question?.answers ? question?.answers[0]?.title : "title"
@@ -53,7 +51,6 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
 
   const calculateResult = (values: [any]) => {
     values.forEach((value, index) => {
-      console.log(value[`Question_${index + 1}`]["answer"]["value"])
       setScore(score + value[`Question_${index + 1}`]["answer"]["value"])
     })
   }

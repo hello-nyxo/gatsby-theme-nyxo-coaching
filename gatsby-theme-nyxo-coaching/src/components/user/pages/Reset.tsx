@@ -38,9 +38,7 @@ const Reset: FC<Props> = () => {
 
   const confirmReset = async () => {
     Auth.forgotPasswordSubmit(email, authCode, password)
-      .then((data) => {
-        console.log(data)
-      })
+      .then((data) => {})
       .then(() => navigate("details"))
       .catch((err) => {
         setError(err)

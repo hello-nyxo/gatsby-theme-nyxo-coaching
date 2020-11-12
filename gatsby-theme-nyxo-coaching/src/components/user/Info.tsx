@@ -13,7 +13,7 @@ const dateFormat = "dd.MM.yyyy"
 const UserInfo: FC = () => {
   const { data } = useGetUser()
   const { t } = useTranslation()
-  console.log("user", data)
+
   const signOut = () => {
     Auth.signOut()
       .then(function () {

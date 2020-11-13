@@ -7,21 +7,14 @@ export const lessonFragment = graphql`
     updatedAt(formatString: "")
     createdAt(formatString: "")
     habit {
-      title
-      period
-      slug
-      description {
-        fields {
-          excerpt
-        }
-      }
+      ...HabitFragment
     }
     authorCard {
       credentials
       name
       slug
       avatar {
-        fluid(maxWidth: 50) {
+        fluid(maxWidth: 150) {
           ...GatsbyContentfulFluid_withWebp
         }
       }
@@ -38,15 +31,26 @@ export const lessonFragment = graphql`
       }
     }
     keywords
+    fields {
+      excerpt
+      readingTime
+    }
     lessonContent {
-      json
-      fields {
-        excerpt
-        readingTime
+      raw
+      references {
+        ... on ContentfulAsset {
+          description
+          __typename
+          title
+          contentful_id
+          fluid(maxWidth: 600) {
+            ...GatsbyContentfulFluid_withWebp
+          }
+        }
       }
     }
     additionalInformation {
-      json
+      raw
     }
     week {
       weekName
@@ -64,7 +68,7 @@ export const weekFragment = graphql`
     weekName
     intro
     weekDescription {
-      json
+      raw
     }
     coverPhoto {
       description
@@ -89,21 +93,18 @@ export const weekFragment = graphql`
         title
         order
         description {
-          json
+          raw
         }
       }
       habit {
-        title
+        ...HabitFragment
+      }
+      fields {
+        excerpt
+        readingTime
       }
       lessonContent {
-        fields {
-          excerpt
-          readingTime
-        }
-      }
-      habit {
-        slug
-        title
+        raw
       }
       authorCard {
         ...AuthorFragment
@@ -117,11 +118,11 @@ export const habitFragment = graphql`
     slug
     period
     title
+    fields {
+      excerpt
+    }
     description {
-      json
-      fields {
-        excerpt
-      }
+      raw
     }
     updatedAt(formatString: "DD/MM/YYYY")
     createdAt(formatString: "DD/MM/YYYY")
@@ -132,11 +133,11 @@ export const habitFragment = graphql`
         title
         slug
         period
+        fields {
+          excerpt
+        }
         description {
-          json
-          fields {
-            excerpt
-          }
+          raw
         }
       }
       week {

@@ -34,7 +34,7 @@ const Author: FC<PageProps<Props>> = ({
       <SEO
         pathName={pathname}
         title={name}
-        description={documentToPlainTextString(description?.json)}
+        description={documentToPlainTextString(description)}
       />
 
       <Container>
@@ -47,7 +47,7 @@ const Author: FC<PageProps<Props>> = ({
             <Credentials>{credentials}</Credentials>
           </Column>
         </Row>
-        <HtmlContent document={description?.json} />
+        <HtmlContent document={description} />
 
         {/* {!!allGoogleScholar?.edges?.length && (
           <>
@@ -74,8 +74,8 @@ const Author: FC<PageProps<Props>> = ({
                   name={ln.lessonName}
                   path={`/lesson/${ln.slug}`}
                   lesson={ln}
-                  excerpt={ln.lessonContent.fields.excerpt}
-                  readingTime={ln.lessonContent.fields.readingTime}
+                  excerpt={ln.fields.excerpt}
+                  readingTime={ln.fields.readingTime}
                 />
               ))}
             </Lessons>
@@ -95,11 +95,11 @@ export const pageQuery = graphql`
       name
       slug
       credentials
+      fields {
+        excerpt
+      }
       description {
-        json
-        fields {
-          excerpt
-        }
+        raw
       }
       lesson {
         ...LessonFragment

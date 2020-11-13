@@ -51,7 +51,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
       <SEO
         pathName={pathname}
         title={habit.title}
-        description={habit.description?.fields?.excerpt as string}
+        description={habit?.fields?.excerpt as string}
       />
 
       <Container>
@@ -70,7 +70,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
         <Title>{habit.title}</Title>
 
         <H3>{t("DESCRIPTION")}</H3>
-        <HtmlContent document={habit.description?.json} />
+        <HtmlContent document={habit.description} />
 
         {habit.lesson?.habit?.map((habit: ContentfulHabit) => (
           <HabitCard
@@ -79,7 +79,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
             period={habit.period}
             title={habit.title}
             slug={habit.slug}
-            excerpt={habit.description?.fields?.excerpt}
+            excerpt={habit?.fields?.excerpt}
           />
         ))}
 
@@ -100,7 +100,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
               title={nextHabit.title}
               period={nextHabit.period}
               slug={getLocalizedPath(`/habit/${nextHabit.slug}`, "en-US")}
-              excerpt={nextHabit.description?.fields?.excerpt}
+              excerpt={nextHabit?.fields?.excerpt}
             />
           )}
 

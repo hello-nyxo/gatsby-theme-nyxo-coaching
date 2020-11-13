@@ -14,7 +14,7 @@ type Props = {
   habits: ContentfulHabit[]
 }
 
-const getSelectedContent = ({ habits, lessons }) => {
+const getSelectedContent = ({ habits, lessons }: Props) => {
   const shuffledLessons = shuffle(lessons)
   const highlightedLesson = shuffledLessons[0]
   const selectedLessons = shuffledLessons.slice(1, 5)
@@ -55,9 +55,9 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
             </LessonFrom>
           </Row>
           <Title>{highlightedLesson?.lessonName}</Title>
-          <Text>{highlightedLesson?.lessonContent?.fields.excerpt}...</Text>
+          <Text>{highlightedLesson?.fields?.excerpt}...</Text>
 
-          <ReadingTime>{`${highlightedLesson?.lessonContent?.fields?.readingTime} min read`}</ReadingTime>
+          <ReadingTime>{`${highlightedLesson?.fields?.readingTime} min read`}</ReadingTime>
           <ReadMore />
         </TopPick>
       </Column>
@@ -69,9 +69,10 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
               weekSlug={lesson.week[0].slug}
               weekName={lesson.week[0].weekName}
               author={lesson.authorCard[0]}
+              lessonSlug={lesson.slug}
               key={lesson.slug}
               title={lesson.lessonName}
-              readingTime={lesson.lessonContent.fields.readingTime}
+              readingTime={lesson.fields.readingTime}
               cover={lesson.cover}
             />
           ))}
@@ -87,7 +88,7 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
               title={habit?.title}
               period={habit?.period}
               slug={`/habit/${habit?.slug}`}
-              excerpt={habit?.description?.fields?.excerpt}
+              excerpt={habit?.fields?.excerpt}
             />
           ))}
         </ReadingList>

@@ -83,7 +83,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
 
   const { data, isLoading } = useGetLessons(initialLessons)
 
-  const description = documentToPlainTextString(weekDescription?.json)
+  const description = documentToPlainTextString(weekDescription)
   const groupedLessons = groupBy(data, (lesson) => lesson?.section?.title)
 
   const sectionData: Section[] | undefined = data?.map((item: Lesson) => ({
@@ -163,7 +163,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
 
         <Row>
           <Column>
-            <HtmlContent document={weekDescription?.json} />
+            <HtmlContent document={weekDescription} />
           </Column>
           {tags?.length > 0 && (
             <Column>
@@ -184,7 +184,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
         {sections.map(({ header, lessons }) => (
           <Section key={header?.id}>
             <H6>{header?.title}</H6>
-            <HtmlContent document={header?.description?.json as Document} />
+            <HtmlContent document={header?.description as Document} />
 
             <Lessons>
               {lessons.map((lesson) => {
@@ -206,9 +206,9 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
                     onClick={bookmark}
                     lesson={lesson}
                     loading={isLoading}
-                    readingTime={lesson?.lessonContent?.fields?.readingTime}
+                    readingTime={lesson?.fields?.readingTime}
                     cover={lesson?.cover?.fluid as FluidObject}
-                    excerpt={lesson?.lessonContent?.fields?.excerpt}
+                    excerpt={lesson?.fields?.excerpt}
                   />
                 )
               })}
@@ -297,10 +297,11 @@ export const pageQuery = graphql`
         title
         period
         slug
+        fields {
+          excerpt
+        }
         description {
-          fields {
-            excerpt
-          }
+          raw
         }
       }
     }

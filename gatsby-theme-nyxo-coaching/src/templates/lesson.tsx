@@ -129,7 +129,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
         ) : null}
 
         {/* <ContentProtector shouldShow={false}> */}
-        <HtmlContent document={content?.json} />
+        <HtmlContent document={content} />
         {habits && <H3>{t("HABITS_TO_TRY")}</H3>}
         <Habits>
           {habits?.map((habit) => (
@@ -139,14 +139,14 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
               title={habit?.title}
               period={habit?.period}
               slug={`/habit/${habit?.slug}`}
-              excerpt={habit?.description?.fields?.excerpt}
+              excerpt={habit?.fields?.excerpt}
             />
           ))}
         </Habits>
         {readMore && (
           <>
             <H3>{t("ADDITIONAL_READING")}</H3>
-            <HtmlContent document={readMore.json} />
+            <HtmlContent document={readMore} />
           </>
         )}
         {/* </ContentProtector> */}

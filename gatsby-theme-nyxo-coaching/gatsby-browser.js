@@ -3,12 +3,8 @@ import { createElement } from "react"
 import { setUser } from "@auth/auth"
 import Auth from "@aws-amplify/auth"
 import { get } from "lodash"
-import "prism-theme-night-owl"
 import Modal from "react-modal"
 import { ReplaceComponentRenderer } from "./src/gatsby/component-renderer/ReplaceComponentRenderer"
-
-require("prismjs/plugins/line-numbers/prism-line-numbers.css")
-require("prismjs/plugins/command-line/prism-command-line.css")
 
 export const onClientEntry = () => {
   Modal.setAppElement(`#___gatsby`)

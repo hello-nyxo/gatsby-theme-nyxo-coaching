@@ -52,7 +52,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
     location: { pathname },
   } = props
 
-  console.log(lessons)
+  console.log(weeks)
   const { t } = useTranslation()
 
   const { title } = useSiteMetadata()

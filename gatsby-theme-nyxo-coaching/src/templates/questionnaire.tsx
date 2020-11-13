@@ -25,7 +25,7 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
         questions,
         results,
         description: {
-          json: description,
+          raw: description,
           fields: { excerpt },
         },
       },
@@ -117,8 +117,8 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
               {results?.map((result) => (
                 <Result key={result?.title as string}>
                   <H4>{result?.title}</H4>
-                  <HtmlContent document={result?.description?.json} />
-                  <HtmlContent document={result?.details?.json} />
+                  <HtmlContent document={result?.description} />
+                  <HtmlContent document={result?.details} />
                 </Result>
               ))}
 
@@ -145,11 +145,11 @@ export const pageQuery = graphql`
     contentfulQuestionnaire(slug: { eq: $slug }) {
       title
       slug
+      fields {
+        excerpt
+      }
       description {
-        fields {
-          excerpt
-        }
-        json
+        raw
       }
       questions {
         title
@@ -167,10 +167,10 @@ export const pageQuery = graphql`
       }
       results {
         description {
-          json
+          raw
         }
         details {
-          json
+          raw
         }
         scoreRange {
           highEnd

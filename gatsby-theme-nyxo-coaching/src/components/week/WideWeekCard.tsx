@@ -35,9 +35,12 @@ export const WideWeekCard: FC<Props> = ({
   bookmarked,
   description,
 }) => {
-  const countHabits: number = lessons?.reduce(
-    (accumulator: number, currentValue: ContentfulLesson) =>
-      accumulator + currentValue?.habit ? currentValue?.habit?.length : 0,
+  const countHabits: number = lessons.reduce(
+    (sum: number, currentValue: ContentfulLesson) => {
+      return (sum += currentValue?.habit?.length
+        ? currentValue?.habit?.length
+        : 1)
+    },
     0
   )
 
@@ -76,7 +79,7 @@ export const WideWeekCard: FC<Props> = ({
           )}
         </InformationRow>
         <Description>
-          <HtmlContent document={description?.json} />
+          <HtmlContent document={description} />
         </Description>
       </Bottom>
     </Card>

@@ -20,6 +20,7 @@ type Props = {
   author?: ContentfulAuthor | null
   weekName?: string | null
   weekSlug?: string | null
+  lessonSlug?: string | null
   updatedAt: string
 }
 
@@ -30,6 +31,7 @@ export const LessonItem: FC<Props> = ({
   author,
   weekName,
   weekSlug,
+  lessonSlug,
   updatedAt,
 }) => {
   return (
@@ -53,7 +55,7 @@ export const LessonItem: FC<Props> = ({
         {readingTime && <Info>{`${readingTime} min read`}</Info>}
       </Column>
 
-      <Column as={Link} to={`/week/${weekSlug}`}>
+      <Column as={Link} to={`/lesson/${lessonSlug}`}>
         <Cover fluid={cover?.fluid as FluidObject} />
       </Column>
     </Container>
@@ -100,8 +102,8 @@ const LessonFrom = styled.div`
 `
 
 const AuthorPhoto = styled(Image)<GatsbyImageProps>`
-  height: 1.2rem;
-  width: 1.2rem;
+  min-height: 1.2rem;
+  min-width: 1.2rem;
   border-radius: 0.3rem;
   margin-right: 0.5rem;
   background-color: black;

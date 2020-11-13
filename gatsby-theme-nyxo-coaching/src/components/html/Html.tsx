@@ -8,12 +8,11 @@ import {
   MARKS,
   Text,
 } from "@contentful/rich-text-types"
-import {
-  documentToReactComponents,
-  Options,
-} from "@contentful/rich-text-react-renderer"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { Options } from "@contentful/rich-text-react-renderer"
 import styled from "styled-components"
 import { Link } from "gatsby"
+import Image from "gatsby-image"
 
 type Props = {
   document?: Document
@@ -103,6 +102,7 @@ const options: Options = {
     [BLOCKS.QUOTE]: (node: CommonNode, children: ReactNode) => (
       <BlockQuote>{children}</BlockQuote>
     ),
+    [BLOCKS.EMBEDDED_ASSET]: (node) => <ImageBlock type="" node={node} />,
     [BLOCKS.HR]: () => <hr />,
     [INLINES.ASSET_HYPERLINK]: (node: CommonNode) =>
       defaultInline(INLINES.ASSET_HYPERLINK, node as Inline),
@@ -117,7 +117,7 @@ const options: Options = {
 }
 
 const HtmlContent: FC<Props> = ({ document }) => {
-  return documentToReactComponents(document as Document, options)
+  return <>{document && renderRichText(document, options)}</>
 }
 
 export default HtmlContent
@@ -184,6 +184,29 @@ export const H6 = styled.h6`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.titleColor};
 `
+
+type ImageProps = {
+  node: any
+}
+
+const ImageBlock: FC<ImageProps> = ({ node }) => {
+  console.log("-", node)
+
+  return (
+    <ImageContainer>
+      <Img fluid={node?.data?.target?.fluid} />
+      <ImageTitle>{node?.data?.target?.title}</ImageTitle>
+      <ImageDescription>{node?.data?.target?.description}</ImageDescription>
+    </ImageContainer>
+  )
+}
+
+const ImageContainer = styled.figure``
+
+const Img = styled(Image)``
+
+const ImageTitle = styled.figcaption``
+const ImageDescription = styled.figcaption``
 
 const Ol = styled.ol`
   counter-reset: cupcake;

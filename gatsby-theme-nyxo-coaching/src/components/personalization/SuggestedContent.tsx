@@ -5,7 +5,7 @@ import { device } from "@components/Primitives"
 import Image, { GatsbyImageProps } from "gatsby-image"
 import { Link } from "gatsby-plugin-react-i18next"
 import { ContentfulHabit, ContentfulLesson } from "graphql-types"
-import { isNumber, shuffle } from "lodash"
+import { shuffle } from "lodash"
 import React, { FC } from "react"
 import styled, { css } from "styled-components"
 
@@ -39,7 +39,9 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
     <Container>
       <Column>
         <TopPick>
-          <Cover fluid={highlightedLesson?.cover?.fluid} />
+          <Link to={`/lesson/${highlightedLesson.slug}`}>
+            <Cover fluid={highlightedLesson?.cover?.fluid} />
+          </Link>
           <Row>
             <AuthorPhoto
               fluid={highlightedLesson?.authorCard[0].avatar?.fluid}
@@ -54,11 +56,11 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
               </Week>
             </LessonFrom>
           </Row>
-          <Title>{highlightedLesson?.lessonName}</Title>
-          <Text>{highlightedLesson?.fields?.excerpt}...</Text>
-
+          <Link to={`/lesson/${highlightedLesson.slug}`}>
+            <Title>{highlightedLesson?.lessonName}</Title>
+            <Text>{highlightedLesson?.fields?.excerpt}...</Text>
+          </Link>
           <ReadingTime>{`${highlightedLesson?.fields?.readingTime} min read`}</ReadingTime>
-          <ReadMore />
         </TopPick>
       </Column>
       <Column>
@@ -147,6 +149,7 @@ const Title = styled(H5)`
 const Text = styled.p`
   margin-bottom: 0.5rem;
   line-height: 1.4rem;
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Row = styled.div`

@@ -48,11 +48,9 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
       // coachingMeta,
       // coachingCover,
     },
-    pageContext: { language },
     location: { pathname },
   } = props
 
-  console.log(weeks)
   const { t } = useTranslation()
 
   const { title } = useSiteMetadata()
@@ -72,12 +70,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
       <Container>
         <SuggestedContent lessons={lessons} habits={habits} />
-        {/* <RecentyUpdated lessons={recentlyUpdated} /> */}
-
-        <P>{t("COACHING.INTRODUCTION")}</P>
-        <H3>{t("COACHING.HOW_IT_WORKS")}</H3>
-        <P>{t("COACHING.HOW_IT_WORKS_TEXT")}</P>
-
+        <RecentyUpdated lessons={recentlyUpdated} />
         <H2>{t("COACHING.WEEKS")}</H2>
         <P>{t("COACHING.WEEKS_TEXT")}</P>
 
@@ -160,7 +153,7 @@ export const pageQueryCoaching = graphql`
     recentlyUpdated: allContentfulLesson(
       filter: { fields: { language: { eq: $language } } }
       sort: { fields: updatedAt, order: DESC }
-      limit: 9
+      limit: 6
     ) {
       nodes {
         ...LessonFragment

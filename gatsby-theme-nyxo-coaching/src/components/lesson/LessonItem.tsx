@@ -38,21 +38,19 @@ export const LessonItem: FC<Props> = ({
     <Container>
       <Column flex={1}>
         <Row>
-          <AuthorPhoto
-            as={Link}
-            to={`/author/${author?.slug}`}
-            fluid={author?.avatar?.fluid as FluidObject}
-          />
+          <AuthorPhoto fluid={author?.avatar?.fluid as FluidObject} />
           <LessonFrom>
             <Author to={`/author/${author?.slug}`}>{author?.name} </Author>
             in
             <Week to={`/week/${weekSlug}`}> {weekName}</Week>
           </LessonFrom>
         </Row>
-        <Title>{title}</Title>
-        {updatedAt && <Info>{format(new Date(updatedAt), "MMM, dd")}</Info>}
-        <Info> · </Info>
-        {readingTime && <Info>{`${readingTime} min read`}</Info>}
+        <Column as={Link} to={`/lesson/${lessonSlug}`}>
+          <Title>{title}</Title>
+          {updatedAt && <Info>{format(new Date(updatedAt), "MMM, dd")}</Info>}
+          <Info> · </Info>
+          {readingTime && <Info>{`${readingTime} min read`}</Info>}
+        </Column>
       </Column>
 
       <Column as={Link} to={`/lesson/${lessonSlug}`}>
@@ -96,7 +94,7 @@ const Info = styled.span`
 `
 
 const LessonFrom = styled.div`
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
@@ -110,10 +108,12 @@ const AuthorPhoto = styled(Image)<GatsbyImageProps>`
 `
 
 const Author = styled(Link)`
+  font-weight: 600;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Week = styled(Link)`
+  font-weight: 600;
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 

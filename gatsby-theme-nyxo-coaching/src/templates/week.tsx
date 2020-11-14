@@ -226,7 +226,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
                   key={node.slug as string}
                   title={node.title}
                   slug={`/habit/${node.slug}`}
-                  excerpt={node.description?.fields?.excerpt}
+                  excerpt={node.fields?.excerpt}
                   period={node.period}
                 />
               ))}

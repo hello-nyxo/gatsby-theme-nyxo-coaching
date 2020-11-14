@@ -158,7 +158,7 @@ const Title = styled.h4`
 const Column = styled.div``
 
 const Excerpt = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--textSecondary);
   line-height: 22px;
 `

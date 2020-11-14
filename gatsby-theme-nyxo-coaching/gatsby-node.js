@@ -2,7 +2,7 @@ const path = require("path")
 
 exports.onCreateNode = async (options) => {
   return Promise.all([
-    require("./src/gatsby/reading-time").onCreateNode(options),
+    // require("./src/gatsby/reading-time").onCreateNode(options),
     require("./src/gatsby/excerpt").onCreateNode(options),
     require("./src/gatsby/locale").onCreateNode(options),
   ])

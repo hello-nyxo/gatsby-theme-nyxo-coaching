@@ -1,24 +1,13 @@
-import { CompleteLessonButton } from "@components/coaching/CompleteLessonButton"
-import {
-  useCompleteLesson,
-  useGetLesson,
-  useUpdateCoaching,
-} from "@hooks/useCoaching"
-import { useGetActiveCoaching } from "@hooks/useUser"
-import { graphql, PageProps } from "gatsby"
-import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
-import { useTranslation } from "gatsby-plugin-react-i18next"
-import React, { FC } from "react"
-import styled from "styled-components"
-import { ContentfulLesson, LessonByIdQuery } from "../../graphql-types"
+import { isLoggedIn } from "@auth/auth"
 import AuthorCard from "@components/author/AuthorCard"
-import BookmarkButton from "@components/bookmark/Bookmark"
+import { CompleteLessonButton } from "@components/coaching/CompleteLessonButton"
 import HabitCard from "@components/habit/HabitCard"
 import HtmlContent, { H1, H3, H4 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
 import LargeLessonCard from "@components/lesson/LargeLessonCard"
 import { Container, TextContainer } from "@components/Primitives"
 import SEO from "@components/SEO/SEO"
+import { SharingOptions } from "@components/sharing/SharingOptions"
 import TagSection from "@components/tags/Tags"
 import getFirstAuthor from "@helpers/author"
 import {
@@ -26,9 +15,14 @@ import {
   useDeleteBookmark,
   useGetBookmark,
 } from "@hooks/useBookmarks"
-import { isLoggedIn } from "@auth/auth"
-import { SharingOptions } from "@components/sharing/SharingOptions"
-import { ContentProtector } from "@components/auth/ContentProtector"
+import { useCompleteLesson, useGetLesson } from "@hooks/useCoaching"
+import { useGetActiveCoaching } from "@hooks/useUser"
+import { graphql, PageProps } from "gatsby"
+import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import React, { FC } from "react"
+import styled from "styled-components"
+import { ContentfulLesson, LessonByIdQuery } from "../../graphql-types"
 
 const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   data,

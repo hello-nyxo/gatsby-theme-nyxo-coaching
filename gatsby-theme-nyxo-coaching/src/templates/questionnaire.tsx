@@ -70,7 +70,6 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
                   question: { question = "Question" as string },
                 } = q as ContentfulQuestion
 
-                // console.log("value", values)
                 if (type === "Select") {
                   const options = answers?.map((answer) => ({
                     value: answer?.score,

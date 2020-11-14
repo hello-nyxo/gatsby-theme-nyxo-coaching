@@ -161,6 +161,9 @@ export const authorFragment = graphql`
         src
       }
     }
+    fields {
+      excerpt
+    }
     credentials
     lesson {
       id

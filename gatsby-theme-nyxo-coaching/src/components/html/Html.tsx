@@ -13,6 +13,7 @@ import { Options } from "@contentful/rich-text-react-renderer"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
+import { useImageZoom } from "react-medium-image-zoom"
 
 type Props = {
   document?: Document
@@ -190,23 +191,39 @@ type ImageProps = {
 }
 
 const ImageBlock: FC<ImageProps> = ({ node }) => {
-  console.log("-", node)
+  const { ref } = useImageZoom()
 
   return (
     <ImageContainer>
-      <Img fluid={node?.data?.target?.fluid} />
+      <div ref={ref}>
+        <Img fluid={node?.data?.target?.fluid} />
+      </div>
       <ImageTitle>{node?.data?.target?.title}</ImageTitle>
       <ImageDescription>{node?.data?.target?.description}</ImageDescription>
     </ImageContainer>
   )
 }
 
-const ImageContainer = styled.figure``
+const ImageContainer = styled.figure`
+  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+`
 
 const Img = styled(Image)``
 
-const ImageTitle = styled.figcaption``
-const ImageDescription = styled.figcaption``
+const ImageTitle = styled.figcaption`
+  font-size: 0.9rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+  white-space: pre-wrap;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+const ImageDescription = styled.figcaption`
+  font-size: 0.9rem;
+  line-height: 2rem;
+  margin-bottom: 2rem;
+  white-space: pre-wrap;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
 
 const Ol = styled.ol`
   counter-reset: cupcake;

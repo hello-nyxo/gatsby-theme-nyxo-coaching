@@ -3371,6 +3371,22 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@rpearce/image-zoom@^0.1.0-alpha.2":
+  version "0.1.0-rc.10"
+  resolved "https://registry.yarnpkg.com/@rpearce/image-zoom/-/image-zoom-0.1.0-rc.10.tgz#1a9c749f6c940575641fad22d4b9a33050048732"
+  integrity sha512-1uvmepVacudlmCfFNL+dZOg0hxcE2dcGsumSM6HVh5S5cpx0FTmLURWH7VMvC5KE78Xfhy5A4ON48gOeZBrgZQ==
+  dependencies:
+    "@rpearce/ts-dom-fns" "^0.4.0"
+    focus-options-polyfill "^1.5.0"
+    tslib "^2.0.0"
+
+"@rpearce/ts-dom-fns@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@rpearce/ts-dom-fns/-/ts-dom-fns-0.4.0.tgz#8b0cf02e4505734f4b4e33c725944589449f44d9"
+  integrity sha512-8fk4sKXSO0pMB1orgE4vnAlwFbHXry0GOwnAkjAsXCUUyTsEChjgMhGEop8IEYsPeQQTH/N+RxHtHajrdL0Rtg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@sideway/address@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@sideway/address/-/address-4.1.0.tgz#0b301ada10ac4e0e3fa525c90615e0b61a72b78d"
@@ -9370,6 +9386,11 @@ fn-name@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/fn-name/-/fn-name-3.0.0.tgz#0596707f635929634d791f452309ab41558e3c5c"
   integrity sha512-eNMNr5exLoavuAMhIUVsOKF79SWd/zG104ef6sxBTSw+cZc6BXdQXDvYcGvp0VbxVVSp1XDUNoz7mg1xMtSznA==
+
+focus-options-polyfill@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/focus-options-polyfill/-/focus-options-polyfill-1.6.0.tgz#12ef3081dae9801d32dfcffd7b69259ca8f57198"
+  integrity sha512-uyrAmLZrPnUItQY5wTdg31TO9GGZRGsh/jmohUg9oLmLi/sw5y7LlTV/mwyd6rvbxIOGwmRiv6LcTS8w7Bk9NQ==
 
 folktale@^2.0.1:
   version "2.3.2"
@@ -15851,6 +15872,14 @@ react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-medium-image-zoom@5.0.0-alpha.1:
+  version "5.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/react-medium-image-zoom/-/react-medium-image-zoom-5.0.0-alpha.1.tgz#8041c45755d820e8003146b05fb9513a443296a1"
+  integrity sha512-q1x3fjAxJmAmuZXLw0tvjNdG0TgWSsKpoJ+Lo7Cf3PZktLyERvHSGbpONf1dw+aoyHRWlAYhFLQ4JYIL53TBDw==
+  dependencies:
+    "@rpearce/image-zoom" "^0.1.0-alpha.2"
+    tslib "2.0.0"
+
 react-modal@^3.11.2:
   version "3.11.2"
   resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-3.11.2.tgz#bad911976d4add31aa30dba8a41d11e21c4ac8a4"
@@ -18227,6 +18256,11 @@ tslib@1.11.2:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.2.tgz#9c79d83272c9a7aaf166f73915c9667ecdde3cc9"
   integrity sha512-tTSkux6IGPnUGUd1XAZHcpu85MOkIl5zX49pO+jfsie3eP0B6pyhOlLXm3cAC6T7s+euSDDUUV+Acop5WmtkVg==
+
+tslib@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
+  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
 tslib@^1.10.0, tslib@^1.11.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.14.1"

@@ -222,6 +222,10 @@
     "NOT_A_MEMBER": "Rekisteröidy"
   },
 
+  "REGISTER": {
+    "TITLE": "Rekisteröidy"
+  },
+
   "en": "In English",
   "fi": "Suomeksi"
 }

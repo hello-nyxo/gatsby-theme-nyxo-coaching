@@ -1,10 +1,9 @@
 import { setUser } from "@auth/auth"
 import { H1 } from "@components/html/Html"
-import { navigate } from "@reach/router"
 import { Auth } from "aws-amplify"
 import { Formik } from "formik"
 import { Link } from "gatsby"
-import { useTranslation } from "gatsby-plugin-react-i18next"
+import { useTranslation, useI18next } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import * as Yup from "yup"
@@ -14,6 +13,7 @@ type Props = {
 }
 
 const Login: FC<Props> = () => {
+  const { navigate } = useI18next()
   const { t } = useTranslation()
   const defaultValues = {
     email: "",

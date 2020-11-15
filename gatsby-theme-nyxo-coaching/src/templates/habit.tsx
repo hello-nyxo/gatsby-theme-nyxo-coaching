@@ -111,7 +111,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
               title={previousHabit.title}
               period={previousHabit.period}
               slug={getLocalizedPath(`/habit/${previousHabit.slug}`, "en-US")}
-              excerpt={previousHabit.description?.fields?.excerpt}
+              excerpt={previousHabit?.fields?.excerpt}
             />
           )}
         </MoreHabitsContainer>

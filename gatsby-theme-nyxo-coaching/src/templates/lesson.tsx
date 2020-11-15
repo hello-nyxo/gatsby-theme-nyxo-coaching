@@ -2,6 +2,7 @@ import { isLoggedIn } from "@auth/auth"
 import AuthorCard from "@components/author/AuthorCard"
 import { CompleteLessonButton } from "@components/coaching/CompleteLessonButton"
 import HabitCard from "@components/habit/HabitCard"
+import { ContentBlock } from "@components/html/ContentBlock"
 import HtmlContent, { H1, H3, H4 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
 import LargeLessonCard from "@components/lesson/LargeLessonCard"
@@ -101,6 +102,9 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           <H1>{title}</H1>
         </TitleContainer>
 
+        <Cover>
+          <CoverImage fluid={cover?.fluid as FluidObject} />
+        </Cover>
         <SharingOptions
           title={title as string}
           summary={description as string}
@@ -108,9 +112,6 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           bookmarked={bookmarked}
           loading={removeLoading || addLoading || isLoading}
         />
-        <Cover>
-          <CoverImage fluid={cover?.fluid as FluidObject} />
-        </Cover>
 
         {isLoggedIn() ? (
           <ActionRow>
@@ -122,28 +123,28 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           </ActionRow>
         ) : null}
 
-        {/* <ContentProtector shouldShow={false}> */}
-        <HtmlContent document={content} />
-        {habits && <H3>{t("HABITS_TO_TRY")}</H3>}
-        <Habits>
-          {habits?.map((habit) => (
-            <HabitCard
-              link
-              key={`${habit?.slug}`}
-              title={habit?.title}
-              period={habit?.period}
-              slug={`/habit/${habit?.slug}`}
-              excerpt={habit?.fields?.excerpt}
-            />
-          ))}
-        </Habits>
-        {readMore && (
-          <>
-            <H3>{t("ADDITIONAL_READING")}</H3>
-            <HtmlContent document={readMore} />
-          </>
-        )}
-        {/* </ContentProtector> */}
+        <ContentBlock preview={content}>
+          <HtmlContent document={content} />
+          {habits && <H3>{t("HABITS_TO_TRY")}</H3>}
+          <Habits>
+            {habits?.map((habit) => (
+              <HabitCard
+                link
+                key={`${habit?.slug}`}
+                title={habit?.title}
+                period={habit?.period}
+                slug={`/habit/${habit?.slug}`}
+                excerpt={habit?.fields?.excerpt}
+              />
+            ))}
+          </Habits>
+          {readMore && (
+            <>
+              <H3>{t("ADDITIONAL_READING")}</H3>
+              <HtmlContent document={readMore} />
+            </>
+          )}
+        </ContentBlock>
 
         <H4>{t("LESSON_BY")}</H4>
         <Authors>

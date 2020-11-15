@@ -224,6 +224,10 @@
     "NOT_A_MEMBER": "Register"
   },
 
+  "REGISTER": {
+    "TITLE": "Register"
+  },
+
   "en": "english",
   "fi": "Suomeksi"
 }

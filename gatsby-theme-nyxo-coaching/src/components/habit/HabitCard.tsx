@@ -43,13 +43,7 @@ const HabitCard: FC<Props> = ({
   )
   return (
     <Card $accentColor={icon.color}>
-      {link ? (
-        <Link asModal to={`${slug}`}>
-          {content}
-        </Link>
-      ) : (
-        content
-      )}
+      {link ? <Link to={`${slug}`}>{content}</Link> : content}
     </Card>
   )
 }

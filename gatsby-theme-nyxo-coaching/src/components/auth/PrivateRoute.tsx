@@ -1,9 +1,9 @@
 import React, { FC } from "react"
-import { navigate } from "@reach/router"
+import { useI18next } from "gatsby-plugin-react-i18next"
 import { isLoggedIn } from "@auth/auth"
 
 interface PrivateRouteProps {
-  component: any
+  component: JSX.Element | null
   path: string
 }
 
@@ -11,6 +11,8 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {
+  const { navigate } = useI18next()
+
   if (!isLoggedIn()) {
     navigate(`/me/login`)
     return null

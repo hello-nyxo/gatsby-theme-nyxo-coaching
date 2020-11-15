@@ -9,9 +9,11 @@ import {
   Text,
 } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
-import { Options } from "@contentful/rich-text-react-renderer"
+import {
+  Options,
+  documentToReactComponents,
+} from "@contentful/rich-text-react-renderer"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import Image from "gatsby-image"
 import { useImageZoom } from "react-medium-image-zoom"
 import HabitCard from "@components/habit/HabitCard"
@@ -129,6 +131,10 @@ const options: Options = {
 
 const HtmlContent: FC<Props> = ({ document }) => {
   return <>{document && renderRichText(document, options)}</>
+}
+
+export const HtmlContentWithoutEmbeds: FC<Props> = ({ document }) => {
+  return <>{document && documentToReactComponents(document, options)}</>
 }
 
 export default HtmlContent

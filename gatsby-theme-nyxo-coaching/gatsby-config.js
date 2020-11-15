@@ -61,7 +61,7 @@ module.exports = (options) => {
         resolve: `gatsby-plugin-react-i18next`,
         options: {
           path: `${__dirname}/src/locales`,
-          languages: [`en`, `fi`, `es`, `de`, `sv`, `fr`],
+          languages: [`en`, `fi`],
           defaultLanguage: `en`,
           redirect: false,
           siteUrl: "https://nyxo.app",
@@ -75,10 +75,6 @@ module.exports = (options) => {
             nsSeparator: false,
           },
           pages: [
-            {
-              matchPath: "/:lang?/",
-              excludeLanguages: [`es`, `de`, `sv`, `fr`],
-            },
             {
               matchPath: "/:lang?/week/:uid",
               getLanguageFromPath: true,

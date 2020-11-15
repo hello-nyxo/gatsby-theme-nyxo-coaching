@@ -1,16 +1,16 @@
+import { H3, H5 } from "@components/html/Html"
+import { Auth } from "aws-amplify"
+import { format } from "date-fns"
+import { useI18next, useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { H3, H5 } from "@components/html/Html"
-import { Icon } from "../Icons"
-import { Auth } from "aws-amplify"
-import { navigate } from "gatsby"
 import { useGetUser } from "../../hooks/useUser"
-import { useTranslation } from "gatsby-plugin-react-i18next"
-import { format } from "date-fns"
+import { Icon } from "../Icons"
 
 const dateFormat = "dd.MM.yyyy"
 
 const UserInfo: FC = () => {
+  const { navigate } = useI18next()
   const { data } = useGetUser()
   const { t } = useTranslation()
 

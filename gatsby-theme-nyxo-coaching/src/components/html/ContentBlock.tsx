@@ -18,14 +18,14 @@ export const ContentBlock: FC<Props> = ({ children, preview }) => {
     JSON.parse(preview.raw) as Document
   )
 
-  console.log(previewContent)
-
-  if (!isBrowser() || isLoggedIn()) {
+  if (!isBrowser || isLoggedIn()) {
     return <>{children}</>
   }
 
   const register = () => {
-    navigate("/me/register")
+    if (typeof window !== "undefined") {
+      navigate("/me/register")
+    }
   }
 
   return (
@@ -56,8 +56,7 @@ const Container = styled.div`
   padding-bottom: 3rem;
   border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
 `
-
-const isBrowser = () => ![typeof window, typeof document].includes("undefined")
+const isBrowser = typeof window !== `undefined`
 
 const getPreviewFromDocument = (document: Document): Document => {
   const { content } = document

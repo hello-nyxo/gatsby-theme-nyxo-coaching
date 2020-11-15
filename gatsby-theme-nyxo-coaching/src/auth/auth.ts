@@ -1,4 +1,4 @@
-const isBrowser = typeof window !== `undefined`
+export const isBrowser = typeof window !== `undefined`
 
 export const setUser = (user: any) =>
   (window.localStorage.gatsbyUser = JSON.stringify(user))

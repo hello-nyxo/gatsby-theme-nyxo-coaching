@@ -14,7 +14,10 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
   const { navigate } = useI18next()
 
   if (!isLoggedIn()) {
-    navigate(`/me/login`)
+    if (typeof window !== "undefined") {
+      navigate(`/me/login`)
+    }
+
     return null
   }
   return <Component {...rest} />

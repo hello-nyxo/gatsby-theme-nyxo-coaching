@@ -83,8 +83,6 @@ const Sleep: FC = () => {
     data: items,
   })
 
-  console.log(items)
-
   return (
     <Container>
       <H3>SLEEP</H3>

@@ -76,6 +76,10 @@ module.exports = (options) => {
           },
           pages: [
             {
+              matchPath: "/:lang?/",
+              excludeLanguages: [`es`, `de`, `sv`, `fr`],
+            },
+            {
               matchPath: "/:lang?/week/:uid",
               getLanguageFromPath: true,
               excludeLanguages: ["fi"],

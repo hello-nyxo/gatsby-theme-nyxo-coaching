@@ -92,6 +92,7 @@
     "gatsby-plugin-create-client-paths": "^2.3.13",
     "gatsby-plugin-graphql-codegen": "^2.7.1",
     "gatsby-plugin-i18n": "^1.0.1",
+    "gatsby-plugin-manifest": "^2.6.0",
     "gatsby-plugin-no-sourcemaps": "^2.2.0",
     "gatsby-plugin-offline": "^3.3.3",
     "gatsby-plugin-preload-link-crossorigin": "^1.0.2",

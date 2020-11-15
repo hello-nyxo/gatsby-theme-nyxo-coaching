@@ -14,6 +14,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Image from "gatsby-image"
 import { useImageZoom } from "react-medium-image-zoom"
+import HabitCard from "@components/habit/HabitCard"
 
 type Props = {
   document?: Document
@@ -31,7 +32,7 @@ export type CommonNode = Text | Block | Inline
 export const getContentType = (
   node: Inline
 ): { type: string; path: string; title: string } => {
-  switch (node.data.target.sys.contentType.sys.id) {
+  switch (node?.data?.target?.sys.contentType.sys.id) {
     case "habit": {
       const path = node?.data?.target?.fields?.slug["en-US"]
       const name = node?.data?.target?.fields?.title["en-US"]
@@ -48,13 +49,22 @@ export const getContentType = (
 }
 
 function defaultInline(type: string, node: Inline): ReactNode {
-  const contentType = getContentType(node)
+  if (node?.data?.target?.__typename === "ContentfulHabit") {
+    return (
+      <HabitCard
+        slug={`/habit/${node.data.target.slug}`}
+        title={node.data.target.title}
+        period={node.data.target.period}
+        excerpt={node.data.target.fields.excerpt}
+        link
+      />
+    )
+  }
 
-  return (
-    <Link to={`${contentType.path}`} key={node.data.target.sys.id}>
-      {contentType.title}
-    </Link>
-  )
+  return null
+  // <Link to={`${contentType.path}`} key={node.data.target.sys.id}>
+  //   {contentType.title}
+  // </Link>
 }
 
 /* eslint-disable react/display-name */
@@ -103,7 +113,7 @@ const options: Options = {
     [BLOCKS.QUOTE]: (node: CommonNode, children: ReactNode) => (
       <BlockQuote>{children}</BlockQuote>
     ),
-    [BLOCKS.EMBEDDED_ASSET]: (node) => <ImageBlock type="" node={node} />,
+    [BLOCKS.EMBEDDED_ASSET]: (node) => <ImageBlock node={node} />,
     [BLOCKS.HR]: () => <hr />,
     [INLINES.ASSET_HYPERLINK]: (node: CommonNode) =>
       defaultInline(INLINES.ASSET_HYPERLINK, node as Inline),

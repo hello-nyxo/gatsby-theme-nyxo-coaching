@@ -46,6 +46,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
       })
     }
   }
+
   return (
     <Layout>
       <SEO

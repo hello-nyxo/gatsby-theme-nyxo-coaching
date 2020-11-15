@@ -39,7 +39,7 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
     <Container>
       <Column>
         <TopPick>
-          <Link to={`/lesson/${highlightedLesson.slug}`}>
+          <Link to={`/lesson/${highlightedLesson?.slug}`}>
             <Cover fluid={highlightedLesson?.cover?.fluid} />
           </Link>
           <Row>

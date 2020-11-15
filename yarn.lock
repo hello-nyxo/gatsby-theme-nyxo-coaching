@@ -9726,6 +9726,17 @@ gatsby-plugin-i18n@^1.0.1:
     graphql "^0.11.7"
     ptz-i18n "^1.0.0"
 
+gatsby-plugin-manifest@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.6.0.tgz#d128d462a726b665551e53ffe0e6639381ee507e"
+  integrity sha512-asVUXSTgGc5WH3w2pUQ5qqn4ApU+be2ayEgSvK2pd88g+lZUfjMZznc3I1FedtvIFoBpDdR9/teECqbioeLRmQ==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    gatsby-core-utils "^1.4.0"
+    gatsby-plugin-utils "^0.3.0"
+    semver "^7.3.2"
+    sharp "^0.25.4"
+
 gatsby-plugin-no-sourcemaps@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-no-sourcemaps/-/gatsby-plugin-no-sourcemaps-2.3.0.tgz#8c313b918aa54a93f09e124c5cb2ac0c503add1f"

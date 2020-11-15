@@ -123,6 +123,18 @@ export const habitFragment = graphql`
     }
     description {
       raw
+      references {
+        ... on ContentfulHabit {
+          __typename
+          title
+          contentful_id
+          period
+          slug
+          fields {
+            excerpt
+          }
+        }
+      }
     }
     updatedAt(formatString: "DD/MM/YYYY")
     createdAt(formatString: "DD/MM/YYYY")

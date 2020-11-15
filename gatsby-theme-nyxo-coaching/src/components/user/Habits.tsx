@@ -14,7 +14,7 @@ const getHabits = async (): Promise<Array<Habit | null> | null | undefined> => {
     const response = (await API.graphql(graphqlOperation(listHabits, {}))) as {
       data: ListHabitsQuery
     }
-    return response.data.listHabits?.items
+    return response?.data?.listHabits?.items
   } catch (error) {
     console.warn(error)
     return undefined

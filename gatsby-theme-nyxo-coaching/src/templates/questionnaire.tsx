@@ -24,10 +24,8 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
         title,
         questions,
         results,
-        description: {
-          raw: description,
-          fields: { excerpt },
-        },
+        fields: { excerpt },
+        description: { raw: description },
       },
     },
     location: { pathname },

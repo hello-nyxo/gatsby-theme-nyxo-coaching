@@ -17,7 +17,9 @@
     "DATA_TEXT": "Nyxo käyttää unidataasi tunnistaakseen unesi ongelmakohdat ja tarjotakseen yksilöllistettyä valmennusta henkilökohtaisten tarpeittesi mukaan.",
 
     "ORGANIZATIONS": "Valjasta tiimisi täyteen potentiaaliinsa",
-    "ORGANIZATIONS_TEXT": "Tiedätkö miten teillä nukutaan? Nyxo for Teamsin (tulossa pian) avulla voit lisätä koko tiimisi mukaan univalmennukseen. Autamme työntekijöitäsi nukkumaan paremmin, lisäämään hyvinvointiaan ja kasvattamaan suorituskykyään."
+    "ORGANIZATIONS_TEXT": "Tiedätkö miten teillä nukutaan? Nyxo for Teamsin (tulossa pian) avulla voit lisätä koko tiimisi mukaan univalmennukseen. Autamme työntekijöitäsi nukkumaan paremmin, lisäämään hyvinvointiaan ja kasvattamaan suorituskykyään.",
+
+    "RECENTLY_UPDATED": "Viimeksi Päivitetty"
   },
 
   "NAVIGATION": {
@@ -111,7 +113,9 @@
     "AUTHORS_TEXT": "Alla olevat henkilöt ovat luoneet Nyxo Univalmennuksen.",
     "SLEEP_COACHING": "Univalmennus",
 
-    "ACTIVE_WEEK": "Aktiivinen viikko:"
+    "INFORMATION": "Käyttäjätiedot",
+    "ACTIVE_WEEK": "Aktiivinen viikko:",
+    "BOOKMARKS": "Kirjanmerkit"
   },
 
   "BLOG": {
@@ -146,7 +150,7 @@
   "TAGS": "Aiheet",
   "RELATED": "Lisää artikkeleita samasta aiheesta",
   "LESSONS": "Oppituntia",
-  "HABITS": "Tavoitetta",
+  "HABITS": "Tavoitteet",
   "MORNING": "Aamu",
   "AFTERNOON": "Iltapäivä",
   "EVENING": "Ilta",

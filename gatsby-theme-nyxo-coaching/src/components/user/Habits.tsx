@@ -1,9 +1,10 @@
 import HabitCard from "@components/habit/HabitCard"
-import { H3 } from "@components/html/Html"
+import { H3, H2 } from "@components/html/Html"
 import { API, graphqlOperation } from "aws-amplify"
 import React, { FC } from "react"
 import { useQuery } from "react-query"
 import styled from "styled-components"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import { GetHabitQuery, ListHabitsQuery } from "../../API"
 import { listHabits } from "../../graphql/queries"
 
@@ -23,20 +24,25 @@ const getHabits = async (): Promise<Array<Habit | null> | null | undefined> => {
 
 const UserHabits: FC = () => {
   const { isLoading, data, error } = useQuery("habits", () => getHabits())
-
+  const { t } = useTranslation()
   return (
     <>
-      <H3>Habits</H3>
-      <Habits>
-        {data?.map((habit) => (
-          <HabitCard
-            key={habit?.id}
-            title={habit?.title}
-            period={habit?.period}
-            excerpt={habit?.description}
-          />
-        ))}
-      </Habits>
+      {data ? (
+        <>
+          <H2>{t("COACHING.SLEEP_COACHING")}</H2>
+          <H3>{t("HABITS")}</H3>
+          <Habits>
+            {data?.map((habit) => (
+              <HabitCard
+                key={habit?.id}
+                title={habit?.title}
+                period={habit?.period}
+                excerpt={habit?.description}
+              />
+            ))}
+          </Habits>
+        </>
+      ) : null}
     </>
   )
 }

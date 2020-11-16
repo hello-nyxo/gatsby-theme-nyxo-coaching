@@ -34,7 +34,7 @@ const UserInfo: FC = () => {
         </Button>
       </Row>
 
-      <H5>Information</H5>
+      <H5>{t("COACHING.INFORMATION")}</H5>
       <DetailRow>
         <Title>{`${t("USER.EMAIL")}:`}</Title>
         <Detail>{`${data?.email}`}</Detail>

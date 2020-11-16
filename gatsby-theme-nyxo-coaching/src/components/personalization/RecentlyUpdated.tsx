@@ -3,7 +3,7 @@ import { LessonItem } from "@components/lesson/LessonItem"
 import { device } from "@components/Primitives"
 import { format } from "date-fns"
 import Image, { GatsbyImageProps } from "gatsby-image"
-import { Link } from "gatsby-plugin-react-i18next"
+import { Link, useTranslation } from "gatsby-plugin-react-i18next"
 import { ContentfulLesson } from "graphql-types"
 import React, { FC } from "react"
 import styled from "styled-components"
@@ -13,9 +13,10 @@ type Props = {
 }
 
 export const RecentyUpdated: FC<Props> = ({ lessons }) => {
+  const { t } = useTranslation()
   return (
     <Container>
-      <H5>Recently updated</H5>
+      <H5>{t("INDEX.RECENTLY_UPDATED")}</H5>
       <Lessons>
         {lessons.map((lesson, index) => (
           <UpdatedCard key={lesson.slug}>

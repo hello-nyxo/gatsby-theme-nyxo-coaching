@@ -54,7 +54,7 @@ const Details: FC = () => {
       <UserInfo />
       <Coaching />
 
-      <H3>Bookmarked Content</H3>
+      <H3>{t("COACHING.BOOKMARKS")}</H3>
       {weeks?.length > 0 && (
         <>
           <H4>{t("COACHING.WEEKS")}</H4>
@@ -116,7 +116,6 @@ const Details: FC = () => {
         </>
       )}
 
-      <H2>{t("COACHING.SLEEP_COACHING")}</H2>
       <UserHabits />
     </Container>
   )
@@ -129,8 +128,4 @@ const BookmarkContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0 -1rem;
-`
-const P = styled.p`
-  display: inline-block;
-  margin-right: 15px;
 `

@@ -17,7 +17,9 @@
     "DATA_TEXT": "Nyxo uses your sleep data to personalize the coaching to fit your needs.",
 
     "ORGANIZATIONS": "Supercharge Your Organization",
-    "ORGANIZATIONS_TEXT": "With Nyxo for teams (coming soon), you can enroll your team or even your whole organization into the coaching program. We will help your employees to sleep better and improve both their well-being and work performance."
+    "ORGANIZATIONS_TEXT": "With Nyxo for teams (coming soon), you can enroll your team or even your whole organization into the coaching program. We will help your employees to sleep better and improve both their well-being and work performance.",
+
+    "RECENTLY_UPDATED": "Recently Updated"
   },
 
   "NAVIGATION": {
@@ -113,7 +115,9 @@
     "AUTHORS_TEXT": "These are the authors behind the Nyxo materials you love. Here you can learn more about the authors, including their areas of expertise, and find all materials they've written.",
     "SLEEP_COACHING": "Sleep Coaching",
 
-    "ACTIVE_WEEK": "Active Week:"
+    "INFORMATION": "User Information",
+    "ACTIVE_WEEK": "Active Week:",
+    "BOOKMARKS": "Bookmarks"
   },
 
   "BLOG": {

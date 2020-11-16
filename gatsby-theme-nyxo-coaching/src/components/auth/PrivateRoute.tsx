@@ -1,9 +1,9 @@
-import React, { FC } from "react"
+import React, { FC, ReactElement } from "react"
 import { useI18next } from "gatsby-plugin-react-i18next"
 import { isLoggedIn } from "@auth/auth"
 
 interface PrivateRouteProps {
-  component: JSX.Element | null
+  component: JSX.Element | null | ReactElement
   path: string
 }
 

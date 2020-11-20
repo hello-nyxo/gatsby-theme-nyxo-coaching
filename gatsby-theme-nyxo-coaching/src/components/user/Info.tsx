@@ -13,7 +13,6 @@ const UserInfo: FC = () => {
   const { navigate } = useI18next()
   const { data } = useGetUser()
   const { t } = useTranslation()
-
   const signOut = () => {
     Auth.signOut()
       .then(function () {
@@ -49,7 +48,7 @@ const UserInfo: FC = () => {
       </DetailRow>
       <DetailRow>
         <Title>{`${t("USER.LINK")}:`}</Title>
-        <Detail>{`${data?.connectionId}`}</Detail>
+        <Detail>{data?.connectionId && `${data?.connectionId}`}</Detail>
       </DetailRow>
       <DetailRow>
         <Title>{`${t("USER.ACTIVE_COACHING")}:`}</Title>

@@ -1,6 +1,7 @@
 import PrivateRoute from "@components/auth/PrivateRoute"
 import { H2, H3 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
+import { CoachingPath } from "@components/personalization/CoachingPath"
 import { RecentyUpdated } from "@components/personalization/RecentlyUpdated"
 import { SuggestedContent } from "@components/personalization/SuggestedContent"
 import { Container, P } from "@components/Primitives"
@@ -70,7 +71,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
       <Container>
         <SuggestedContent lessons={lessons} habits={habits} />
-        <RecentyUpdated lessons={recentlyUpdated} />
+        <CoachingPath weeks={weeks} />
         <H2>{t("COACHING.WEEKS")}</H2>
         <P>{t("COACHING.WEEKS_TEXT")}</P>
 
@@ -92,6 +93,8 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
             )
           })}
         </Weeks>
+
+        <RecentyUpdated lessons={recentlyUpdated} />
       </Container>
     </Layout>
   )

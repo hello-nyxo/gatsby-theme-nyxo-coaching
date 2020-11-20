@@ -5,7 +5,7 @@ import WeekCard from "@components/week/WeekCard"
 import { graphql, useStaticQuery } from "gatsby"
 import { FluidObject } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import styled from "styled-components"
 import {
   ContentfulHabit,
@@ -17,6 +17,11 @@ import HabitCard from "../../habit/HabitCard"
 import { H2, H3, H4 } from "../../html/Html"
 import LessonCard from "../../lesson/LessonCard"
 import { Container } from "@components/Primitives"
+import { Linking } from "../Linking"
+import { Tabs } from "@components/tabs/Tab"
+import { Tab } from "@components/tabs/Tabs"
+import SideBar from "../sidebar/SideBar"
+import Amplify, { Auth } from "aws-amplify"
 
 const Details: FC = () => {
   const {

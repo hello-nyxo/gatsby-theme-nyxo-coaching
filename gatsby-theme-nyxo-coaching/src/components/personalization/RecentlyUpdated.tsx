@@ -58,8 +58,10 @@ export const RecentyUpdated: FC<Props> = ({ lessons }) => {
 }
 
 const Container = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
   border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
   padding: 0rem 0rem 2rem;
+  margin-bottom: 2rem;
 `
 
 const Lessons = styled.div`

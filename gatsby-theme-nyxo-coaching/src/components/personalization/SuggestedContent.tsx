@@ -37,75 +37,82 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
 
   return (
     <Container>
-      <Column>
-        <TopPick>
-          <Link to={`/lesson/${highlightedLesson?.slug}`}>
-            <Cover fluid={highlightedLesson?.cover?.fluid} />
-          </Link>
-          <Row>
-            <AuthorPhoto
-              fluid={highlightedLesson?.authorCard[0].avatar?.fluid}
-            />
-            <LessonFrom>
-              <Author to={`/author/${highlightedLesson?.authorCard[0].slug}`}>
-                {highlightedLesson?.authorCard[0].name}
-              </Author>
-              {` in `}
-              <Week to={`/week/${highlightedLesson?.week[0].slug}`}>
-                {highlightedLesson?.week[0].weekName}
-              </Week>
-            </LessonFrom>
-          </Row>
-          <Link to={`/lesson/${highlightedLesson.slug}`}>
-            <Title>{highlightedLesson?.lessonName}</Title>
-            <Text>{highlightedLesson?.fields?.excerpt}...</Text>
-          </Link>
-          <ReadingTime>{`${highlightedLesson?.fields?.readingTime} min read`}</ReadingTime>
-        </TopPick>
-      </Column>
-      <Column>
-        <TopPicks>
-          {selectedLessons.map((lesson) => (
-            <LessonItem
-              updatedAt={lesson.updatedAt}
-              weekSlug={lesson.week[0].slug}
-              weekName={lesson.week[0].weekName}
-              author={lesson.authorCard[0]}
-              lessonSlug={lesson.slug}
-              key={lesson.slug}
-              title={lesson.lessonName}
-              readingTime={lesson.fields.readingTime}
-              cover={lesson.cover}
-            />
-          ))}
-        </TopPicks>
-      </Column>
+      <Content>
+        <Column>
+          <TopPick>
+            <Link to={`/lesson/${highlightedLesson?.slug}`}>
+              <Cover fluid={highlightedLesson?.cover?.fluid} />
+            </Link>
+            <Row>
+              <AuthorPhoto
+                fluid={highlightedLesson?.authorCard[0].avatar?.fluid}
+              />
+              <LessonFrom>
+                <Author to={`/author/${highlightedLesson?.authorCard[0].slug}`}>
+                  {highlightedLesson?.authorCard[0].name}
+                </Author>
+                {` in `}
+                <Week to={`/week/${highlightedLesson?.week[0].slug}`}>
+                  {highlightedLesson?.week[0].weekName}
+                </Week>
+              </LessonFrom>
+            </Row>
+            <Link to={`/lesson/${highlightedLesson.slug}`}>
+              <Title>{highlightedLesson?.lessonName}</Title>
+              <Text>{highlightedLesson?.fields?.excerpt}...</Text>
+            </Link>
+            <ReadingTime>{`${highlightedLesson?.fields?.readingTime} min read`}</ReadingTime>
+          </TopPick>
+        </Column>
+        <Column>
+          <TopPicks>
+            {selectedLessons.map((lesson) => (
+              <LessonItem
+                updatedAt={lesson.updatedAt}
+                weekSlug={lesson.week[0].slug}
+                weekName={lesson.week[0].weekName}
+                author={lesson.authorCard[0]}
+                lessonSlug={lesson.slug}
+                key={lesson.slug}
+                title={lesson.lessonName}
+                readingTime={lesson.fields.readingTime}
+                cover={lesson.cover}
+              />
+            ))}
+          </TopPicks>
+        </Column>
 
-      <Column hide={device.laptop}>
-        <ReadingList>
-          {selectedHabits.map((habit) => (
-            <HabitListItem
-              link
-              key={`${habit?.slug}`}
-              title={habit?.title}
-              period={habit?.period}
-              slug={`/habit/${habit?.slug}`}
-              excerpt={habit?.fields?.excerpt}
-            />
-          ))}
-        </ReadingList>
-      </Column>
+        <Column hide={device.laptop}>
+          <ReadingList>
+            {selectedHabits.map((habit) => (
+              <HabitListItem
+                link
+                key={`${habit?.slug}`}
+                title={habit?.title}
+                period={habit?.period}
+                slug={`/habit/${habit?.slug}`}
+                excerpt={habit?.fields?.excerpt}
+              />
+            ))}
+          </ReadingList>
+        </Column>
+      </Content>
+
+      <div>Login to customize this feed</div>
     </Container>
   )
 }
 
 const Container = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  margin: 4rem 0 5rem;
+`
+
+const Content = styled.div`
   display: flex;
   flex-direction: row;
   padding-bottom: 2rem;
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
-  margin: 4rem -1rem 5rem;
-
+  margin: 0 -1rem;
   @media ${device.tablet} {
     flex-direction: column;
   }

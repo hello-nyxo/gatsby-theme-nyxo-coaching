@@ -45,7 +45,7 @@ export const lightTheme: DefaultTheme = {
   ICON_COLOR: "#f7f8fb",
   PRIMARY_BUTTON_COLOR: colors.radiantBlue,
   SECONDARY_BUTTON_COLOR: colors.radiantBlue,
-  HAIRLINE_COLOR: "#C9C9CB",
+  HAIRLINE_COLOR: "#e4e8eb",
   GRADIENT: [
     "rgba(246,246,249,0)",
     "rgba(246,246,249,0)",

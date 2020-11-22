@@ -6,6 +6,9 @@ import Details from "./Details"
 import Sleep from "./Sleep"
 import styled from "styled-components"
 import { Coachees } from "./Coachees"
+import { Settings } from "./Settings"
+import { Coaching } from "./Coaching"
+import { Bookmarks } from "./Bookmarks"
 
 export const Home: FC<RouteComponentProps> = () => {
   return (
@@ -15,8 +18,10 @@ export const Home: FC<RouteComponentProps> = () => {
         <Router>
           <PrivateRoute path={`/`} component={Details} />
           <PrivateRoute path={`/sleep`} component={Sleep} />
-          <PrivateRoute path={`/coaching`} component={Sleep} />
+          <PrivateRoute path={`/coaching`} component={Coaching} />
           <PrivateRoute path={`/coachees`} component={Coachees} />
+          <PrivateRoute path={`/bookmarks`} component={Bookmarks} />
+          <PrivateRoute path={`/settings`} component={Settings} />
         </Router>
       </UIContainer>
     </AppContainer>
@@ -26,13 +31,13 @@ export const Home: FC<RouteComponentProps> = () => {
 const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 100vw;
+  max-width: 1440px;
+  margin: 0 auto;
 `
 
 const UIContainer = styled.div`
   position: relative;
   display: flex;
-  background-color: var(--bgBlue);
   width: 100%;
   flex: 1;
   height: 100%;

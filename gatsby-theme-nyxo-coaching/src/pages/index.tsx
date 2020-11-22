@@ -8,7 +8,7 @@ import { Container, P } from "@components/Primitives"
 import SEO from "@components/SEO/SEO"
 import Details from "@components/user/pages/Details"
 import Login from "@components/user/pages/Login"
-import { WideWeekCard } from "@components/week/WideWeekCard"
+import WeekCard from "@components/week/WeekCard"
 import useSiteMetadata from "@hooks/useSiteMetaData"
 import { Router } from "@reach/router"
 import { graphql, PageProps } from "gatsby"
@@ -78,9 +78,9 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
         <Weeks>
           {weeks.map((week: ContentfulWeek) => {
             return (
-              <WideWeekCard
+              <WeekCard
+                key={`${week.id}`}
                 bookmarked={false}
-                key={`${week?.slug}`}
                 path={`/week/${week?.slug}`}
                 intro={week?.intro}
                 name={week?.weekName}
@@ -88,7 +88,6 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
                 lessons={week?.lessons}
                 coverPhoto={week?.coverPhoto?.fluid as FluidObject}
                 slug={week.slug}
-                description={week.weekDescription}
               />
             )
           })}
@@ -104,7 +103,8 @@ export default CoachingPage
 
 export const Weeks = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 2rem -1rem;
 `
 

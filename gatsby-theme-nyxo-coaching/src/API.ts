@@ -9,6 +9,50 @@ export enum Stage {
 }
 
 
+export type ModelUserFilterInput = {
+  connectionId?: ModelStringFilterInput | null,
+  id?: ModelIDFilterInput | null,
+  email?: ModelStringFilterInput | null,
+  nickname?: ModelStringFilterInput | null,
+  darkMode?: ModelBooleanFilterInput | null,
+  intercomId?: ModelStringFilterInput | null,
+  viewers?: ModelStringFilterInput | null,
+  and?: Array< ModelUserFilterInput | null > | null,
+  or?: Array< ModelUserFilterInput | null > | null,
+  not?: ModelUserFilterInput | null,
+};
+
+export type ModelStringFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ModelIDFilterInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ModelBooleanFilterInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+};
+
 export type CreateSleepDataInput = {
   id?: string | null,
   userId: string,
@@ -66,6 +110,7 @@ export type CreateUserInput = {
   nickname?: string | null,
   darkMode?: boolean | null,
   intercomId?: string | null,
+  viewers?: Array< string | null > | null,
   sleepPoints?: SleepPointsInput | null,
   userActiveCoachingId?: string | null,
 };
@@ -84,6 +129,7 @@ export type UpdateUserInput = {
   nickname?: string | null,
   darkMode?: boolean | null,
   intercomId?: string | null,
+  viewers?: Array< string | null > | null,
   sleepPoints?: SleepPointsInput | null,
   userActiveCoachingId?: string | null,
 };
@@ -240,25 +286,25 @@ export type DeleteNightRatingInput = {
   id?: string | null,
 };
 
-export type CreateFeedbackContentInput = {
+export type CreateFeedbackInput = {
   id?: string | null,
   type?: string | null,
   slug: string,
   rating: number,
 };
 
-export type UpdateFeedbackContentInput = {
+export type UpdateFeedbackInput = {
   id: string,
   type?: string | null,
   slug?: string | null,
   rating?: number | null,
 };
 
-export type DeleteFeedbackContentInput = {
+export type DeleteFeedbackInput = {
   id?: string | null,
 };
 
-export type CreateCommentsInput = {
+export type CreateCommentInput = {
   id?: string | null,
   type?: string | null,
   slug: string,
@@ -267,7 +313,7 @@ export type CreateCommentsInput = {
   comment: string,
 };
 
-export type UpdateCommentsInput = {
+export type UpdateCommentInput = {
   id: string,
   type?: string | null,
   slug?: string | null,
@@ -276,7 +322,7 @@ export type UpdateCommentsInput = {
   comment?: string | null,
 };
 
-export type DeleteCommentsInput = {
+export type DeleteCommentInput = {
   id?: string | null,
 };
 
@@ -316,32 +362,6 @@ export type ModelSleepDataFilterInput = {
   not?: ModelSleepDataFilterInput | null,
 };
 
-export type ModelIDFilterInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-};
-
-export type ModelStringFilterInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-};
-
 export type ModelIntFilterInput = {
   ne?: number | null,
   eq?: number | null,
@@ -362,23 +382,6 @@ export type ModelRequestFilterInput = {
   and?: Array< ModelRequestFilterInput | null > | null,
   or?: Array< ModelRequestFilterInput | null > | null,
   not?: ModelRequestFilterInput | null,
-};
-
-export type ModelBooleanFilterInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-};
-
-export type ModelUserFilterInput = {
-  connectionId?: ModelStringFilterInput | null,
-  id?: ModelIDFilterInput | null,
-  email?: ModelStringFilterInput | null,
-  nickname?: ModelStringFilterInput | null,
-  darkMode?: ModelBooleanFilterInput | null,
-  intercomId?: ModelStringFilterInput | null,
-  and?: Array< ModelUserFilterInput | null > | null,
-  or?: Array< ModelUserFilterInput | null > | null,
-  not?: ModelUserFilterInput | null,
 };
 
 export type ModelCoachingDataFilterInput = {
@@ -440,26 +443,26 @@ export type ModelNightRatingFilterInput = {
   not?: ModelNightRatingFilterInput | null,
 };
 
-export type ModelFeedbackContentFilterInput = {
+export type ModelFeedbackFilterInput = {
   id?: ModelStringFilterInput | null,
   type?: ModelStringFilterInput | null,
   slug?: ModelStringFilterInput | null,
   rating?: ModelIntFilterInput | null,
-  and?: Array< ModelFeedbackContentFilterInput | null > | null,
-  or?: Array< ModelFeedbackContentFilterInput | null > | null,
-  not?: ModelFeedbackContentFilterInput | null,
+  and?: Array< ModelFeedbackFilterInput | null > | null,
+  or?: Array< ModelFeedbackFilterInput | null > | null,
+  not?: ModelFeedbackFilterInput | null,
 };
 
-export type ModelCommentsFilterInput = {
+export type ModelCommentFilterInput = {
   id?: ModelStringFilterInput | null,
   type?: ModelStringFilterInput | null,
   slug?: ModelStringFilterInput | null,
   firstName?: ModelStringFilterInput | null,
   lastName?: ModelStringFilterInput | null,
   comment?: ModelStringFilterInput | null,
-  and?: Array< ModelCommentsFilterInput | null > | null,
-  or?: Array< ModelCommentsFilterInput | null > | null,
-  not?: ModelCommentsFilterInput | null,
+  and?: Array< ModelCommentFilterInput | null > | null,
+  or?: Array< ModelCommentFilterInput | null > | null,
+  not?: ModelCommentFilterInput | null,
 };
 
 export type ModelNightNoteFilterInput = {
@@ -547,6 +550,33 @@ export type GetActiveCoachingQuery = {
   } | null,
 };
 
+export type ListCoacheesQueryVariables = {
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCoacheesQuery = {
+  listUsers:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      email: string,
+      nickname: string | null,
+      sleepPoints:  {
+        __typename: "SleepPoints",
+        efficiency: number | null,
+        duration: number | null,
+        socialJetLag: number | null,
+        timing: number | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type CreateSleepDataMutationVariables = {
   input: CreateSleepDataInput,
 };
@@ -564,6 +594,7 @@ export type CreateSleepDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -576,6 +607,7 @@ export type CreateSleepDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -588,6 +620,7 @@ export type CreateSleepDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -649,6 +682,7 @@ export type UpdateSleepDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -661,6 +695,7 @@ export type UpdateSleepDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -673,6 +708,7 @@ export type UpdateSleepDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -734,6 +770,7 @@ export type DeleteSleepDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -746,6 +783,7 @@ export type DeleteSleepDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -758,6 +796,7 @@ export type DeleteSleepDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -869,6 +908,7 @@ export type CreateUserMutation = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -881,6 +921,7 @@ export type CreateUserMutation = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -913,6 +954,7 @@ export type CreateUserMutation = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -976,6 +1018,7 @@ export type UpdateUserMutation = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -988,6 +1031,7 @@ export type UpdateUserMutation = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -1020,6 +1064,7 @@ export type UpdateUserMutation = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -1083,6 +1128,7 @@ export type DeleteUserMutation = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -1095,6 +1141,7 @@ export type DeleteUserMutation = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -1127,6 +1174,7 @@ export type DeleteUserMutation = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -1194,6 +1242,7 @@ export type CreateCoachingDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1206,6 +1255,7 @@ export type CreateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1218,6 +1268,7 @@ export type CreateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1255,6 +1306,7 @@ export type CreateCoachingDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1267,6 +1319,7 @@ export type CreateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1279,6 +1332,7 @@ export type CreateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1341,6 +1395,7 @@ export type UpdateCoachingDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1353,6 +1408,7 @@ export type UpdateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1365,6 +1421,7 @@ export type UpdateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1402,6 +1459,7 @@ export type UpdateCoachingDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1414,6 +1472,7 @@ export type UpdateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1426,6 +1485,7 @@ export type UpdateCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1488,6 +1548,7 @@ export type DeleteCoachingDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1500,6 +1561,7 @@ export type DeleteCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1512,6 +1574,7 @@ export type DeleteCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1549,6 +1612,7 @@ export type DeleteCoachingDataMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1561,6 +1625,7 @@ export type DeleteCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1573,6 +1638,7 @@ export type DeleteCoachingDataMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1635,6 +1701,7 @@ export type CreateHabitMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1647,6 +1714,7 @@ export type CreateHabitMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1659,6 +1727,7 @@ export type CreateHabitMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1723,6 +1792,7 @@ export type UpdateHabitMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1735,6 +1805,7 @@ export type UpdateHabitMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1747,6 +1818,7 @@ export type UpdateHabitMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1811,6 +1883,7 @@ export type DeleteHabitMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1823,6 +1896,7 @@ export type DeleteHabitMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1835,6 +1909,7 @@ export type DeleteHabitMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1899,6 +1974,7 @@ export type CreateNightMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1911,6 +1987,7 @@ export type CreateNightMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -1923,6 +2000,7 @@ export type CreateNightMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -1980,6 +2058,7 @@ export type UpdateNightMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -1992,6 +2071,7 @@ export type UpdateNightMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2004,6 +2084,7 @@ export type UpdateNightMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2061,6 +2142,7 @@ export type DeleteNightMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2073,6 +2155,7 @@ export type DeleteNightMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2085,6 +2168,7 @@ export type DeleteNightMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2193,6 +2277,7 @@ export type CreateNightRatingMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2205,6 +2290,7 @@ export type CreateNightRatingMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2217,6 +2303,7 @@ export type CreateNightRatingMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2270,6 +2357,7 @@ export type UpdateNightRatingMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2282,6 +2370,7 @@ export type UpdateNightRatingMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2294,6 +2383,7 @@ export type UpdateNightRatingMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2347,6 +2437,7 @@ export type DeleteNightRatingMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2359,6 +2450,7 @@ export type DeleteNightRatingMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2371,6 +2463,7 @@ export type DeleteNightRatingMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2407,13 +2500,13 @@ export type DeleteNightRatingMutation = {
   } | null,
 };
 
-export type CreateFeedbackContentMutationVariables = {
-  input: CreateFeedbackContentInput,
+export type CreateFeedbackMutationVariables = {
+  input: CreateFeedbackInput,
 };
 
-export type CreateFeedbackContentMutation = {
-  createFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type CreateFeedbackMutation = {
+  createFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -2424,13 +2517,13 @@ export type CreateFeedbackContentMutation = {
   } | null,
 };
 
-export type UpdateFeedbackContentMutationVariables = {
-  input: UpdateFeedbackContentInput,
+export type UpdateFeedbackMutationVariables = {
+  input: UpdateFeedbackInput,
 };
 
-export type UpdateFeedbackContentMutation = {
-  updateFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type UpdateFeedbackMutation = {
+  updateFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -2441,13 +2534,13 @@ export type UpdateFeedbackContentMutation = {
   } | null,
 };
 
-export type DeleteFeedbackContentMutationVariables = {
-  input: DeleteFeedbackContentInput,
+export type DeleteFeedbackMutationVariables = {
+  input: DeleteFeedbackInput,
 };
 
-export type DeleteFeedbackContentMutation = {
-  deleteFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type DeleteFeedbackMutation = {
+  deleteFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -2458,13 +2551,13 @@ export type DeleteFeedbackContentMutation = {
   } | null,
 };
 
-export type CreateCommentsMutationVariables = {
-  input: CreateCommentsInput,
+export type CreateCommentMutationVariables = {
+  input: CreateCommentInput,
 };
 
-export type CreateCommentsMutation = {
-  createComments:  {
-    __typename: "Comments",
+export type CreateCommentMutation = {
+  createComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -2477,13 +2570,13 @@ export type CreateCommentsMutation = {
   } | null,
 };
 
-export type UpdateCommentsMutationVariables = {
-  input: UpdateCommentsInput,
+export type UpdateCommentMutationVariables = {
+  input: UpdateCommentInput,
 };
 
-export type UpdateCommentsMutation = {
-  updateComments:  {
-    __typename: "Comments",
+export type UpdateCommentMutation = {
+  updateComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -2496,13 +2589,13 @@ export type UpdateCommentsMutation = {
   } | null,
 };
 
-export type DeleteCommentsMutationVariables = {
-  input: DeleteCommentsInput,
+export type DeleteCommentMutationVariables = {
+  input: DeleteCommentInput,
 };
 
-export type DeleteCommentsMutation = {
-  deleteComments:  {
-    __typename: "Comments",
+export type DeleteCommentMutation = {
+  deleteComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -2532,6 +2625,7 @@ export type CreateNightNoteMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2544,6 +2638,7 @@ export type CreateNightNoteMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2556,6 +2651,7 @@ export type CreateNightNoteMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2614,6 +2710,7 @@ export type UpdateNightNoteMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2626,6 +2723,7 @@ export type UpdateNightNoteMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2638,6 +2736,7 @@ export type UpdateNightNoteMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2696,6 +2795,7 @@ export type DeleteNightNoteMutation = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2708,6 +2808,7 @@ export type DeleteNightNoteMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2720,6 +2821,7 @@ export type DeleteNightNoteMutation = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2778,6 +2880,7 @@ export type GetSleepDataQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -2790,6 +2893,7 @@ export type GetSleepDataQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -2802,6 +2906,7 @@ export type GetSleepDataQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -2867,6 +2972,7 @@ export type ListSleepDatasQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -2963,6 +3069,7 @@ export type GetUserQuery = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -2975,6 +3082,7 @@ export type GetUserQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3007,6 +3115,7 @@ export type GetUserQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3074,6 +3183,7 @@ export type ListUsersQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3086,6 +3196,7 @@ export type ListUsersQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3098,6 +3209,7 @@ export type ListUsersQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -3147,6 +3259,7 @@ export type GetCoachingDataQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3159,6 +3272,7 @@ export type GetCoachingDataQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3171,6 +3285,7 @@ export type GetCoachingDataQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -3208,6 +3323,7 @@ export type GetCoachingDataQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3220,6 +3336,7 @@ export type GetCoachingDataQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3232,6 +3349,7 @@ export type GetCoachingDataQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -3298,6 +3416,7 @@ export type ListCoachingDatasQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3330,6 +3449,7 @@ export type ListCoachingDatasQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3389,6 +3509,7 @@ export type GetHabitQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3401,6 +3522,7 @@ export type GetHabitQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3413,6 +3535,7 @@ export type GetHabitQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -3481,6 +3604,7 @@ export type ListHabitsQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3582,6 +3706,7 @@ export type GetNightRatingQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3594,6 +3719,7 @@ export type GetNightRatingQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3606,6 +3732,7 @@ export type GetNightRatingQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -3663,6 +3790,7 @@ export type ListNightRatingsQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3696,13 +3824,13 @@ export type ListNightRatingsQuery = {
   } | null,
 };
 
-export type GetFeedbackContentQueryVariables = {
+export type GetFeedbackQueryVariables = {
   id: string,
 };
 
-export type GetFeedbackContentQuery = {
-  getFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type GetFeedbackQuery = {
+  getFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -3713,17 +3841,17 @@ export type GetFeedbackContentQuery = {
   } | null,
 };
 
-export type ListFeedbackContentsQueryVariables = {
-  filter?: ModelFeedbackContentFilterInput | null,
+export type ListFeedbacksQueryVariables = {
+  filter?: ModelFeedbackFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListFeedbackContentsQuery = {
-  listFeedbackContents:  {
-    __typename: "ModelFeedbackContentConnection",
+export type ListFeedbacksQuery = {
+  listFeedbacks:  {
+    __typename: "ModelFeedbackConnection",
     items:  Array< {
-      __typename: "FeedbackContent",
+      __typename: "Feedback",
       id: string | null,
       type: string | null,
       slug: string,
@@ -3736,13 +3864,13 @@ export type ListFeedbackContentsQuery = {
   } | null,
 };
 
-export type GetCommentsQueryVariables = {
+export type GetCommentQueryVariables = {
   id: string,
 };
 
-export type GetCommentsQuery = {
-  getComments:  {
-    __typename: "Comments",
+export type GetCommentQuery = {
+  getComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -3755,17 +3883,17 @@ export type GetCommentsQuery = {
   } | null,
 };
 
-export type ListCommentssQueryVariables = {
-  filter?: ModelCommentsFilterInput | null,
+export type ListCommentsQueryVariables = {
+  filter?: ModelCommentFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListCommentssQuery = {
-  listCommentss:  {
-    __typename: "ModelCommentsConnection",
+export type ListCommentsQuery = {
+  listComments:  {
+    __typename: "ModelCommentConnection",
     items:  Array< {
-      __typename: "Comments",
+      __typename: "Comment",
       id: string | null,
       type: string | null,
       slug: string,
@@ -3797,6 +3925,7 @@ export type GetNightNoteQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3809,6 +3938,7 @@ export type GetNightNoteQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3821,6 +3951,7 @@ export type GetNightNoteQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -3883,6 +4014,7 @@ export type ListNightNotesQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -3940,6 +4072,7 @@ export type UserByConnectionIdQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -3952,6 +4085,7 @@ export type UserByConnectionIdQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -3964,6 +4098,7 @@ export type UserByConnectionIdQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -4019,6 +4154,7 @@ export type CoachingByUserQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4051,6 +4187,7 @@ export type CoachingByUserQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4123,16 +4260,16 @@ export type FeedbackContentBySlugQueryVariables = {
   slug?: string | null,
   id?: ModelStringKeyConditionInput | null,
   sortDirection?: ModelSortDirection | null,
-  filter?: ModelFeedbackContentFilterInput | null,
+  filter?: ModelFeedbackFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
 export type FeedbackContentBySlugQuery = {
   feedbackContentBySlug:  {
-    __typename: "ModelFeedbackContentConnection",
+    __typename: "ModelFeedbackConnection",
     items:  Array< {
-      __typename: "FeedbackContent",
+      __typename: "Feedback",
       id: string | null,
       type: string | null,
       slug: string,
@@ -4149,16 +4286,16 @@ export type CommentsBySlugQueryVariables = {
   slug?: string | null,
   id?: ModelStringKeyConditionInput | null,
   sortDirection?: ModelSortDirection | null,
-  filter?: ModelCommentsFilterInput | null,
+  filter?: ModelCommentFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
 export type CommentsBySlugQuery = {
   commentsBySlug:  {
-    __typename: "ModelCommentsConnection",
+    __typename: "ModelCommentConnection",
     items:  Array< {
-      __typename: "Comments",
+      __typename: "Comment",
       id: string | null,
       type: string | null,
       slug: string,
@@ -4190,6 +4327,7 @@ export type GetNightQuery = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -4202,6 +4340,7 @@ export type GetNightQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -4214,6 +4353,7 @@ export type GetNightQuery = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -4275,6 +4415,7 @@ export type ListNightsQuery = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4313,7 +4454,8 @@ export type ListNightsQuery = {
 };
 
 export type OnCreateSleepDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnCreateSleepDataSubscription = {
@@ -4329,6 +4471,7 @@ export type OnCreateSleepDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -4341,6 +4484,7 @@ export type OnCreateSleepDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -4353,6 +4497,7 @@ export type OnCreateSleepDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -4398,7 +4543,8 @@ export type OnCreateSleepDataSubscription = {
 };
 
 export type OnUpdateSleepDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateSleepDataSubscription = {
@@ -4414,6 +4560,7 @@ export type OnUpdateSleepDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -4426,6 +4573,7 @@ export type OnUpdateSleepDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -4438,6 +4586,7 @@ export type OnUpdateSleepDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -4483,7 +4632,8 @@ export type OnUpdateSleepDataSubscription = {
 };
 
 export type OnDeleteSleepDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnDeleteSleepDataSubscription = {
@@ -4499,6 +4649,7 @@ export type OnDeleteSleepDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -4511,6 +4662,7 @@ export type OnDeleteSleepDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -4523,6 +4675,7 @@ export type OnDeleteSleepDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -4567,6 +4720,11 @@ export type OnDeleteSleepDataSubscription = {
   } | null,
 };
 
+export type OnCreateRequestSubscriptionVariables = {
+  owner?: string | null,
+  userId?: string | null,
+};
+
 export type OnCreateRequestSubscription = {
   onCreateRequest:  {
     __typename: "Request",
@@ -4579,6 +4737,11 @@ export type OnCreateRequestSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnUpdateRequestSubscriptionVariables = {
+  owner?: string | null,
+  userId?: string | null,
 };
 
 export type OnUpdateRequestSubscription = {
@@ -4595,6 +4758,11 @@ export type OnUpdateRequestSubscription = {
   } | null,
 };
 
+export type OnDeleteRequestSubscriptionVariables = {
+  owner?: string | null,
+  userId?: string | null,
+};
+
 export type OnDeleteRequestSubscription = {
   onDeleteRequest:  {
     __typename: "Request",
@@ -4609,6 +4777,11 @@ export type OnDeleteRequestSubscription = {
   } | null,
 };
 
+export type OnCreateUserSubscriptionVariables = {
+  owner?: string | null,
+  viewers?: string | null,
+};
+
 export type OnCreateUserSubscription = {
   onCreateUser:  {
     __typename: "User",
@@ -4618,6 +4791,7 @@ export type OnCreateUserSubscription = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -4630,6 +4804,7 @@ export type OnCreateUserSubscription = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4662,6 +4837,7 @@ export type OnCreateUserSubscription = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4710,6 +4886,11 @@ export type OnCreateUserSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnUpdateUserSubscriptionVariables = {
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
@@ -4721,6 +4902,7 @@ export type OnUpdateUserSubscription = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -4733,6 +4915,7 @@ export type OnUpdateUserSubscription = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4765,6 +4948,7 @@ export type OnUpdateUserSubscription = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4815,6 +4999,11 @@ export type OnUpdateUserSubscription = {
   } | null,
 };
 
+export type OnDeleteUserSubscriptionVariables = {
+  owner?: string | null,
+  viewers?: string | null,
+};
+
 export type OnDeleteUserSubscription = {
   onDeleteUser:  {
     __typename: "User",
@@ -4824,6 +5013,7 @@ export type OnDeleteUserSubscription = {
     nickname: string | null,
     darkMode: boolean | null,
     intercomId: string | null,
+    viewers: Array< string | null > | null,
     activeCoaching:  {
       __typename: "CoachingData",
       id: string,
@@ -4836,6 +5026,7 @@ export type OnDeleteUserSubscription = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4868,6 +5059,7 @@ export type OnDeleteUserSubscription = {
         nickname: string | null,
         darkMode: boolean | null,
         intercomId: string | null,
+        viewers: Array< string | null > | null,
         activeCoaching:  {
           __typename: "CoachingData",
           id: string,
@@ -4919,7 +5111,8 @@ export type OnDeleteUserSubscription = {
 };
 
 export type OnCreateCoachingDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnCreateCoachingDataSubscription = {
@@ -4935,6 +5128,7 @@ export type OnCreateCoachingDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -4947,6 +5141,7 @@ export type OnCreateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -4959,6 +5154,7 @@ export type OnCreateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -4996,6 +5192,7 @@ export type OnCreateCoachingDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5008,6 +5205,7 @@ export type OnCreateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5020,6 +5218,7 @@ export type OnCreateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5066,7 +5265,8 @@ export type OnCreateCoachingDataSubscription = {
 };
 
 export type OnUpdateCoachingDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateCoachingDataSubscription = {
@@ -5082,6 +5282,7 @@ export type OnUpdateCoachingDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5094,6 +5295,7 @@ export type OnUpdateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5106,6 +5308,7 @@ export type OnUpdateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5143,6 +5346,7 @@ export type OnUpdateCoachingDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5155,6 +5359,7 @@ export type OnUpdateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5167,6 +5372,7 @@ export type OnUpdateCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5213,7 +5419,8 @@ export type OnUpdateCoachingDataSubscription = {
 };
 
 export type OnDeleteCoachingDataSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnDeleteCoachingDataSubscription = {
@@ -5229,6 +5436,7 @@ export type OnDeleteCoachingDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5241,6 +5449,7 @@ export type OnDeleteCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5253,6 +5462,7 @@ export type OnDeleteCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5290,6 +5500,7 @@ export type OnDeleteCoachingDataSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5302,6 +5513,7 @@ export type OnDeleteCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5314,6 +5526,7 @@ export type OnDeleteCoachingDataSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5360,7 +5573,8 @@ export type OnDeleteCoachingDataSubscription = {
 };
 
 export type OnCreateHabitSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnCreateHabitSubscription = {
@@ -5376,6 +5590,7 @@ export type OnCreateHabitSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5388,6 +5603,7 @@ export type OnCreateHabitSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5400,6 +5616,7 @@ export type OnCreateHabitSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5448,7 +5665,8 @@ export type OnCreateHabitSubscription = {
 };
 
 export type OnUpdateHabitSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateHabitSubscription = {
@@ -5464,6 +5682,7 @@ export type OnUpdateHabitSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5476,6 +5695,7 @@ export type OnUpdateHabitSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5488,6 +5708,7 @@ export type OnUpdateHabitSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5536,7 +5757,8 @@ export type OnUpdateHabitSubscription = {
 };
 
 export type OnDeleteHabitSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnDeleteHabitSubscription = {
@@ -5552,6 +5774,7 @@ export type OnDeleteHabitSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5564,6 +5787,7 @@ export type OnDeleteHabitSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5576,6 +5800,7 @@ export type OnDeleteHabitSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5624,7 +5849,7 @@ export type OnDeleteHabitSubscription = {
 };
 
 export type OnCreateLikedContentSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnCreateLikedContentSubscription = {
@@ -5641,7 +5866,7 @@ export type OnCreateLikedContentSubscription = {
 };
 
 export type OnUpdateLikedContentSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnUpdateLikedContentSubscription = {
@@ -5658,7 +5883,7 @@ export type OnUpdateLikedContentSubscription = {
 };
 
 export type OnDeleteLikedContentSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
 };
 
 export type OnDeleteLikedContentSubscription = {
@@ -5675,7 +5900,8 @@ export type OnDeleteLikedContentSubscription = {
 };
 
 export type OnCreateNightRatingSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnCreateNightRatingSubscription = {
@@ -5691,6 +5917,7 @@ export type OnCreateNightRatingSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5703,6 +5930,7 @@ export type OnCreateNightRatingSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5715,6 +5943,7 @@ export type OnCreateNightRatingSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5752,7 +5981,8 @@ export type OnCreateNightRatingSubscription = {
 };
 
 export type OnUpdateNightRatingSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateNightRatingSubscription = {
@@ -5768,6 +5998,7 @@ export type OnUpdateNightRatingSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5780,6 +6011,7 @@ export type OnUpdateNightRatingSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5792,6 +6024,7 @@ export type OnUpdateNightRatingSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5829,7 +6062,8 @@ export type OnUpdateNightRatingSubscription = {
 };
 
 export type OnDeleteNightRatingSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnDeleteNightRatingSubscription = {
@@ -5845,6 +6079,7 @@ export type OnDeleteNightRatingSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -5857,6 +6092,7 @@ export type OnDeleteNightRatingSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -5869,6 +6105,7 @@ export type OnDeleteNightRatingSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -5905,13 +6142,13 @@ export type OnDeleteNightRatingSubscription = {
   } | null,
 };
 
-export type OnCreateFeedbackContentSubscriptionVariables = {
-  owner: string,
+export type OnCreateFeedbackSubscriptionVariables = {
+  owner?: string | null,
 };
 
-export type OnCreateFeedbackContentSubscription = {
-  onCreateFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type OnCreateFeedbackSubscription = {
+  onCreateFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -5922,13 +6159,13 @@ export type OnCreateFeedbackContentSubscription = {
   } | null,
 };
 
-export type OnUpdateFeedbackContentSubscriptionVariables = {
-  owner: string,
+export type OnUpdateFeedbackSubscriptionVariables = {
+  owner?: string | null,
 };
 
-export type OnUpdateFeedbackContentSubscription = {
-  onUpdateFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type OnUpdateFeedbackSubscription = {
+  onUpdateFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -5939,13 +6176,13 @@ export type OnUpdateFeedbackContentSubscription = {
   } | null,
 };
 
-export type OnDeleteFeedbackContentSubscriptionVariables = {
-  owner: string,
+export type OnDeleteFeedbackSubscriptionVariables = {
+  owner?: string | null,
 };
 
-export type OnDeleteFeedbackContentSubscription = {
-  onDeleteFeedbackContent:  {
-    __typename: "FeedbackContent",
+export type OnDeleteFeedbackSubscription = {
+  onDeleteFeedback:  {
+    __typename: "Feedback",
     id: string | null,
     type: string | null,
     slug: string,
@@ -5956,13 +6193,13 @@ export type OnDeleteFeedbackContentSubscription = {
   } | null,
 };
 
-export type OnCreateCommentsSubscriptionVariables = {
-  owner: string,
+export type OnCreateCommentSubscriptionVariables = {
+  owner?: string | null,
 };
 
-export type OnCreateCommentsSubscription = {
-  onCreateComments:  {
-    __typename: "Comments",
+export type OnCreateCommentSubscription = {
+  onCreateComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -5975,13 +6212,13 @@ export type OnCreateCommentsSubscription = {
   } | null,
 };
 
-export type OnUpdateCommentsSubscriptionVariables = {
-  owner: string,
+export type OnUpdateCommentSubscriptionVariables = {
+  owner?: string | null,
 };
 
-export type OnUpdateCommentsSubscription = {
-  onUpdateComments:  {
-    __typename: "Comments",
+export type OnUpdateCommentSubscription = {
+  onUpdateComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -5994,13 +6231,13 @@ export type OnUpdateCommentsSubscription = {
   } | null,
 };
 
-export type OnDeleteCommentsSubscriptionVariables = {
-  owner: string,
+export type OnDeleteCommentSubscriptionVariables = {
+  owner?: string | null,
 };
 
-export type OnDeleteCommentsSubscription = {
-  onDeleteComments:  {
-    __typename: "Comments",
+export type OnDeleteCommentSubscription = {
+  onDeleteComment:  {
+    __typename: "Comment",
     id: string | null,
     type: string | null,
     slug: string,
@@ -6014,7 +6251,8 @@ export type OnDeleteCommentsSubscription = {
 };
 
 export type OnCreateNightNoteSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnCreateNightNoteSubscription = {
@@ -6030,6 +6268,7 @@ export type OnCreateNightNoteSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -6042,6 +6281,7 @@ export type OnCreateNightNoteSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -6054,6 +6294,7 @@ export type OnCreateNightNoteSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -6096,7 +6337,8 @@ export type OnCreateNightNoteSubscription = {
 };
 
 export type OnUpdateNightNoteSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateNightNoteSubscription = {
@@ -6112,6 +6354,7 @@ export type OnUpdateNightNoteSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -6124,6 +6367,7 @@ export type OnUpdateNightNoteSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -6136,6 +6380,7 @@ export type OnUpdateNightNoteSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -6178,7 +6423,8 @@ export type OnUpdateNightNoteSubscription = {
 };
 
 export type OnDeleteNightNoteSubscriptionVariables = {
-  owner: string,
+  owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnDeleteNightNoteSubscription = {
@@ -6194,6 +6440,7 @@ export type OnDeleteNightNoteSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -6206,6 +6453,7 @@ export type OnDeleteNightNoteSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -6218,6 +6466,7 @@ export type OnDeleteNightNoteSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -6261,6 +6510,7 @@ export type OnDeleteNightNoteSubscription = {
 
 export type OnCreateNightSubscriptionVariables = {
   owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnCreateNightSubscription = {
@@ -6276,6 +6526,7 @@ export type OnCreateNightSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -6288,6 +6539,7 @@ export type OnCreateNightSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -6300,6 +6552,7 @@ export type OnCreateNightSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -6342,6 +6595,7 @@ export type OnCreateNightSubscription = {
 
 export type OnUpdateNightSubscriptionVariables = {
   owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnUpdateNightSubscription = {
@@ -6357,6 +6611,7 @@ export type OnUpdateNightSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -6369,6 +6624,7 @@ export type OnUpdateNightSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -6381,6 +6637,7 @@ export type OnUpdateNightSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,
@@ -6423,6 +6680,7 @@ export type OnUpdateNightSubscription = {
 
 export type OnDeleteNightSubscriptionVariables = {
   owner?: string | null,
+  viewers?: string | null,
 };
 
 export type OnDeleteNightSubscription = {
@@ -6438,6 +6696,7 @@ export type OnDeleteNightSubscription = {
       nickname: string | null,
       darkMode: boolean | null,
       intercomId: string | null,
+      viewers: Array< string | null > | null,
       activeCoaching:  {
         __typename: "CoachingData",
         id: string,
@@ -6450,6 +6709,7 @@ export type OnDeleteNightSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         },
@@ -6462,6 +6722,7 @@ export type OnDeleteNightSubscription = {
           nickname: string | null,
           darkMode: boolean | null,
           intercomId: string | null,
+          viewers: Array< string | null > | null,
           createdAt: string,
           updatedAt: string,
         } | null,

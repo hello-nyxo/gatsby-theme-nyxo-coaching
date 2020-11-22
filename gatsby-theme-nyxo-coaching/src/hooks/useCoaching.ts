@@ -1,5 +1,4 @@
 import { getActiveCoaching } from "@graphql/custom/queries"
-import { navigate } from "@reach/router"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { queryCache, QueryResult, useMutation, useQuery } from "react-query"
 import {

@@ -13,9 +13,21 @@ export const onClientEntry = () => {
 export const onRouteUpdate = () => {
   Auth.currentAuthenticatedUser()
     .then((user) => {
+      const payload = user.signInUserSession.idToken.payload
+
+      let isCoach = false
+
+      if (
+        "cognito:groups" in payload &&
+        payload["cognito:groups"].includes("coach")
+      ) {
+        isCoach = true
+      }
+
       const userInfo = {
         ...user.attributes,
         username: user.username,
+        isCoach: isCoach,
       }
       setUser(userInfo)
     })

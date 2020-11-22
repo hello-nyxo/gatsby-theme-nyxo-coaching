@@ -38,10 +38,15 @@ const SideBar: FC = () => {
       path: "/me/coaching",
     },
     {
-      icon: "habits",
-      name: "Habits",
-      path: "/me/habits",
+      icon: "heartBookmarkOutline",
+      name: "Bookmarks",
+      path: "/me/bookmarks",
     },
+    // {
+    //   icon: "habits",
+    //   name: "Habits",
+    //   path: "/me/habits",
+    // },
     {
       icon: "settingsIcon",
       name: "Settings",
@@ -49,12 +54,14 @@ const SideBar: FC = () => {
     },
   ]
 
-  if (isCoach())
+  if (isCoach()) {
+    console.log(isCoach())
     paths.push({
-      icon: "coachIcon",
+      icon: "coaching",
       name: "Coachees",
       path: "/me/coachees",
     })
+  }
 
   const mappedRoutes = paths.map((item) => {
     return (

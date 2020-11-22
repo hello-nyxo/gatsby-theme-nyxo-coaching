@@ -29,9 +29,16 @@ export const logout = (callback: () => void): void => {
   callback()
 }
 
-export const isCoach = async (): Promise<boolean> => {
+export const isCoach = (): boolean | undefined => {
+  if (!isBrowser) return false
+
+  const user = getUser()
+  if (user) return !!user.isCoach
+}
+
+export const isAdmin = async (): Promise<boolean> => {
   const response = await Auth.currentAuthenticatedUser()
-  if (response?.idToken?.payload["coach"].includes("coach")) {
+  if (response?.idToken?.payload["coach"].includes("admin")) {
     return true
   }
   return false

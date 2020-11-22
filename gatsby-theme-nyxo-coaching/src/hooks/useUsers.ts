@@ -1,28 +1,16 @@
-import {
-  useQuery,
-  QueryResult,
-  useMutation,
-  MutationResult,
-  MutationFunction,
-} from "react-query"
-import { Auth, API, graphqlOperation } from "aws-amplify"
-import {
-  GetUserQuery,
-  UpdateUserMutation,
-  UpdateUserInput,
-  GetActiveCoachingQuery,
-  ListUsersQuery,
-} from "../API"
-import { updateUser } from "../graphql/mutations"
-import { getUser, listUsers } from "../graphql/queries"
-import { getActiveCoaching } from "@graphql/custom/queries"
+import { listCoachees } from "@graphql/custom/queries"
+import { API, Auth, graphqlOperation } from "aws-amplify"
+import { useQuery } from "react-query"
+import { ListUsersQuery } from "../API"
 
 const listAllUsers = async () => {
   try {
     const { username } = await Auth.currentUserInfo()
     const {
       data: { listUsers: data },
-    } = (await API.graphql(graphqlOperation(listUsers, { id: username }))) as {
+    } = (await API.graphql(
+      graphqlOperation(listCoachees, { id: username })
+    )) as {
       data: ListUsersQuery
     }
 

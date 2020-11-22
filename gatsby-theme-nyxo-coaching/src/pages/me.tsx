@@ -15,7 +15,7 @@ const Me: FC<PageProps> = () => {
   return (
     <Layout>
       <Router>
-        <Home path={`me/*`} />
+        <PrivateRoute path={`me/*`} component={Home} />
         <Login path={`me/login`} />
         <SignUp path={`me/register`} />
         <Reset path={`me/reset`} />

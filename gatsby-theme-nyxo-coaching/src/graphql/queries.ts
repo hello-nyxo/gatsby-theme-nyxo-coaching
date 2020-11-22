@@ -14,6 +14,7 @@ export const getSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -24,6 +25,7 @@ export const getSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -35,6 +37,7 @@ export const getSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -93,6 +96,7 @@ export const listSleepDatas = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -175,6 +179,7 @@ export const getUser = /* GraphQL */ `
       nickname
       darkMode
       intercomId
+      viewers
       activeCoaching {
         id
         userId
@@ -185,6 +190,7 @@ export const getUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -214,6 +220,7 @@ export const getUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -274,6 +281,7 @@ export const listUsers = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -284,6 +292,7 @@ export const listUsers = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -295,6 +304,7 @@ export const listUsers = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -337,6 +347,7 @@ export const getCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -347,6 +358,7 @@ export const getCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -358,6 +370,7 @@ export const getCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -392,6 +405,7 @@ export const getCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -402,6 +416,7 @@ export const getCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -413,6 +428,7 @@ export const getCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -472,6 +488,7 @@ export const listCoachingDatas = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -501,6 +518,7 @@ export const listCoachingDatas = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -552,6 +570,7 @@ export const getHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -562,6 +581,7 @@ export const getHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -573,6 +593,7 @@ export const getHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -634,6 +655,7 @@ export const listHabits = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -720,6 +742,7 @@ export const getNightRating = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -730,6 +753,7 @@ export const getNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -741,6 +765,7 @@ export const getNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -792,6 +817,7 @@ export const listNightRatings = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -823,9 +849,9 @@ export const listNightRatings = /* GraphQL */ `
     }
   }
 `;
-export const getFeedbackContent = /* GraphQL */ `
-  query GetFeedbackContent($id: ID!) {
-    getFeedbackContent(id: $id) {
+export const getFeedback = /* GraphQL */ `
+  query GetFeedback($id: ID!) {
+    getFeedback(id: $id) {
       id
       type
       slug
@@ -836,17 +862,13 @@ export const getFeedbackContent = /* GraphQL */ `
     }
   }
 `;
-export const listFeedbackContents = /* GraphQL */ `
-  query ListFeedbackContents(
-    $filter: ModelFeedbackContentFilterInput
+export const listFeedbacks = /* GraphQL */ `
+  query ListFeedbacks(
+    $filter: ModelFeedbackFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listFeedbackContents(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listFeedbacks(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         type
@@ -860,9 +882,9 @@ export const listFeedbackContents = /* GraphQL */ `
     }
   }
 `;
-export const getComments = /* GraphQL */ `
-  query GetComments($id: ID!) {
-    getComments(id: $id) {
+export const getComment = /* GraphQL */ `
+  query GetComment($id: ID!) {
+    getComment(id: $id) {
       id
       type
       slug
@@ -875,13 +897,13 @@ export const getComments = /* GraphQL */ `
     }
   }
 `;
-export const listCommentss = /* GraphQL */ `
-  query ListCommentss(
-    $filter: ModelCommentsFilterInput
+export const listComments = /* GraphQL */ `
+  query ListComments(
+    $filter: ModelCommentFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listCommentss(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         type
@@ -909,6 +931,7 @@ export const getNightNote = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -919,6 +942,7 @@ export const getNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -930,6 +954,7 @@ export const getNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -985,6 +1010,7 @@ export const listNightNotes = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -1042,6 +1068,7 @@ export const userByConnectionId = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1052,6 +1079,7 @@ export const userByConnectionId = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -1063,6 +1091,7 @@ export const userByConnectionId = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -1118,6 +1147,7 @@ export const coachingByUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -1147,6 +1177,7 @@ export const coachingByUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -1221,7 +1252,7 @@ export const feedbackContentBySlug = /* GraphQL */ `
     $slug: String
     $id: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
-    $filter: ModelFeedbackContentFilterInput
+    $filter: ModelFeedbackFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -1251,7 +1282,7 @@ export const commentsBySlug = /* GraphQL */ `
     $slug: String
     $id: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
-    $filter: ModelCommentsFilterInput
+    $filter: ModelCommentFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -1290,6 +1321,7 @@ export const getNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1300,6 +1332,7 @@ export const getNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -1311,6 +1344,7 @@ export const getNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
             createdAt
             updatedAt
           }
@@ -1366,6 +1400,7 @@ export const listNights = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId

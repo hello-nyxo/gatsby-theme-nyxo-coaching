@@ -91,18 +91,18 @@ const Card = styled(Link)`
   }
 
   @media ${device.desktopL} {
-    max-width: calc(33.333% - 2 * 1rem);
-    flex: 1 1 calc(33.333% - 2 * 1rem);
+    max-width: calc(25% - 2 * 1rem);
+    flex: 1 1 calc(25% - 2 * 1rem);
   }
 
   @media ${device.desktop} {
-    max-width: calc(33.333% - 2 * 1rem);
-    flex: 1 1 calc(33.333% - 2 * 1rem);
+    max-width: calc(25% - 2 * 1rem);
+    flex: 1 1 calc(25% - 2 * 1rem);
   }
 
   @media ${device.laptopL} {
-    max-width: calc(33.333% - 2 * 1rem);
-    flex: 1 1 calc(33.333% - 2 * 1rem);
+    max-width: calc(50% - 2 * 1rem);
+    flex: 1 1 calc(50% - 2 * 1rem);
   }
 
   @media ${device.laptop} {

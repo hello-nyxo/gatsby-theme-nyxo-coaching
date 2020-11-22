@@ -1,11 +1,11 @@
-import { Container } from "@components/Primitives"
-import React, { FC, useMemo } from "react"
+import SleepChart, { Night } from "@components/charts/SleepChart"
 import { H3 } from "@components/html/Html"
+import { Container } from "@components/Primitives"
 import { useGetSleep } from "@hooks/useSleep"
-import { useTable } from "react-table"
 import { format, isDate } from "date-fns"
+import React, { FC, useMemo } from "react"
+import { useTable } from "react-table"
 import styled from "styled-components"
-import SleepChart, { Night, Value } from "@components/charts/SleepChart"
 
 const dateFormat = "dd.MM.yyyy"
 

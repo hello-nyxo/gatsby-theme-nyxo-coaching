@@ -1,16 +1,22 @@
+import { AddCoacheeSection } from "@components/coach/AddCoacheeSection"
 import { H3 } from "@components/html/Html"
-import { useListUsers } from "@hooks/useUsers"
+import { CoachingRequests } from "@components/request/CoachingRequests"
+import { CoacheeTable } from "@components/tables/CoacheeTable"
+import { useListRequests } from "@hooks/useRequest"
 import React, { FC } from "react"
 import styled from "styled-components"
 
 export const Coachees: FC = () => {
-  const { data } = useListUsers()
+  const { data } = useListRequests()
 
+  console.log(data)
   return (
     <Container>
       <H3>Coachees</H3>
 
-      <pre>{JSON.stringify(data?.items, undefined, 2)}</pre>
+      <AddCoacheeSection />
+      <CoachingRequests />
+      <CoacheeTable />
     </Container>
   )
 }

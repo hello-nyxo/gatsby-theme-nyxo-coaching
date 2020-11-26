@@ -1,3 +1,4 @@
+import { CoachingPrompt } from "@components/coaching/CoachingPrompt"
 import { SharingOptions } from "@components/sharing/SharingOptions"
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer"
 import { Document } from "@contentful/rich-text-types"
@@ -12,13 +13,12 @@ import {
   ContentfulLesson,
   ContentfulWeek,
 } from "../../graphql-types"
-import BookmarkButton from "../components/bookmark/Bookmark"
 import HabitCard from "../components/habit/HabitCard"
-import HtmlContent, { H1, H3, H5, H6 } from "../components/html/Html"
+import HtmlContent, { H1, H3, H5, H6, P } from "../components/html/Html"
 import { Icon } from "../components/Icons"
 import Layout from "../components/Layout/Layout"
 import LessonCard from "../components/lesson/LessonCard"
-import { Container, device, Row } from "../components/Primitives"
+import { Container, device } from "../components/Primitives"
 import SEO from "../components/SEO/SEO"
 import TagSection from "../components/tags/Tags"
 import LargeWeekCard from "../components/week/LargeWeekCard"
@@ -63,6 +63,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
       updatedAt,
       weekName: title,
       coverPhoto,
+      intro,
     },
   },
   location: { pathname },
@@ -146,7 +147,9 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
         updated={updatedAt}
       />
       <Container>
-        <H1>{title}</H1>
+        <Type>{t("WEEK")}</Type>
+        <Title>{title}</Title>
+        <Intro>{intro}</Intro>
 
         <Cover>
           <CoverImage fluid={coverPhoto?.fluid as FluidObject} />
@@ -158,26 +161,31 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
           bookmark={handleBookmark}
           bookmarked={weekBookmarked}
         />
-
         <H3>{t("ABOUT_THIS_WEEK")}</H3>
 
         <Row>
           <Column>
             <HtmlContent document={weekDescription} />
+
+            {tags?.length > 0 && (
+              <>
+                <TagTitle>
+                  <TagIcon />
+                  {t("TAGS")}
+                </TagTitle>
+                <Tags>
+                  <TagSection
+                    tags={tags.map(
+                      ({ fieldValue = "adenosine" }) => fieldValue
+                    )}
+                  />
+                </Tags>
+              </>
+            )}
           </Column>
-          {tags?.length > 0 && (
-            <Column>
-              <TagTitle>
-                <TagIcon />
-                {t("TAGS")}
-              </TagTitle>
-              <Tags>
-                <TagSection
-                  tags={tags.map(({ fieldValue = "adenosine" }) => fieldValue)}
-                />
-              </Tags>
-            </Column>
-          )}
+          <Column>
+            <CoachingPrompt slug={slug} lessons={pageLessons} />
+          </Column>
         </Row>
 
         <H3>{t("LESSONS_FOR_THIS_WEEK")}</H3>
@@ -414,4 +422,34 @@ const Tags = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`
+
+const Type = styled.div`
+  font-size: 0.9rem;
+  font-weight: normal;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  margin-top: 3rem;
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  display: inline-block;
+  padding: 0.3rem;
+  background-color: #f3f3f3;
+  border-radius: 0.2rem;
+  text-transform: uppercase;
+`
+
+const Title = styled(H1)`
+  margin: 0;
+  line-height: 2.5rem;
+  margin: 0.5rem 0rem;
+`
+
+const Intro = styled(P)`
+  font-size: 0.9rem;
+`
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0rem -0.5rem;
 `

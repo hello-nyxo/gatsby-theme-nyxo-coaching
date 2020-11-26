@@ -1,11 +1,10 @@
-import { Link as NonLocalizedLink } from "gatsby"
+import { isLoggedIn } from "@auth/auth"
+import { Hello } from "@components/personalization/Hello"
+import { minDevice } from "@components/Primitives"
+import useSiteMetadata from "@hooks/useSiteMetaData"
 import { Link, useI18next, useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { minDevice } from "@components/Primitives"
-import { isLoggedIn } from "@auth/auth"
-import useSiteMetadata from "@hooks/useSiteMetaData"
-import { Hello } from "@components/personalization/Hello"
 
 const Header: FC = () => {
   const { title } = useSiteMetadata()
@@ -13,8 +12,14 @@ const Header: FC = () => {
   const { originalPath, language } = useI18next()
 
   const links = isLoggedIn()
-    ? [{ path: "me/", title: "ME" }]
-    : [{ path: "me/login", title: "LOGIN" }]
+    ? [
+        { path: "", title: "COACHING" },
+        { path: "me/", title: "ME" },
+      ]
+    : [
+        { path: "", title: "COACHING" },
+        { path: "me/login", title: "LOGIN" },
+      ]
 
   return (
     <HeaderContainer>

@@ -4,13 +4,13 @@ import { isLoggedIn } from "@auth/auth"
 import { RouteComponentProps } from "@reach/router"
 import Login from "@components/user/pages/Login"
 
-interface PrivateRouteProps {
+interface PrivateRouteProps extends RouteComponentProps {
   component: JSX.Element | null | ReactElement
   path: string
   as: any
 }
 
-const PrivateRoute: FC<RouteComponentProps> = ({
+const PrivateRoute: FC<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {

@@ -43,8 +43,4 @@ const UIContainer = styled.div`
   height: 100%;
   flex-direction: column;
   margin: 0px auto;
-  padding: 1rem 2rem;
-  @media (max-width: 599px) {
-    padding: 0.5rem;
-  }
 `

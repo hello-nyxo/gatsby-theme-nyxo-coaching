@@ -6,11 +6,11 @@
 	REGION
 Amplify Params - DO NOT EDIT */
 
-const https = require('https')
-const AWS = require('aws-sdk')
-const subWeeks = require('date-fns/subWeeks')
-const format = require('date-fns/format')
-const urlParse = require('url').URL
+const https = require("https")
+const AWS = require("aws-sdk")
+const subWeeks = require("date-fns/subWeeks")
+const format = require("date-fns/format")
+const urlParse = require("url").URL
 
 const appsyncUrl = process.env.API_NYXODEV_GRAPHQLAPIENDPOINTOUTPUT
 const region = process.env.REGION
@@ -43,28 +43,28 @@ exports.handler = async (event, context, callback) => {
 
   const item = {
     input: {
-      userId: 'a22113d5-64a4-422e-b290-327f49dd2c4a',
-      start: format(subWeeks(new Date(2014, 1, 11), 1), 'yyyy-MM-dd'),
-      end: format(new Date(), 'yyyy-MM-dd')
-    }
+      userId: "a22113d5-64a4-422e-b290-327f49dd2c4a",
+      start: format(subWeeks(new Date(2014, 1, 11), 1), "yyyy-MM-dd"),
+      end: format(new Date(), "yyyy-MM-dd"),
+    },
   }
 
-  req.method = 'POST'
-  req.path = '/graphql'
+  req.method = "POST"
+  req.path = "/graphql"
   req.headers.host = endpoint
-  req.headers['Content-Type'] = 'application/json'
+  req.headers["Content-Type"] = "application/json"
   req.body = JSON.stringify({
     query: listSleep,
-    operationName: 'listNights',
-    variables: item
+    operationName: "listNights",
+    variables: item,
   })
 
-  const signer = new AWS.Signers.V4(req, 'appsync', true)
+  const signer = new AWS.Signers.V4(req, "appsync", true)
   signer.addAuthorization(AWS.config.credentials, AWS.util.date.getDate())
 
   const data = await new Promise((resolve, reject) => {
     const httpRequest = https.request({ ...req, host: endpoint }, (result) => {
-      result.on('data', (responseData) => {
+      result.on("data", (responseData) => {
         resolve(JSON.parse(responseData.toString()))
       })
     })
@@ -77,7 +77,7 @@ exports.handler = async (event, context, callback) => {
     socialJetLag: calculateSocialJetLagScore(),
     duration: calculateDurationScore(),
     efficiency: calculateEfficiencyScore(),
-    timing: calculateTimingScore()
+    timing: calculateTimingScore(),
   })
 }
 

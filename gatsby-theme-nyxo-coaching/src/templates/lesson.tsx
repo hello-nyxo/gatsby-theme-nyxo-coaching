@@ -10,7 +10,7 @@ import { Container, TextContainer } from "@components/Primitives"
 import SEO from "@components/SEO/SEO"
 import { SharingOptions } from "@components/sharing/SharingOptions"
 import TagSection from "@components/tags/Tags"
-import getFirstAuthor from "@helpers/author"
+import { getFirstAuthor } from "@helpers/author"
 import {
   useAddBookmark,
   useDeleteBookmark,
@@ -18,6 +18,7 @@ import {
 } from "@hooks/useBookmarks"
 import { useCompleteLesson, useGetLesson } from "@hooks/useCoaching"
 import { useGetActiveCoaching } from "@hooks/useUser"
+import { format } from "date-fns"
 import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject, GatsbyImageProps } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
@@ -40,6 +41,8 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
       updatedAt,
       cover,
       keywords,
+      fields: { readingTime },
+      weights,
       authorCard,
       additionalInformation: readMore,
       habit: habits,
@@ -50,6 +53,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
     previousLesson: ContentfulLesson
   }
 
+  console.log(weights)
   const description = content?.fields?.excerpt
   const { t } = useTranslation()
   const {
@@ -77,11 +81,13 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   const handleComplete = async () => {
     const existingLessons = activeCoaching?.lessons ?? []
     await update({
-      lesson: slug,
-      id: activeCoaching?.id,
+      lesson: slug as string,
+      id: activeCoaching?.id as string,
       existingLessons,
     })
   }
+
+  const mainAuthor = getFirstAuthor(authorCard)
 
   return (
     <Layout>
@@ -94,17 +100,25 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
         image={cover?.fixed?.src}
         category="Health"
         tags="Sleep"
-        author={getFirstAuthor(authorCard)}
+        author={mainAuthor?.name}
       />
 
       <TextContainer>
         <TitleContainer>
           <H1>{title}</H1>
+          <Author>
+            <Avatar fluid={mainAuthor?.avatar?.fluid as FluidObject} />
+            <Column>
+              <Name>{mainAuthor?.name}</Name>
+              {updatedAt && (
+                <Info>{format(new Date(updatedAt), "MMM dd")}</Info>
+              )}
+              <Info> · </Info>
+              {readingTime && <Info>{`${readingTime} min read`}</Info>}
+            </Column>
+          </Author>
         </TitleContainer>
 
-        <Cover>
-          <CoverImage fluid={cover?.fluid as FluidObject} />
-        </Cover>
         <SharingOptions
           title={title as string}
           summary={description as string}
@@ -112,6 +126,10 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           bookmarked={bookmarked}
           loading={removeLoading || addLoading || isLoading}
         />
+
+        <Cover>
+          <CoverImage fluid={cover?.fluid as FluidObject} />
+        </Cover>
 
         {isLoggedIn() ? (
           <ActionRow>
@@ -122,6 +140,8 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
             />
           </ActionRow>
         ) : null}
+
+        <div>{JSON.stringify(weights)}</div>
 
         <ContentBlock preview={content}>
           <HtmlContent document={content} />
@@ -243,7 +263,7 @@ const Habits = styled.div`
 `
 
 const TitleContainer = styled.div`
-  text-align: center;
+  text-align: left;
 `
 
 const MoreLessonsContainer = styled.div`
@@ -255,4 +275,32 @@ const MoreLessonsContainer = styled.div`
 
 const Tags = styled.div`
   margin: 0rem -0.3rem 2rem;
+`
+
+const Author = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const Avatar = styled(Image)<GatsbyImageProps>`
+  height: 3rem;
+  width: 3rem;
+  border-radius: 3rem;
+  margin-right: 0.5rem;
+`
+
+const Info = styled.span`
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  margin-bottom: 0.5rem;
+`
+const Column = styled.div``
+
+const Name = styled.div`
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  margin-bottom: 0.5rem;
 `

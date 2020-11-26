@@ -2,12 +2,12 @@ import { isLoggedIn } from "@auth/auth"
 import { PrimaryButton } from "@components/buttons/PrimaryButton"
 import { Document } from "@contentful/rich-text-types"
 import { Link, useI18next } from "gatsby-plugin-react-i18next"
-import React, { FC } from "react"
+import React, { FC, ReactElement } from "react"
 import styled from "styled-components"
 import { H4, HtmlContentWithoutEmbeds, P } from "./Html"
 
 type Props = {
-  children: JSX.Element | null
+  children?: (Element | null | undefined | JSX.Element)[]
   preview: undefined | any
 }
 

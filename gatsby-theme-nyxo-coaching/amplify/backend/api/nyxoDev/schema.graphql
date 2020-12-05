@@ -45,6 +45,21 @@ type Request
   requesterName: String!
   requesterId: String!
   userName: String!
+  code: String
+  userId: String!
+  accepted: Boolean!
+}
+
+type Mutation {
+  createCoachingRequest(input: CreateCoachingRequestInput!): Request
+}
+
+input CreateCoachingRequestInput {
+  id: ID!
+  requesterName: String!
+  requesterId: String!
+  userName: String!
+  code: String
   userId: String!
   accepted: Boolean!
 }
@@ -71,6 +86,7 @@ type User
   intercomId: String
   viewers: [String]
   activeCoaching: CoachingData @connection(name: "ActiveCoachingMonth")
+  primaryDeviceID: String
   sleepPoints: SleepPoints
 }
 

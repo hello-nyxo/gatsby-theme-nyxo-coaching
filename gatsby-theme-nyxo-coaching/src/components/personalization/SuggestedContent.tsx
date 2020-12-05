@@ -98,7 +98,7 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
         </Column>
       </Content>
 
-      <div>Login to customize this feed</div>
+      {/* <div>Login to customize this feed</div> */}
     </Container>
   )
 }

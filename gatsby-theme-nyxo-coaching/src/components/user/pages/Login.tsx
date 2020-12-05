@@ -57,7 +57,7 @@ const Login: FC<Props> = () => {
             touched,
             isSubmitting,
           }) => (
-            <Form>
+            <FormContainer>
               <InputContainer>
                 <Title>{t("LOGIN.EMAIL_FIELD")}</Title>
                 <InputField
@@ -94,7 +94,7 @@ const Login: FC<Props> = () => {
                 {t("LOGIN.TITLE")}
                 {isSubmitting && <Loader />}
               </Submit>
-            </Form>
+            </FormContainer>
           )}
         </Formik>
         <RegisterContainer>
@@ -186,6 +186,13 @@ const Title = styled.label`
   padding-bottom: 0.5rem;
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+
+const FormContainer = styled(Form)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Errors = styled.div`

@@ -1,16 +1,15 @@
+import { isLoggedIn } from "@auth/auth"
+import { createRequest, deleteRequest } from "@graphql/mutations"
+import { API, Auth, graphqlOperation } from "aws-amplify"
 import { useMutation, useQuery } from "react-query"
-import { Auth, API, graphqlOperation } from "aws-amplify"
-import { listNights, listRequests } from "../graphql/queries"
 import {
   CreateRequestInput,
   CreateRequestMutation,
   DeleteRequestInput,
   DeleteRequestMutation,
-  ListNightsQuery,
   ListRequestsQuery,
 } from "../API"
-import { isLoggedIn } from "@auth/auth"
-import { createRequest, deleteRequest } from "@graphql/mutations"
+import { listRequests } from "../graphql/queries"
 
 const listUsersRequests = async () => {
   try {
@@ -80,6 +79,7 @@ const createNewRequest = async ({ email }: { email: string }) => {
         userId: email,
         accepted: false,
         userName: email,
+        code: "code",
       }
 
       const {

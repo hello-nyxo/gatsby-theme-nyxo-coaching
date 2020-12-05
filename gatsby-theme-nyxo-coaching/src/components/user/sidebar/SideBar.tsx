@@ -11,6 +11,7 @@ const SideBar: FC = () => {
   const { data: user } = useGetUser()
   const { t } = useTranslation()
 
+  console.log(user)
   const signOut = () => {
     Auth.signOut()
       .then(() => {

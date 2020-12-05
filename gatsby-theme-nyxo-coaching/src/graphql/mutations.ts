@@ -2,6 +2,21 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createCoachingRequest = /* GraphQL */ `
+  mutation CreateCoachingRequest($input: CreateCoachingRequestInput!) {
+    createCoachingRequest(input: $input) {
+      id
+      requesterName
+      requesterId
+      userName
+      code
+      userId
+      accepted
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createSleepData = /* GraphQL */ `
   mutation CreateSleepData($input: CreateSleepDataInput!) {
     createSleepData(input: $input) {
@@ -26,6 +41,7 @@ export const createSleepData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -38,6 +54,7 @@ export const createSleepData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -55,6 +72,7 @@ export const createSleepData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -103,6 +121,7 @@ export const updateSleepData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -115,6 +134,7 @@ export const updateSleepData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -132,6 +152,7 @@ export const updateSleepData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -180,6 +201,7 @@ export const deleteSleepData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -192,6 +214,7 @@ export const deleteSleepData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -209,6 +232,7 @@ export const deleteSleepData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -240,6 +264,7 @@ export const createRequest = /* GraphQL */ `
       requesterName
       requesterId
       userName
+      code
       userId
       accepted
       createdAt
@@ -254,6 +279,7 @@ export const updateRequest = /* GraphQL */ `
       requesterName
       requesterId
       userName
+      code
       userId
       accepted
       createdAt
@@ -268,6 +294,7 @@ export const deleteRequest = /* GraphQL */ `
       requesterName
       requesterId
       userName
+      code
       userId
       accepted
       createdAt
@@ -308,6 +335,7 @@ export const createUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -338,6 +366,7 @@ export const createUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -361,6 +390,7 @@ export const createUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      primaryDeviceID
       sleepPoints {
         efficiency
         duration
@@ -405,6 +435,7 @@ export const updateUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -435,6 +466,7 @@ export const updateUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -458,6 +490,7 @@ export const updateUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      primaryDeviceID
       sleepPoints {
         efficiency
         duration
@@ -502,6 +535,7 @@ export const deleteUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -532,6 +566,7 @@ export const deleteUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -555,6 +590,7 @@ export const deleteUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      primaryDeviceID
       sleepPoints {
         efficiency
         duration
@@ -590,6 +626,7 @@ export const createCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -602,6 +639,7 @@ export const createCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -619,6 +657,7 @@ export const createCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -648,6 +687,7 @@ export const createCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -660,6 +700,7 @@ export const createCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -677,6 +718,7 @@ export const createCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -726,6 +768,7 @@ export const updateCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -738,6 +781,7 @@ export const updateCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -755,6 +799,7 @@ export const updateCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -784,6 +829,7 @@ export const updateCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -796,6 +842,7 @@ export const updateCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -813,6 +860,7 @@ export const updateCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -862,6 +910,7 @@ export const deleteCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -874,6 +923,7 @@ export const deleteCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -891,6 +941,7 @@ export const deleteCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -920,6 +971,7 @@ export const deleteCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -932,6 +984,7 @@ export const deleteCoachingData = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -949,6 +1002,7 @@ export const deleteCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -998,6 +1052,7 @@ export const createHabit = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1010,6 +1065,7 @@ export const createHabit = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1027,6 +1083,7 @@ export const createHabit = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1078,6 +1135,7 @@ export const updateHabit = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1090,6 +1148,7 @@ export const updateHabit = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1107,6 +1166,7 @@ export const updateHabit = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1158,6 +1218,7 @@ export const deleteHabit = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1170,6 +1231,7 @@ export const deleteHabit = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1187,6 +1249,7 @@ export const deleteHabit = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1238,6 +1301,7 @@ export const createNight = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1250,6 +1314,7 @@ export const createNight = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1267,6 +1332,7 @@ export const createNight = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1312,6 +1378,7 @@ export const updateNight = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1324,6 +1391,7 @@ export const updateNight = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1341,6 +1409,7 @@ export const updateNight = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1386,6 +1455,7 @@ export const deleteNight = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1398,6 +1468,7 @@ export const deleteNight = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1415,6 +1486,7 @@ export const deleteNight = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1499,6 +1571,7 @@ export const createNightRating = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1511,6 +1584,7 @@ export const createNightRating = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1528,6 +1602,7 @@ export const createNightRating = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1569,6 +1644,7 @@ export const updateNightRating = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1581,6 +1657,7 @@ export const updateNightRating = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1598,6 +1675,7 @@ export const updateNightRating = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1639,6 +1717,7 @@ export const deleteNightRating = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1651,6 +1730,7 @@ export const deleteNightRating = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1668,6 +1748,7 @@ export const deleteNightRating = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1793,6 +1874,7 @@ export const createNightNote = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1805,6 +1887,7 @@ export const createNightNote = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1822,6 +1905,7 @@ export const createNightNote = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1867,6 +1951,7 @@ export const updateNightNote = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1879,6 +1964,7 @@ export const updateNightNote = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1896,6 +1982,7 @@ export const updateNightNote = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1941,6 +2028,7 @@ export const deleteNightNote = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1953,6 +2041,7 @@ export const deleteNightNote = /* GraphQL */ `
             darkMode
             intercomId
             viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1970,6 +2059,7 @@ export const deleteNightNote = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration

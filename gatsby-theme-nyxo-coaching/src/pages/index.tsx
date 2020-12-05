@@ -46,8 +46,6 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
       allContentfulLesson: { nodes: lessons },
       habits: { nodes: habits },
       recentlyUpdated: { nodes: recentlyUpdated },
-      // coachingMeta,
-      // coachingCover,
     },
     location: { pathname },
   } = props
@@ -71,7 +69,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
       <Container>
         <SuggestedContent lessons={lessons} habits={habits} />
-        <CoachingPath weeks={weeks} />
+        {/* <CoachingPath weeks={weeks} /> */}
         <H2>{t("COACHING.WEEKS")}</H2>
         <P>{t("COACHING.WEEKS_TEXT")}</P>
 

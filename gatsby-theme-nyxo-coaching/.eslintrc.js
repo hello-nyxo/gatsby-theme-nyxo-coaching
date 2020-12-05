@@ -10,6 +10,7 @@ module.exports = {
     "prettier/react",
     "prettier/@typescript-eslint",
     "prettier",
+    "unused-imports",
   ],
   settings: {
     react: {
@@ -43,6 +44,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/camelcase": "off",
     "react/prop-types": "off",
+    "import/no-unresolved": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
@@ -50,6 +52,17 @@ module.exports = {
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
     "@typescript-eslint/indent": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports-ts": "error",
+    "unused-imports/no-unused-vars-ts": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
     "prettier/prettier": [
       "error",
       {

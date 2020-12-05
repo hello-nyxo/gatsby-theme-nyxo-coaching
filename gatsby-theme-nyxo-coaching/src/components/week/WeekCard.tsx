@@ -74,6 +74,13 @@ const WeekCard: FC<Props> = ({
 
 export default WeekCard
 
+const CoverPhoto = styled(Image)`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: transform 0.2s ease-in-out;
+`
+
 const Card = styled(Link)`
   box-sizing: border-box;
   display: flex;
@@ -88,6 +95,10 @@ const Card = styled(Link)`
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+  }
+
+  &:hover ${CoverPhoto} {
+    transform: scale(1.05);
   }
 
   @media ${device.desktopL} {
@@ -144,11 +155,6 @@ const Cover = styled.div`
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   overflow: hidden;
-`
-
-const CoverPhoto = styled(Image)`
-  height: 100%;
-  width: 100%;
 `
 
 const Bottom = styled.div`

@@ -1,6 +1,7 @@
 import HabitCard from "@components/habit/HabitCard"
 import { H3 } from "@components/html/Html"
 import LessonCard from "@components/lesson/LessonCard"
+import { Container } from "@components/Primitives"
 import WeekCard from "@components/week/WeekCard"
 import { graphql, useStaticQuery } from "gatsby"
 import { FluidObject } from "gatsby-image"
@@ -112,8 +113,6 @@ export const Bookmarks: FC = () => {
     </Container>
   )
 }
-
-const Container = styled.div``
 
 const BookmarkContainer = styled.div`
   width: 100%;

@@ -10,7 +10,6 @@ module.exports = {
     "prettier/react",
     "prettier/@typescript-eslint",
     "prettier",
-    "unused-imports",
   ],
   settings: {
     react: {
@@ -33,7 +32,7 @@ module.exports = {
     assert: false,
     expect: false,
   },
-  plugins: ["@typescript-eslint", "react", "sonarjs", "jest"],
+  plugins: ["@typescript-eslint", "react", "sonarjs", "jest", "unused-imports"],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,

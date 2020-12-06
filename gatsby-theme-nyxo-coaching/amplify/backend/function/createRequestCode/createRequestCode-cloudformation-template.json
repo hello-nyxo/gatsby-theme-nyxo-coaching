@@ -33,12 +33,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"nyxo-create-code-on-request",
+						"createRequestCode",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"nyxo-create-code-on-request",
+									"createRequestCode",
 									"-",
 									{
 										"Ref": "env"
@@ -69,7 +69,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "nyxocloud-dev-20190813125556-deployment",
-					"S3Key": "amplify-builds/nyxocreaterequestcode-737853656277684c6d36-build.zip"
+					"S3Key": "amplify-builds/createRequestCode-5172716f3364304f6a41-build.zip"
 				}
 			}
 		},
@@ -79,12 +79,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"nyxocloudLambdaRole12f417bb",
+						"nyxocloudLambdaRole6daf5b9e",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"nyxocloudLambdaRole12f417bb",
+									"nyxocloudLambdaRole6daf5b9e",
 									"-",
 									{
 										"Ref": "env"

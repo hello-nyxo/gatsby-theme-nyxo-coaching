@@ -55,10 +55,10 @@ export type ModelBooleanFilterInput = {
 };
 
 export type CreateCoachingRequestInput = {
-  id: string,
   requesterName: string,
   requesterId: string,
   userName: string,
+  owner?: string | null,
   code?: string | null,
   userId: string,
   accepted: boolean,

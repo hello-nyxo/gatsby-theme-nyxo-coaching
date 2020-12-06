@@ -1,6 +1,6 @@
 import React, { FC } from "react"
 import { Icon } from "@components/Icons"
-import { Link, useTranslation } from "gatsby-plugin-react-i18next"
+import { Link, useTranslation, useI18next } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 import colors from "@styles/colors"
 import { useGetUser } from "@hooks/useUser"
@@ -10,14 +10,14 @@ import { isCoach } from "@auth/auth"
 const SideBar: FC = () => {
   const { data: user } = useGetUser()
   const { t } = useTranslation()
+  const { navigate } = useI18next()
 
-  console.log(user)
   const signOut = () => {
     Auth.signOut()
-      .then(() => {
-        console.log("signout")
+      .then(function () {
+        navigate("/me/login")
       })
-      .catch((err) => {
+      ["catch"](function (err) {
         console.error(err)
       })
   }
@@ -25,22 +25,22 @@ const SideBar: FC = () => {
   const paths = [
     {
       icon: "analyticsIcon",
-      name: "Overview",
+      name: "NAVIGATION.OVERVIEW",
       path: "/me",
     },
     {
       icon: "analyticsIcon",
-      name: "Sleep",
+      name: "NAVIGATION.SLEEP",
       path: "/me/sleep",
     },
     {
       icon: "coachingIcon",
-      name: "Coaching",
+      name: "NAVIGATION.COACHING",
       path: "/me/coaching",
     },
     {
       icon: "heartBookmarkOutline",
-      name: "Bookmarks",
+      name: "NAVIGATION.BOOKMARKS",
       path: "/me/bookmarks",
     },
     // {
@@ -50,16 +50,15 @@ const SideBar: FC = () => {
     // },
     {
       icon: "settingsIcon",
-      name: "Settings",
+      name: "NAVIGATION.SETTINGS",
       path: "/me/settings",
     },
   ]
 
   if (isCoach()) {
-    console.log(isCoach())
     paths.push({
       icon: "coaching",
-      name: "Coachees",
+      name: "NAVIGATION.COACHEES",
       path: "/me/coachees",
     })
   }
@@ -96,7 +95,7 @@ const SideBar: FC = () => {
 
       <Logout onClick={signOut} data-hover={t("Log out")}>
         <Icon height="20" width="20" name="logout" />
-        {t("Log out")}
+        {t("LOGOUT")}
       </Logout>
     </SideBarContainer>
   )

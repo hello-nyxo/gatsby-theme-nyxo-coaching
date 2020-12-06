@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import { RouteComponentProps, Router } from "@reach/router"
 import PrivateRoute from "@components/auth/PrivateRoute"
 import SideBar from "../sidebar/SideBar"
-import Details from "./Details"
+import Overview from "./Details"
 import Sleep from "./Sleep"
 import styled from "styled-components"
 import { Coachees } from "./Coachees"
@@ -16,7 +16,7 @@ export const Home: FC<RouteComponentProps> = () => {
       <SideBar />
       <UIContainer>
         <Router>
-          <PrivateRoute path={`/`} component={Details} />
+          <PrivateRoute path={`/`} component={Overview} />
           <PrivateRoute path={`/sleep`} component={Sleep} />
           <PrivateRoute path={`/coaching`} component={Coaching} />
           <PrivateRoute path={`/coachees`} component={Coachees} />
@@ -32,6 +32,7 @@ const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
   max-width: 1440px;
+
   margin: 0 auto;
 `
 

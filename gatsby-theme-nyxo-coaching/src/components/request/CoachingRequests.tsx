@@ -3,14 +3,18 @@ import { useListRequests } from "@hooks/useRequest"
 import React, { FC } from "react"
 import styled from "styled-components"
 import { CoachingRequestCard } from "./CoachingRequestCard"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { isCoach } from "@auth/auth"
 
 export const CoachingRequests: FC = () => {
   const { data } = useListRequests()
-  console.log(data)
+  const { t } = useTranslation()
 
   return (
     <Container>
-      <Title>Coaching requests</Title>
+      <Title>
+        {isCoach() ? t("REQUEST.SENT_TITLE") : t("REQUEST.RECEIVED_TITLE")}
+      </Title>
 
       {data?.items?.map((request) => (
         <CoachingRequestCard

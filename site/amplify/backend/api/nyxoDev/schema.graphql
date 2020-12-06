@@ -49,6 +49,20 @@ type Request
   accepted: Boolean!
 }
 
+type Mutation {
+  createCoachingRequest(input: CreateCoachingRequestInput!): Request
+}
+
+input CreateCoachingRequestInput {
+  id: ID!
+  requesterName: String!
+  requesterId: String!
+  userName: String!
+  code: String
+  userId: String!
+  accepted: Boolean!
+}
+
 type User
   @key(
     name: "byConnectionId"

@@ -1,7 +1,7 @@
 import React, { FC } from "react"
-import styled from "styled-components"
 import UserHabits from "../Habits"
 import CoachingSection from "../Coaching"
+import { Container } from "@components/Primitives"
 export const Coaching: FC = () => {
   return (
     <Container>
@@ -10,5 +10,3 @@ export const Coaching: FC = () => {
     </Container>
   )
 }
-
-const Container = styled.div``

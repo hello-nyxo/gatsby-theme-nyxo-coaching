@@ -3,7 +3,8 @@ import React, { FC } from "react"
 import styled from "styled-components"
 import fi from "date-fns/locale/fi"
 import { useAcceptRequest, useDeleteRequest } from "@hooks/useRequest"
-import { P } from "@components/html/Html"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { isCoach } from "@auth/auth"
 
 type Props = {
   created: undefined | string
@@ -14,6 +15,7 @@ type Props = {
 export const CoachingRequestCard: FC<Props> = ({ created, sender, id }) => {
   const [mutate] = useDeleteRequest()
   const [accept] = useAcceptRequest()
+  const { t } = useTranslation()
 
   const handleDelete = async () => {
     await mutate({ id: id })
@@ -33,11 +35,19 @@ export const CoachingRequestCard: FC<Props> = ({ created, sender, id }) => {
               locale: fi,
             })} sitten`}</Time>
           </Row>
-          <Text>Pyytää oikeutta univalmennukseen.</Text>
+          <Text>
+            {isCoach()
+              ? t("REQUEST.REQUEST_SENT")
+              : t("REQUEST.REQUEST_RECEIVED")}
+          </Text>
         </Column>
         <Buttons>
-          <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
-          <AcceptButton onClick={handleAccept}>Accept</AcceptButton>
+          <DeleteButton onClick={handleDelete}>
+            {t("REQUEST.DELETE")}
+          </DeleteButton>
+          <AcceptButton onClick={handleAccept}>
+            {t("REQUEST.ACCEPT")}
+          </AcceptButton>
         </Buttons>
       </Container>
     </OuterContainer>

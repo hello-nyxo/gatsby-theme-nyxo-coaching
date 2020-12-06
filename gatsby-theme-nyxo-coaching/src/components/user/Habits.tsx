@@ -1,5 +1,5 @@
 import HabitCard from "@components/habit/HabitCard"
-import { H3, H2 } from "@components/html/Html"
+import { H3 } from "@components/html/Html"
 import { API, graphqlOperation } from "aws-amplify"
 import React, { FC } from "react"
 import { useQuery } from "react-query"
@@ -29,7 +29,6 @@ const UserHabits: FC = () => {
     <>
       {data ? (
         <>
-          <H2>{t("COACHING.SLEEP_COACHING")}</H2>
           <H3>{t("HABITS")}</H3>
           <Habits>
             {data?.map((habit) => (

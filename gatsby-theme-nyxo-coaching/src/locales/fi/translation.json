@@ -25,11 +25,16 @@
   "NAVIGATION": {
     "YOU": "Sinulle",
     "ORGANIZATIONS": "Yrityksille",
-    "COACHING": "Uni",
+    "COACHING": "Valmennus",
     "ME": "Minä",
     "BLOG": "Blogi",
     "LOGIN": "Kirjaudu",
-    "LOGOUT": "Kirjaudu ulos"
+    "LOGOUT": "Kirjaudu ulos",
+    "SLEEP": "Uni",
+    "OVERVIEW": "Yleisnäkymä",
+    "COACHEES": "Valmettavat",
+    "SETTINGS": "Asetukset",
+    "BOOKMARKS": "Kirjanmerkit"
   },
 
   "NEWSLETTER": {
@@ -228,6 +233,24 @@
 
   "REGISTER": {
     "TITLE": "Rekisteröidy"
+  },
+
+  "COACHEES": {
+    "TITLE": "Valmennettavat"
+  },
+
+  "REQUEST": {
+    "TITLE": "Lähetä valmennuskutsu",
+    "INFO": "Syötä uuden valmennettavan sähköpostiosoite. Aktivoidakseen valmennuksen valmennettavan täytyy luoda tili tällä sähköpostiosoitteella ja hyväksyä valmennuskutsu.",
+    "SENT_TITLE": "Lähetetyt valmennuskutsut",
+
+    "ACTIVE_TITLE": "Aktivoi",
+    "ACTIVE_INFO": "Pyydä valmentajaltasi kutsu aktivoidaksesi valmennuksen.",
+    "REQUEST_SENT": "Valmennuskutsu lähetetty",
+    "REQUEST_RECEIVED": "Uusi valmennuskutsu",
+
+    "ACCEPT": "Hyväksy",
+    "DELETE": "Poista"
   },
 
   "en": "In English",

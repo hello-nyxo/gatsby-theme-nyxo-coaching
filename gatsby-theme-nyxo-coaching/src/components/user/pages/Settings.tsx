@@ -1,21 +1,16 @@
 import { H3 } from "@components/html/Html"
-import { useListRequests } from "@hooks/useRequest"
-import { useGetUser } from "@hooks/useUser"
 import React, { FC } from "react"
-import styled from "styled-components"
 import UserInfo from "../Info"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { Container } from "@components/Primitives"
 
 export const Settings: FC = () => {
-  const { data } = useGetUser()
+  const { t } = useTranslation()
 
   return (
     <Container>
-      <H3>Settings</H3>
+      <H3>{t("SETTINGS")}</H3>
       <UserInfo />
-
-      <pre>{JSON.stringify(data, undefined, 2)}</pre>
     </Container>
   )
 }
-
-const Container = styled.div``

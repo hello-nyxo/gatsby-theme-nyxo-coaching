@@ -1,10 +1,10 @@
 import { isLoggedIn } from "@auth/auth"
-import { createRequest, deleteRequest } from "@graphql/mutations"
+import { deleteRequest, createCoachingRequest } from "@graphql/mutations"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { useMutation, useQuery } from "react-query"
 import {
-  CreateRequestInput,
-  CreateRequestMutation,
+  CreateCoachingRequestInput,
+  CreateCoachingRequestMutation,
   DeleteRequestInput,
   DeleteRequestMutation,
   ListRequestsQuery,
@@ -73,20 +73,21 @@ const createNewRequest = async ({ email }: { email: string }) => {
         attributes: { email: requesterEmail },
       } = await Auth.currentUserInfo()
 
-      const input: CreateRequestInput = {
+      const input: CreateCoachingRequestInput = {
         requesterId: username,
         requesterName: requesterEmail,
         userId: email,
         accepted: false,
         userName: email,
-        code: "code",
+        owner: username,
+        code: "",
       }
 
       const {
-        data: { createRequest: response },
+        data: { createCoachingRequest: response },
       } = (await API.graphql(
-        graphqlOperation(createRequest, { input: input })
-      )) as { data: CreateRequestMutation }
+        graphqlOperation(createCoachingRequest, { input: input })
+      )) as { data: CreateCoachingRequestMutation }
       return response
     } catch (error) {
       console.warn(error)
@@ -104,7 +105,7 @@ export const useCreateRequest = () => {
 }
 
 export const useAcceptRequest = () => {
-  return useMutation(createNewRequest)
+  return useMutation(acceptRequest)
 }
 
 export const useDeleteRequest = () => {

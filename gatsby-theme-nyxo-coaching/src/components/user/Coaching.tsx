@@ -4,9 +4,8 @@ import styled from "styled-components"
 import { useListCoaching } from "../../hooks/useCoaching"
 import { useGetActiveCoaching, useUpdateUser } from "../../hooks/useUser"
 import CoachingCard from "@components/coaching/CoachingCard"
-import { H3, H4, H5 } from "@components/html/Html"
+import { H2, H4, H5 } from "@components/html/Html"
 import { graphql, useStaticQuery } from "gatsby"
-import { string } from "prop-types"
 import WeekCard from "@components/week/WeekCard"
 import { getTimeOrDistance } from "@helpers/time"
 
@@ -30,8 +29,6 @@ const Coaching: FC = () => {
     }
   `)
 
-  console.log(weekContent)
-
   const { t } = useTranslation()
   const { data: coaching } = useListCoaching()
   const { data: active } = useGetActiveCoaching()
@@ -51,7 +48,7 @@ const Coaching: FC = () => {
 
   return (
     <Container>
-      <H3>{t("USER.COACHING")}</H3>
+      <H2>{t("COACHING.SLEEP_COACHING")}</H2>
 
       {active && (
         <>

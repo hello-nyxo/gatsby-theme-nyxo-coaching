@@ -2,12 +2,14 @@ import { useCreateRequest } from "@hooks/useRequest"
 import React, { FC } from "react"
 import styled from "styled-components"
 import * as Yup from "yup"
-import { Formik, Form, su } from "formik"
+import { Formik, Form } from "formik"
 import { TextField } from "@components/fields/TextField"
 import { H5, P } from "@components/html/Html"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 export const AddCoacheeSection: FC = () => {
   const [mutate, { isError, error }] = useCreateRequest()
+  const { t } = useTranslation()
 
   const createNewRequest = ({ email }, { resetForm, setErrors }) => {
     mutate({
@@ -21,11 +23,8 @@ export const AddCoacheeSection: FC = () => {
 
   return (
     <Container>
-      <Title>Valmennuspyynnöt</Title>
-      <P>
-        Syötä uuden valmettavan sähköpostiosoite. Luodessaan tilin pystyy pystyy
-        valmennettava aktivoimaan valmennuksen itsellään
-      </P>
+      <Title>{t("REQUEST.TITLE")}</Title>
+      <P>{t("REQUEST.INFO")}</P>
       <Formik
         initialValues={{ email: "" }}
         onSubmit={createNewRequest}
@@ -34,9 +33,9 @@ export const AddCoacheeSection: FC = () => {
           <Form>
             <TextField
               onChange={handleChange("email")}
-              placeholder="email"
+              placeholder={t("CONTACT.EMAIL")}
               type="email"
-              name="email"
+              name={t("CONTACT.EMAIL")}
               touched={touched.email}
               error={errors.email}
               value={values.email}

@@ -55,10 +55,10 @@ type Mutation {
 }
 
 input CreateCoachingRequestInput {
-  id: ID!
   requesterName: String!
   requesterId: String!
   userName: String!
+  owner: String
   code: String
   userId: String!
   accepted: Boolean!

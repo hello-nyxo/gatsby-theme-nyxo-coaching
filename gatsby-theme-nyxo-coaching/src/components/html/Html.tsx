@@ -14,13 +14,27 @@ import {
   documentToReactComponents,
 } from "@contentful/rich-text-react-renderer"
 import styled from "styled-components"
-import Image from "gatsby-image"
+import Image, { GatsbyImageProps } from "gatsby-image"
 import { useImageZoom } from "react-medium-image-zoom"
 import HabitCard from "@components/habit/HabitCard"
+import { ContentfulLessonAdditionalInformationRichTextNode } from "graphql-types"
+
+interface ContentfulRichTextGatsbyReference {
+  __typename: string
+  contentful_id: string
+}
+
+interface RenderRichTextData<T extends ContentfulRichTextGatsbyReference> {
+  raw: string
+  references: T[]
+}
 
 type Props = {
-  document?: Document
+  document?:
+    | RenderRichTextData
+    | ContentfulLessonAdditionalInformationRichTextNode
 }
+
 export interface RenderNode {
   [k: string]: NodeRenderer
 }
@@ -224,7 +238,7 @@ const ImageContainer = styled.figure`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
 `
 
-const Img = styled(Image)``
+const Img = styled(Image)<GatsbyImageProps>``
 
 const ImageTitle = styled.figcaption`
   font-size: 0.9rem;

@@ -150,9 +150,9 @@ export const pageQuery = graphql`
 const Type = styled.div`
   font-size: 0.9rem;
   font-weight: normal;
-  font-family: var(--medium);
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   margin-top: 3rem;
-  color: var(--textPrimary);
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
   display: inline-block;
   padding: 0.3rem;
   background-color: #f3f3f3;

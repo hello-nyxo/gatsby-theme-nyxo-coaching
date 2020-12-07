@@ -147,8 +147,8 @@ const StyledRect = styled.rect.attrs<{ value: Value }>(({ value }) => ({
 }))``
 
 export enum Value {
-  InBed = "INBED",
-  Asleep = "ASLEEP",
+  InBed = "InBed",
+  Asleep = "Asleep",
   Awake = "AWAKE",
 }
 

@@ -35,6 +35,12 @@ export const lessonFragment = graphql`
       excerpt
       readingTime
     }
+    weights: childContentfulLessonWeightsJsonNode {
+      jetlag
+      duration
+      efficiency
+      consistency
+    }
     lessonContent {
       raw
       references {

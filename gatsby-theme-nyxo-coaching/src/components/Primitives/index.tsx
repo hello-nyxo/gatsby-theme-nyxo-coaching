@@ -97,29 +97,6 @@ export const H2 = styled.h2`
   font-size: 2.5rem;
 `
 
-export const Demo = styled.a`
-  padding: 1rem;
-  background-color: var(--radiantBlue);
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.2s ease-in-out background-color, 0.2s ease-in-out color;
-  color: #fff;
-  font-size: 16px;
-  margin: 15px 0;
-  border-radius: 24px;
-  font-weight: bold;
-  width: max-content;
-  box-shadow: 0px 5px 15px rgba(2, 38, 64, 0.1);
-
-  &:hover {
-    color: #fff;
-    box-shadow: 0px 5px 15px rgba(2, 38, 64, 0.25);
-    transform: scale(1.01);
-  }
-`
-
 export const Row = styled.div`
   display: flex;
   flex-direction: row;

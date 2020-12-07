@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateSleepData = /* GraphQL */ `
-  subscription OnCreateSleepData($owner: String!) {
-    onCreateSleepData(owner: $owner) {
+  subscription OnCreateSleepData($owner: String, $viewers: String) {
+    onCreateSleepData(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -14,6 +14,7 @@ export const onCreateSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -24,6 +25,8 @@ export const onCreateSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -35,6 +38,8 @@ export const onCreateSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -52,6 +57,7 @@ export const onCreateSleepData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -77,8 +83,8 @@ export const onCreateSleepData = /* GraphQL */ `
   }
 `;
 export const onUpdateSleepData = /* GraphQL */ `
-  subscription OnUpdateSleepData($owner: String!) {
-    onUpdateSleepData(owner: $owner) {
+  subscription OnUpdateSleepData($owner: String, $viewers: String) {
+    onUpdateSleepData(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -88,6 +94,7 @@ export const onUpdateSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -98,6 +105,8 @@ export const onUpdateSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -109,6 +118,8 @@ export const onUpdateSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -126,6 +137,7 @@ export const onUpdateSleepData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -151,8 +163,8 @@ export const onUpdateSleepData = /* GraphQL */ `
   }
 `;
 export const onDeleteSleepData = /* GraphQL */ `
-  subscription OnDeleteSleepData($owner: String!) {
-    onDeleteSleepData(owner: $owner) {
+  subscription OnDeleteSleepData($owner: String, $viewers: String) {
+    onDeleteSleepData(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -162,6 +174,7 @@ export const onDeleteSleepData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -172,6 +185,8 @@ export const onDeleteSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -183,6 +198,8 @@ export const onDeleteSleepData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -200,6 +217,7 @@ export const onDeleteSleepData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -225,12 +243,13 @@ export const onDeleteSleepData = /* GraphQL */ `
   }
 `;
 export const onCreateRequest = /* GraphQL */ `
-  subscription OnCreateRequest {
-    onCreateRequest {
+  subscription OnCreateRequest($owner: String, $userId: String) {
+    onCreateRequest(owner: $owner, userId: $userId) {
       id
       requesterName
       requesterId
       userName
+      code
       userId
       accepted
       createdAt
@@ -239,12 +258,13 @@ export const onCreateRequest = /* GraphQL */ `
   }
 `;
 export const onUpdateRequest = /* GraphQL */ `
-  subscription OnUpdateRequest {
-    onUpdateRequest {
+  subscription OnUpdateRequest($owner: String, $userId: String) {
+    onUpdateRequest(owner: $owner, userId: $userId) {
       id
       requesterName
       requesterId
       userName
+      code
       userId
       accepted
       createdAt
@@ -253,12 +273,13 @@ export const onUpdateRequest = /* GraphQL */ `
   }
 `;
 export const onDeleteRequest = /* GraphQL */ `
-  subscription OnDeleteRequest {
-    onDeleteRequest {
+  subscription OnDeleteRequest($owner: String, $userId: String) {
+    onDeleteRequest(owner: $owner, userId: $userId) {
       id
       requesterName
       requesterId
       userName
+      code
       userId
       accepted
       createdAt
@@ -267,14 +288,15 @@ export const onDeleteRequest = /* GraphQL */ `
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
+  subscription OnCreateUser($owner: String, $viewers: String) {
+    onCreateUser(owner: $owner, viewers: $viewers) {
       connectionId
       id
       email
       nickname
       darkMode
       intercomId
+      viewers
       activeCoaching {
         id
         userId
@@ -285,6 +307,7 @@ export const onCreateUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -297,6 +320,7 @@ export const onCreateUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -314,6 +338,7 @@ export const onCreateUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -326,6 +351,7 @@ export const onCreateUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -349,6 +375,7 @@ export const onCreateUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      primaryDeviceID
       sleepPoints {
         efficiency
         duration
@@ -361,14 +388,15 @@ export const onCreateUser = /* GraphQL */ `
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
+  subscription OnUpdateUser($owner: String, $viewers: String) {
+    onUpdateUser(owner: $owner, viewers: $viewers) {
       connectionId
       id
       email
       nickname
       darkMode
       intercomId
+      viewers
       activeCoaching {
         id
         userId
@@ -379,6 +407,7 @@ export const onUpdateUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -391,6 +420,7 @@ export const onUpdateUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -408,6 +438,7 @@ export const onUpdateUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -420,6 +451,7 @@ export const onUpdateUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -443,6 +475,7 @@ export const onUpdateUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      primaryDeviceID
       sleepPoints {
         efficiency
         duration
@@ -455,14 +488,15 @@ export const onUpdateUser = /* GraphQL */ `
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
+  subscription OnDeleteUser($owner: String, $viewers: String) {
+    onDeleteUser(owner: $owner, viewers: $viewers) {
       connectionId
       id
       email
       nickname
       darkMode
       intercomId
+      viewers
       activeCoaching {
         id
         userId
@@ -473,6 +507,7 @@ export const onDeleteUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -485,6 +520,7 @@ export const onDeleteUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -502,6 +538,7 @@ export const onDeleteUser = /* GraphQL */ `
           nickname
           darkMode
           intercomId
+          viewers
           activeCoaching {
             id
             userId
@@ -514,6 +551,7 @@ export const onDeleteUser = /* GraphQL */ `
             updatedAt
             owner
           }
+          primaryDeviceID
           sleepPoints {
             efficiency
             duration
@@ -537,6 +575,7 @@ export const onDeleteUser = /* GraphQL */ `
         updatedAt
         owner
       }
+      primaryDeviceID
       sleepPoints {
         efficiency
         duration
@@ -549,8 +588,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateCoachingData = /* GraphQL */ `
-  subscription OnCreateCoachingData($owner: String!) {
-    onCreateCoachingData(owner: $owner) {
+  subscription OnCreateCoachingData($owner: String, $viewers: String) {
+    onCreateCoachingData(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -560,6 +599,7 @@ export const onCreateCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -570,6 +610,8 @@ export const onCreateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -581,6 +623,8 @@ export const onCreateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -598,6 +642,7 @@ export const onCreateCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -615,6 +660,7 @@ export const onCreateCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -625,6 +671,8 @@ export const onCreateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -636,6 +684,8 @@ export const onCreateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -653,6 +703,7 @@ export const onCreateCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -679,8 +730,8 @@ export const onCreateCoachingData = /* GraphQL */ `
   }
 `;
 export const onUpdateCoachingData = /* GraphQL */ `
-  subscription OnUpdateCoachingData($owner: String!) {
-    onUpdateCoachingData(owner: $owner) {
+  subscription OnUpdateCoachingData($owner: String, $viewers: String) {
+    onUpdateCoachingData(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -690,6 +741,7 @@ export const onUpdateCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -700,6 +752,8 @@ export const onUpdateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -711,6 +765,8 @@ export const onUpdateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -728,6 +784,7 @@ export const onUpdateCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -745,6 +802,7 @@ export const onUpdateCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -755,6 +813,8 @@ export const onUpdateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -766,6 +826,8 @@ export const onUpdateCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -783,6 +845,7 @@ export const onUpdateCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -809,8 +872,8 @@ export const onUpdateCoachingData = /* GraphQL */ `
   }
 `;
 export const onDeleteCoachingData = /* GraphQL */ `
-  subscription OnDeleteCoachingData($owner: String!) {
-    onDeleteCoachingData(owner: $owner) {
+  subscription OnDeleteCoachingData($owner: String, $viewers: String) {
+    onDeleteCoachingData(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -820,6 +883,7 @@ export const onDeleteCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -830,6 +894,8 @@ export const onDeleteCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -841,6 +907,8 @@ export const onDeleteCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -858,6 +926,7 @@ export const onDeleteCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -875,6 +944,7 @@ export const onDeleteCoachingData = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -885,6 +955,8 @@ export const onDeleteCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -896,6 +968,8 @@ export const onDeleteCoachingData = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -913,6 +987,7 @@ export const onDeleteCoachingData = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -939,8 +1014,8 @@ export const onDeleteCoachingData = /* GraphQL */ `
   }
 `;
 export const onCreateHabit = /* GraphQL */ `
-  subscription OnCreateHabit($owner: String!) {
-    onCreateHabit(owner: $owner) {
+  subscription OnCreateHabit($owner: String, $viewers: String) {
+    onCreateHabit(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -950,6 +1025,7 @@ export const onCreateHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -960,6 +1036,8 @@ export const onCreateHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -971,6 +1049,8 @@ export const onCreateHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -988,6 +1068,7 @@ export const onCreateHabit = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1016,8 +1097,8 @@ export const onCreateHabit = /* GraphQL */ `
   }
 `;
 export const onUpdateHabit = /* GraphQL */ `
-  subscription OnUpdateHabit($owner: String!) {
-    onUpdateHabit(owner: $owner) {
+  subscription OnUpdateHabit($owner: String, $viewers: String) {
+    onUpdateHabit(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1027,6 +1108,7 @@ export const onUpdateHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1037,6 +1119,8 @@ export const onUpdateHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1048,6 +1132,8 @@ export const onUpdateHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1065,6 +1151,7 @@ export const onUpdateHabit = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1093,8 +1180,8 @@ export const onUpdateHabit = /* GraphQL */ `
   }
 `;
 export const onDeleteHabit = /* GraphQL */ `
-  subscription OnDeleteHabit($owner: String!) {
-    onDeleteHabit(owner: $owner) {
+  subscription OnDeleteHabit($owner: String, $viewers: String) {
+    onDeleteHabit(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1104,6 +1191,7 @@ export const onDeleteHabit = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1114,6 +1202,8 @@ export const onDeleteHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1125,6 +1215,8 @@ export const onDeleteHabit = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1142,6 +1234,7 @@ export const onDeleteHabit = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1170,7 +1263,7 @@ export const onDeleteHabit = /* GraphQL */ `
   }
 `;
 export const onCreateLikedContent = /* GraphQL */ `
-  subscription OnCreateLikedContent($owner: String!) {
+  subscription OnCreateLikedContent($owner: String) {
     onCreateLikedContent(owner: $owner) {
       id
       name
@@ -1183,7 +1276,7 @@ export const onCreateLikedContent = /* GraphQL */ `
   }
 `;
 export const onUpdateLikedContent = /* GraphQL */ `
-  subscription OnUpdateLikedContent($owner: String!) {
+  subscription OnUpdateLikedContent($owner: String) {
     onUpdateLikedContent(owner: $owner) {
       id
       name
@@ -1196,7 +1289,7 @@ export const onUpdateLikedContent = /* GraphQL */ `
   }
 `;
 export const onDeleteLikedContent = /* GraphQL */ `
-  subscription OnDeleteLikedContent($owner: String!) {
+  subscription OnDeleteLikedContent($owner: String) {
     onDeleteLikedContent(owner: $owner) {
       id
       name
@@ -1209,8 +1302,8 @@ export const onDeleteLikedContent = /* GraphQL */ `
   }
 `;
 export const onCreateNightRating = /* GraphQL */ `
-  subscription OnCreateNightRating($owner: String!) {
-    onCreateNightRating(owner: $owner) {
+  subscription OnCreateNightRating($owner: String, $viewers: String) {
+    onCreateNightRating(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1220,6 +1313,7 @@ export const onCreateNightRating = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1230,6 +1324,8 @@ export const onCreateNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1241,6 +1337,8 @@ export const onCreateNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1258,6 +1356,7 @@ export const onCreateNightRating = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1276,8 +1375,8 @@ export const onCreateNightRating = /* GraphQL */ `
   }
 `;
 export const onUpdateNightRating = /* GraphQL */ `
-  subscription OnUpdateNightRating($owner: String!) {
-    onUpdateNightRating(owner: $owner) {
+  subscription OnUpdateNightRating($owner: String, $viewers: String) {
+    onUpdateNightRating(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1287,6 +1386,7 @@ export const onUpdateNightRating = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1297,6 +1397,8 @@ export const onUpdateNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1308,6 +1410,8 @@ export const onUpdateNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1325,6 +1429,7 @@ export const onUpdateNightRating = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1343,8 +1448,8 @@ export const onUpdateNightRating = /* GraphQL */ `
   }
 `;
 export const onDeleteNightRating = /* GraphQL */ `
-  subscription OnDeleteNightRating($owner: String!) {
-    onDeleteNightRating(owner: $owner) {
+  subscription OnDeleteNightRating($owner: String, $viewers: String) {
+    onDeleteNightRating(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1354,6 +1459,7 @@ export const onDeleteNightRating = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1364,6 +1470,8 @@ export const onDeleteNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1375,6 +1483,8 @@ export const onDeleteNightRating = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1392,6 +1502,7 @@ export const onDeleteNightRating = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1409,9 +1520,9 @@ export const onDeleteNightRating = /* GraphQL */ `
     }
   }
 `;
-export const onCreateFeedbackContent = /* GraphQL */ `
-  subscription OnCreateFeedbackContent($owner: String!) {
-    onCreateFeedbackContent(owner: $owner) {
+export const onCreateFeedback = /* GraphQL */ `
+  subscription OnCreateFeedback($owner: String) {
+    onCreateFeedback(owner: $owner) {
       id
       type
       slug
@@ -1422,9 +1533,9 @@ export const onCreateFeedbackContent = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateFeedbackContent = /* GraphQL */ `
-  subscription OnUpdateFeedbackContent($owner: String!) {
-    onUpdateFeedbackContent(owner: $owner) {
+export const onUpdateFeedback = /* GraphQL */ `
+  subscription OnUpdateFeedback($owner: String) {
+    onUpdateFeedback(owner: $owner) {
       id
       type
       slug
@@ -1435,9 +1546,9 @@ export const onUpdateFeedbackContent = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteFeedbackContent = /* GraphQL */ `
-  subscription OnDeleteFeedbackContent($owner: String!) {
-    onDeleteFeedbackContent(owner: $owner) {
+export const onDeleteFeedback = /* GraphQL */ `
+  subscription OnDeleteFeedback($owner: String) {
+    onDeleteFeedback(owner: $owner) {
       id
       type
       slug
@@ -1448,9 +1559,9 @@ export const onDeleteFeedbackContent = /* GraphQL */ `
     }
   }
 `;
-export const onCreateComments = /* GraphQL */ `
-  subscription OnCreateComments($owner: String!) {
-    onCreateComments(owner: $owner) {
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment($owner: String) {
+    onCreateComment(owner: $owner) {
       id
       type
       slug
@@ -1463,9 +1574,9 @@ export const onCreateComments = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateComments = /* GraphQL */ `
-  subscription OnUpdateComments($owner: String!) {
-    onUpdateComments(owner: $owner) {
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment($owner: String) {
+    onUpdateComment(owner: $owner) {
       id
       type
       slug
@@ -1478,9 +1589,9 @@ export const onUpdateComments = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteComments = /* GraphQL */ `
-  subscription OnDeleteComments($owner: String!) {
-    onDeleteComments(owner: $owner) {
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment($owner: String) {
+    onDeleteComment(owner: $owner) {
       id
       type
       slug
@@ -1494,8 +1605,8 @@ export const onDeleteComments = /* GraphQL */ `
   }
 `;
 export const onCreateNightNote = /* GraphQL */ `
-  subscription OnCreateNightNote($owner: String!) {
-    onCreateNightNote(owner: $owner) {
+  subscription OnCreateNightNote($owner: String, $viewers: String) {
+    onCreateNightNote(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1505,6 +1616,7 @@ export const onCreateNightNote = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1515,6 +1627,8 @@ export const onCreateNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1526,6 +1640,8 @@ export const onCreateNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1543,6 +1659,7 @@ export const onCreateNightNote = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1565,8 +1682,8 @@ export const onCreateNightNote = /* GraphQL */ `
   }
 `;
 export const onUpdateNightNote = /* GraphQL */ `
-  subscription OnUpdateNightNote($owner: String!) {
-    onUpdateNightNote(owner: $owner) {
+  subscription OnUpdateNightNote($owner: String, $viewers: String) {
+    onUpdateNightNote(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1576,6 +1693,7 @@ export const onUpdateNightNote = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1586,6 +1704,8 @@ export const onUpdateNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1597,6 +1717,8 @@ export const onUpdateNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1614,6 +1736,7 @@ export const onUpdateNightNote = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1636,8 +1759,8 @@ export const onUpdateNightNote = /* GraphQL */ `
   }
 `;
 export const onDeleteNightNote = /* GraphQL */ `
-  subscription OnDeleteNightNote($owner: String!) {
-    onDeleteNightNote(owner: $owner) {
+  subscription OnDeleteNightNote($owner: String, $viewers: String) {
+    onDeleteNightNote(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1647,6 +1770,7 @@ export const onDeleteNightNote = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1657,6 +1781,8 @@ export const onDeleteNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1668,6 +1794,8 @@ export const onDeleteNightNote = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1685,6 +1813,7 @@ export const onDeleteNightNote = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1707,8 +1836,8 @@ export const onDeleteNightNote = /* GraphQL */ `
   }
 `;
 export const onCreateNight = /* GraphQL */ `
-  subscription OnCreateNight($owner: String) {
-    onCreateNight(owner: $owner) {
+  subscription OnCreateNight($owner: String, $viewers: String) {
+    onCreateNight(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1718,6 +1847,7 @@ export const onCreateNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1728,6 +1858,8 @@ export const onCreateNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1739,6 +1871,8 @@ export const onCreateNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1756,6 +1890,7 @@ export const onCreateNight = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1778,8 +1913,8 @@ export const onCreateNight = /* GraphQL */ `
   }
 `;
 export const onUpdateNight = /* GraphQL */ `
-  subscription OnUpdateNight($owner: String) {
-    onUpdateNight(owner: $owner) {
+  subscription OnUpdateNight($owner: String, $viewers: String) {
+    onUpdateNight(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1789,6 +1924,7 @@ export const onUpdateNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1799,6 +1935,8 @@ export const onUpdateNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1810,6 +1948,8 @@ export const onUpdateNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1827,6 +1967,7 @@ export const onUpdateNight = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration
@@ -1849,8 +1990,8 @@ export const onUpdateNight = /* GraphQL */ `
   }
 `;
 export const onDeleteNight = /* GraphQL */ `
-  subscription OnDeleteNight($owner: String) {
-    onDeleteNight(owner: $owner) {
+  subscription OnDeleteNight($owner: String, $viewers: String) {
+    onDeleteNight(owner: $owner, viewers: $viewers) {
       id
       userId
       user {
@@ -1860,6 +2001,7 @@ export const onDeleteNight = /* GraphQL */ `
         nickname
         darkMode
         intercomId
+        viewers
         activeCoaching {
           id
           userId
@@ -1870,6 +2012,8 @@ export const onDeleteNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1881,6 +2025,8 @@ export const onDeleteNight = /* GraphQL */ `
             nickname
             darkMode
             intercomId
+            viewers
+            primaryDeviceID
             createdAt
             updatedAt
           }
@@ -1898,6 +2044,7 @@ export const onDeleteNight = /* GraphQL */ `
           updatedAt
           owner
         }
+        primaryDeviceID
         sleepPoints {
           efficiency
           duration

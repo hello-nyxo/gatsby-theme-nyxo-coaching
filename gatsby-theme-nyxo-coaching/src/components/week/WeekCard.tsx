@@ -74,6 +74,13 @@ const WeekCard: FC<Props> = ({
 
 export default WeekCard
 
+const CoverPhoto = styled(Image)`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transition: transform 0.2s ease-in-out;
+`
+
 const Card = styled(Link)`
   box-sizing: border-box;
   display: flex;
@@ -90,19 +97,23 @@ const Card = styled(Link)`
     box-shadow: var(--shadow);
   }
 
+  &:hover ${CoverPhoto} {
+    transform: scale(1.05);
+  }
+
   @media ${device.desktopL} {
-    max-width: calc(33.333% - 2 * 1rem);
-    flex: 1 1 calc(33.333% - 2 * 1rem);
+    max-width: calc(25% - 2 * 1rem);
+    flex: 1 1 calc(25% - 2 * 1rem);
   }
 
   @media ${device.desktop} {
-    max-width: calc(33.333% - 2 * 1rem);
-    flex: 1 1 calc(33.333% - 2 * 1rem);
+    max-width: calc(25% - 2 * 1rem);
+    flex: 1 1 calc(25% - 2 * 1rem);
   }
 
   @media ${device.laptopL} {
-    max-width: calc(33.333% - 2 * 1rem);
-    flex: 1 1 calc(33.333% - 2 * 1rem);
+    max-width: calc(50% - 2 * 1rem);
+    flex: 1 1 calc(50% - 2 * 1rem);
   }
 
   @media ${device.laptop} {
@@ -144,11 +155,6 @@ const Cover = styled.div`
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   overflow: hidden;
-`
-
-const CoverPhoto = styled(Image)`
-  height: 100%;
-  width: 100%;
 `
 
 const Bottom = styled.div`

@@ -1,7 +1,7 @@
 import { setUser } from "@auth/auth"
 import { H1 } from "@components/html/Html"
 import { Auth } from "aws-amplify"
-import { Formik } from "formik"
+import { Formik, Form } from "formik"
 import { Link } from "gatsby"
 import { useTranslation, useI18next } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
@@ -51,13 +51,13 @@ const Login: FC<Props> = () => {
           validationSchema={LoginSchema}>
           {({
             handleChange,
-            submitForm,
+            handleSubmit,
             values,
             errors,
             touched,
             isSubmitting,
           }) => (
-            <>
+            <FormContainer>
               <InputContainer>
                 <Title>{t("LOGIN.EMAIL_FIELD")}</Title>
                 <InputField
@@ -90,11 +90,11 @@ const Login: FC<Props> = () => {
                 </Errors>
               </InputContainer>
 
-              <Submit type="submit" onClick={submitForm}>
+              <Submit type="submit" onClick={handleSubmit}>
                 {t("LOGIN.TITLE")}
                 {isSubmitting && <Loader />}
               </Submit>
-            </>
+            </FormContainer>
           )}
         </Formik>
         <RegisterContainer>
@@ -186,6 +186,13 @@ const Title = styled.label`
   padding-bottom: 0.5rem;
   font-family: ${({ theme }) => theme.FONT_BOLD};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+`
+
+const FormContainer = styled(Form)`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Errors = styled.div`

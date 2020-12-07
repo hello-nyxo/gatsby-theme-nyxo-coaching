@@ -1,5 +1,5 @@
 import PrivateRoute from "@components/auth/PrivateRoute"
-import { H2, H3 } from "@components/html/Html"
+import { H2 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
 import { RecentyUpdated } from "@components/personalization/RecentlyUpdated"
 import { SuggestedContent } from "@components/personalization/SuggestedContent"
@@ -7,7 +7,7 @@ import { Container, P } from "@components/Primitives"
 import SEO from "@components/SEO/SEO"
 import Details from "@components/user/pages/Details"
 import Login from "@components/user/pages/Login"
-import { WideWeekCard } from "@components/week/WideWeekCard"
+import WeekCard from "@components/week/WeekCard"
 import useSiteMetadata from "@hooks/useSiteMetaData"
 import { Router } from "@reach/router"
 import { graphql, PageProps } from "gatsby"
@@ -45,8 +45,6 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
       allContentfulLesson: { nodes: lessons },
       habits: { nodes: habits },
       recentlyUpdated: { nodes: recentlyUpdated },
-      // coachingMeta,
-      // coachingCover,
     },
     location: { pathname },
   } = props
@@ -70,16 +68,16 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
       <Container>
         <SuggestedContent lessons={lessons} habits={habits} />
-        <RecentyUpdated lessons={recentlyUpdated} />
+        {/* <CoachingPath weeks={weeks} /> */}
         <H2>{t("COACHING.WEEKS")}</H2>
         <P>{t("COACHING.WEEKS_TEXT")}</P>
 
         <Weeks>
           {weeks.map((week: ContentfulWeek) => {
             return (
-              <WideWeekCard
-                bookmarked={false}
+              <WeekCard
                 key={`${week?.slug}`}
+                bookmarked={false}
                 path={`/week/${week?.slug}`}
                 intro={week?.intro}
                 name={week?.weekName}
@@ -87,11 +85,12 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
                 lessons={week?.lessons}
                 coverPhoto={week?.coverPhoto?.fluid as FluidObject}
                 slug={week.slug}
-                description={week.weekDescription}
               />
             )
           })}
         </Weeks>
+
+        <RecentyUpdated lessons={recentlyUpdated} />
       </Container>
     </Layout>
   )
@@ -101,7 +100,8 @@ export default CoachingPage
 
 export const Weeks = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   margin: 2rem -1rem;
 `
 

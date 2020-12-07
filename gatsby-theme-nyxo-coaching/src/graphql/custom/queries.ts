@@ -21,3 +21,27 @@ export const getActiveCoaching = /* GraphQL */ `
     }
   }
 `
+
+export const listCoachees = /* GraphQL */ `
+  query ListCoachees(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        email
+        nickname
+        sleepPoints {
+          efficiency
+          duration
+          socialJetLag
+          timing
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`

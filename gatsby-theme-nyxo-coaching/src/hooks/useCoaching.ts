@@ -1,5 +1,4 @@
 import { getActiveCoaching } from "@graphql/custom/queries"
-import { navigate } from "@reach/router"
 import { API, Auth, graphqlOperation } from "aws-amplify"
 import { queryCache, QueryResult, useMutation, useQuery } from "react-query"
 import {
@@ -10,8 +9,13 @@ import {
   ListCoachingDatasQuery,
   UpdateCoachingDataInput,
   UpdateCoachingDataMutation,
+  UpdateUserMutation,
 } from "../API"
-import { createCoachingData, updateCoachingData } from "@graphql/mutations"
+import {
+  createCoachingData,
+  updateCoachingData,
+  updateUser,
+} from "@graphql/mutations"
 import { getCoachingData, listCoachingDatas } from "@graphql/queries"
 import { isLoggedIn } from "@auth/auth"
 
@@ -59,6 +63,8 @@ export const createCoaching = async ({
   coaching: CreateCoachingDataInput
 }): Promise<CreateCoachingDataMutation["createCoachingData"]> => {
   try {
+    const { username } = await Auth.currentUserInfo()
+
     const {
       data: { createCoachingData: data },
     } = (await API.graphql(
@@ -66,6 +72,18 @@ export const createCoaching = async ({
     )) as {
       data: CreateCoachingDataMutation
     }
+
+    const input: UpdateUserMutation = {
+      activeCoaching: data?.id,
+      id: username,
+    }
+
+    const _ = (await API.graphql(
+      graphqlOperation(updateUser, { input: input })
+    )) as {
+      data: UpdateUserMutation
+    }
+
     return data
   } catch (error) {
     return error

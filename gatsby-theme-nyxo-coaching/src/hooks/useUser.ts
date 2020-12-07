@@ -85,10 +85,7 @@ export const useGetUser = (): QueryResult<GetUserQuery["getUser"]> => {
   return useQuery(["user"], getUserData)
 }
 
-export const useUpdateUser = (): MutationFunction<
-  UpdateUserMutation["updateUser"],
-  any
-> => {
+export const useUpdateUser = () => {
   return useMutation(updateUserData)
 }
 

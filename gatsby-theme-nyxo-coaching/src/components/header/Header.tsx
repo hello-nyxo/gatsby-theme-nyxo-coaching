@@ -1,20 +1,25 @@
-import { Link as NonLocalizedLink } from "gatsby"
+import { isLoggedIn } from "@auth/auth"
+import { Hello } from "@components/personalization/Hello"
+import { minDevice } from "@components/Primitives"
+import { ProfilePicture } from "@components/user/ProfilePicture"
+import useSiteMetadata from "@hooks/useSiteMetaData"
 import { Link, useI18next, useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { minDevice } from "@components/Primitives"
-import { isLoggedIn } from "@auth/auth"
-import useSiteMetadata from "@hooks/useSiteMetaData"
-import { Hello } from "@components/personalization/Hello"
 
 const Header: FC = () => {
   const { title } = useSiteMetadata()
   const { t } = useTranslation()
   const { originalPath, language } = useI18next()
-
   const links = isLoggedIn()
-    ? [{ path: "me/", title: "ME" }]
-    : [{ path: "me/login", title: "LOGIN" }]
+    ? [
+        { path: "", title: "COACHING" },
+        { path: "me/", title: "ME", showProfile: true },
+      ]
+    : [
+        { path: "", title: "COACHING" },
+        { path: "me/login", title: "LOGIN" },
+      ]
 
   return (
     <HeaderContainer>
@@ -26,9 +31,12 @@ const Header: FC = () => {
           <Hello />
         </Logo>
         <Links>
-          {links.map(({ title, path }) => (
+          {links.map(({ title, path, showProfile }) => (
             <Li key={title}>
-              <MenuLink to={`/${path}`}>{t(`NAVIGATION.${title}`)}</MenuLink>
+              <MenuLink to={`/${path}`}>
+                {!!showProfile && <ProfilePicture />}
+                {t(`NAVIGATION.${title}`)}
+              </MenuLink>
             </Li>
           ))}
           {language === "en" ? (
@@ -149,14 +157,15 @@ const Li = styled.li`
 
 const MenuLink = styled(Link)`
   transition: 0.2s opacity cubic-bezier(0.075, 0.82, 0.165, 1);
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: var(--radiantBlue);
   opacity: 0.9;
+
   &:hover,
   &:active {
     opacity: 1;
     color: var(--radiantBlue);
-    border-bottom: 3px solid var(--radiantBlue);
-    padding-bottom: 10px;
   }
 `

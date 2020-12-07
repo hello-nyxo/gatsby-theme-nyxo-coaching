@@ -1,13 +1,12 @@
-import React, { FC, ReactElement } from "react"
-import { useI18next } from "gatsby-plugin-react-i18next"
+import React, { FC } from "react"
 import { isLoggedIn } from "@auth/auth"
 import { RouteComponentProps } from "@reach/router"
 import Login from "@components/user/pages/Login"
 
 interface PrivateRouteProps extends RouteComponentProps {
-  component: JSX.Element | null | ReactElement
+  component: FC
   path: string
-  as: any
+  as?: unknown
 }
 
 const PrivateRoute: FC<PrivateRouteProps> = ({

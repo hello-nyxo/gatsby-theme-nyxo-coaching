@@ -95,7 +95,7 @@ const SideBar: FC = () => {
 
       <Logout onClick={signOut} data-hover={t("Log out")}>
         <Icon height="20" width="20" name="logout" />
-        {t("LOGOUT")}
+        {t("NAVIGATION.LOGOUT")}
       </Logout>
     </SideBarContainer>
   )

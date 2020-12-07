@@ -27,7 +27,6 @@ type ChartProps = {
 }
 
 const SleepChart: FC<ChartProps> = ({ data }) => {
-  console.log(data)
   const ref = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {

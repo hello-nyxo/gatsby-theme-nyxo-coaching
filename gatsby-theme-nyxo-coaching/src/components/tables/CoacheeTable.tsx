@@ -1,5 +1,4 @@
 import { useListUsers } from "@hooks/useUsers"
-import { format, isDate } from "date-fns"
 import React, { FC, useMemo } from "react"
 import { useTable } from "react-table"
 import styled from "styled-components"
@@ -11,24 +10,6 @@ export const CoacheeTable: FC = () => {
   const items = data?.items ? data?.items : []
   const columns = useMemo(
     () => [
-      // {
-      //   Header: "em",
-      //   accessor: ({ startDate: date }: { startDate: string }) =>
-      //     format(
-      //       isDate(new Date(date)) ? new Date(date) : new Date(),
-      //       dateFormat
-      //     ),
-      //   id: "startDate",
-      // },
-      // {
-      //   Header: "End",
-      //   accessor: ({ endDate: date }: { endDate: string }) =>
-      //     format(
-      //       isDate(new Date(date)) ? new Date(date) : new Date(),
-      //       dateFormat
-      //     ),
-      //   id: "endDate",
-      // },
       {
         Header: "Email",
         accessor: "email",

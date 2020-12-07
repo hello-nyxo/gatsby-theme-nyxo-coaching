@@ -8,12 +8,18 @@ import { H2, H4, H5 } from "@components/html/Html"
 import { graphql, useStaticQuery } from "gatsby"
 import WeekCard from "@components/week/WeekCard"
 import { getTimeOrDistance } from "@helpers/time"
+import { ContentfulLesson, ContentfulWeek } from "graphql-types"
+
+type CoachingData = {
+  allContentfulWeek: { nodes: ContentfulWeek[] }
+  allContentfulLesson: { nodes: ContentfulLesson }
+}
 
 const Coaching: FC = () => {
   const {
     allContentfulWeek: { nodes: weekContent },
     allContentfulLesson: { nodes: lessonContent },
-  } = useStaticQuery(graphql`
+  }: CoachingData = useStaticQuery(graphql`
     query {
       allContentfulLesson(filter: { node_locale: { eq: "en-US" } }) {
         nodes {
@@ -35,7 +41,7 @@ const Coaching: FC = () => {
   const [mutate] = useUpdateUser()
 
   const activeWeek = weekContent?.find(
-    (week) => week.slug === active?.activeWeek
+    (week) => week?.slug === active?.activeWeek
   )
 
   const setActive = (id: string) => {
@@ -73,8 +79,6 @@ const Coaching: FC = () => {
           ) : null}
         </>
       )}
-
-      {/* <pre>{JSON.stringify(active, undefined, 4)}</pre> */}
 
       <H4>{t("USER.ALL_COACHING_DATA")}</H4>
       {coaching?.items?.map((item) => (

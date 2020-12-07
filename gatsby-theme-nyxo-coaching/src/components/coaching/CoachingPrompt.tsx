@@ -2,8 +2,6 @@ import { H5, P } from "@components/html/Html"
 import { useGetActiveCoaching } from "@hooks/useUser"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { formatDistanceToNowStrict } from "date-fns"
-import fi from "date-fns/locale/fi"
 import { PrimaryButton } from "@components/buttons/PrimaryButton"
 import { useCreateCoaching } from "@hooks/useCoaching"
 import { getTimeOrDistance } from "@helpers/time"
@@ -27,7 +25,6 @@ export const CoachingPrompt: FC<Props> = ({ slug, lessons }) => {
   }
 
   const startWeek = () => {}
-
   const completeWeek = () => {}
 
   if (!data) {

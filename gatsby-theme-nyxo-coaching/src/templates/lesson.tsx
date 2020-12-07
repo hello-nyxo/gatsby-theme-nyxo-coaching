@@ -53,7 +53,6 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
     previousLesson: ContentfulLesson
   }
 
-  console.log(weights)
   const description = content?.fields?.excerpt
   const { t } = useTranslation()
   const {
@@ -141,7 +140,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
           </ActionRow>
         ) : null}
 
-        <div>{JSON.stringify(weights)}</div>
+        {/* <div>{JSON.stringify(weights)}</div> */}
 
         <ContentBlock preview={content}>
           <HtmlContent document={content} />

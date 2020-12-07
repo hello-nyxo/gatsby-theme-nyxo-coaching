@@ -9,6 +9,7 @@ import { Coachees } from "./Coachees"
 import { Settings } from "./Settings"
 import { Coaching } from "./Coaching"
 import { Bookmarks } from "./Bookmarks"
+import { isCoach } from "@auth/auth"
 
 export const Home: FC<RouteComponentProps> = () => {
   return (
@@ -19,7 +20,9 @@ export const Home: FC<RouteComponentProps> = () => {
           <PrivateRoute path={`/`} component={Overview} />
           <PrivateRoute path={`/sleep`} component={Sleep} />
           <PrivateRoute path={`/coaching`} component={Coaching} />
-          <PrivateRoute path={`/coachees`} component={Coachees} />
+          {isCoach() ? (
+            <PrivateRoute path={`/coachees`} component={Coachees} />
+          ) : null}
           <PrivateRoute path={`/bookmarks`} component={Bookmarks} />
           <PrivateRoute path={`/settings`} component={Settings} />
         </Router>

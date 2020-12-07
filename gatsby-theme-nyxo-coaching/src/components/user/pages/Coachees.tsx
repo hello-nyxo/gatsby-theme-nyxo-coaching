@@ -9,7 +9,6 @@ import React, { FC } from "react"
 export const Coachees: FC = () => {
   const { data } = useListRequests()
 
-  console.log(data)
   return (
     <Container>
       <H3>Coachees</H3>

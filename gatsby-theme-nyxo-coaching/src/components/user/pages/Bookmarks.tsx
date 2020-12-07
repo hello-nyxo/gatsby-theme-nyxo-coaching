@@ -1,5 +1,5 @@
 import HabitCard from "@components/habit/HabitCard"
-import { H3 } from "@components/html/Html"
+import { H3, P } from "@components/html/Html"
 import LessonCard from "@components/lesson/LessonCard"
 import { Container } from "@components/Primitives"
 import WeekCard from "@components/week/WeekCard"
@@ -46,10 +46,12 @@ export const Bookmarks: FC = () => {
     data: { lessons, weeks, habits },
   } = useGetUserBookmarks([...weekContent, ...habitContent, ...lessonContent])
   const { t } = useTranslation()
-
+  const noBookmarks = !weeks?.length && !lessons?.length && !habits?.length
   return (
     <Container>
       <H3>{t("COACHING.BOOKMARKS")}</H3>
+      {noBookmarks && <P>{t("NO_BOOKMARKS")}</P>}
+
       {weeks?.length > 0 && (
         <>
           <H4>{t("COACHING.WEEKS")}</H4>

@@ -1,7 +1,6 @@
 import PrivateRoute from "@components/auth/PrivateRoute"
-import { H2, H3 } from "@components/html/Html"
+import { H2 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
-import { CoachingPath } from "@components/personalization/CoachingPath"
 import { RecentyUpdated } from "@components/personalization/RecentlyUpdated"
 import { SuggestedContent } from "@components/personalization/SuggestedContent"
 import { Container, P } from "@components/Primitives"
@@ -77,7 +76,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
           {weeks.map((week: ContentfulWeek) => {
             return (
               <WeekCard
-                key={`${week.id}`}
+                key={`${week?.slug}`}
                 bookmarked={false}
                 path={`/week/${week?.slug}`}
                 intro={week?.intro}

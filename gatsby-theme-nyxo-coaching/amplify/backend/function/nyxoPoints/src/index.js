@@ -11,6 +11,7 @@ const AWS = require("aws-sdk")
 const subWeeks = require("date-fns/subWeeks")
 const format = require("date-fns/format")
 const urlParse = require("url").URL
+import { scaleLinear } from "d3"
 
 const appsyncUrl = process.env.API_NYXODEV_GRAPHQLAPIENDPOINTOUTPUT
 const region = "eu-central-1" //process.env.REGION
@@ -86,24 +87,40 @@ exports.handler = async (event, context, callback) => {
 
 // EFFICIENCY
 const calculateEfficiencyScore = async (nights) => {
+  if (nights && nights.length !== 0) {
+    return 10
+  }
   return 0
 }
 
 // DURATION
 
 const calculateDurationScore = async (nights) => {
-  return 80
+  if (nights && nights.length !== 0) {
+    const durationScale = scaleLinear()
+      .domain([0, 359, 360, 480])
+      .range([0, 0, 50, 100])
+      .clamp(true)
+
+    return 10
+  }
+  return 0
 }
 
 // TIMING
 
 const calculateTimingScore = async (nights) => {
-  return 80
+  if (nights && nights.length !== 0) {
+    return 10
+  }
+  return 0
 }
 
 // JETLAG
 
 const calculateSocialJetLagScore = async (nights) => {
-  console.log("SJ", nights.length)
-  return nights.length
+  if (nights && nights.length !== 0) {
+    return 10
+  }
+  return 0
 }

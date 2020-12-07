@@ -11,7 +11,6 @@ const Header: FC = () => {
   const { title } = useSiteMetadata()
   const { t } = useTranslation()
   const { originalPath, language } = useI18next()
-  console.log(originalPath)
   const links = isLoggedIn()
     ? [
         { path: "", title: "COACHING" },

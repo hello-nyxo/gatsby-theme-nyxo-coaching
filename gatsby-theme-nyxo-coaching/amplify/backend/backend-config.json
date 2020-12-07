@@ -49,12 +49,6 @@
 				}
 			]
 		},
-		"nyxocreaterequestcode": {
-			"build": true,
-			"providerPlugin": "awscloudformation",
-			"service": "Lambda",
-			"dependsOn": []
-		},
 		"createRequestCode": {
 			"build": true,
 			"providerPlugin": "awscloudformation",

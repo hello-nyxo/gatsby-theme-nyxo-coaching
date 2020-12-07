@@ -1,8 +1,7 @@
 {
   "name": "@hello-nyxo/gatsby-theme-nyxo-coaching",
-  "version": "0.0.124",
-  "main": "lib/index.js",
-  "types": "lib/types.d.ts",
+  "version": "0.0.125",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",

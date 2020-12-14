@@ -4,8 +4,7 @@ import { Link, useTranslation, useI18next } from "gatsby-plugin-react-i18next"
 import styled from "styled-components"
 import colors from "@styles/colors"
 import { useGetUser } from "@hooks/useUser"
-import { Auth } from "aws-amplify"
-import { isCoach } from "@auth/auth"
+import { isCoach, logout } from "@auth/auth"
 
 const SideBar: FC = () => {
   const { data: user } = useGetUser()
@@ -13,13 +12,7 @@ const SideBar: FC = () => {
   const { navigate } = useI18next()
 
   const signOut = () => {
-    Auth.signOut()
-      .then(function () {
-        navigate("/me/login")
-      })
-      ["catch"](function (err) {
-        console.error(err)
-      })
+    logout(() => navigate("/me/login"))
   }
 
   const paths = [

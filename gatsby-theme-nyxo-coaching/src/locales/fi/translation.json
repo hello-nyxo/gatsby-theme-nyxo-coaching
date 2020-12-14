@@ -243,6 +243,7 @@
     "TITLE": "Lähetä valmennuskutsu",
     "INFO": "Syötä uuden valmennettavan sähköpostiosoite. Aktivoidakseen valmennuksen valmennettavan täytyy luoda tili tällä sähköpostiosoitteella ja hyväksyä valmennuskutsu.",
     "SENT_TITLE": "Lähetetyt valmennuskutsut",
+    "RECEIVED_TITLE": "Saapuneet valmennuskutsut",
 
     "ACTIVE_TITLE": "Aktivoi",
     "ACTIVE_INFO": "Pyydä valmentajaltasi kutsu aktivoidaksesi valmennuksen.",
@@ -251,6 +252,26 @@
 
     "ACCEPT": "Hyväksy",
     "DELETE": "Poista"
+  },
+
+  "WEEK": "Viikko",
+
+  "COACHING_PROGRESS": {
+    "REGISTER": "Rekisteröidy osallistuaksesi valmennukseen",
+    "REGISTER_TEXT": "",
+    "REGISTER_BUTTON": "Rekisteröidy",
+
+    "START_COACHING": "Aloita valmennusviikko",
+    "START_COACHING_TEXT": "",
+    "COACHING_PROGRESS": "Aloita viikko"
+  },
+
+  "CONTENT_BLOCK": {
+    "TITLE": "Haluatko lukea koko artikkelin?",
+    "TEXT": "Pääset käsiksi kaikkiin oppitunteihin ja saat paremmin kohdennettua sisältöä. Saat myös mahdollisuuden lisätä sisältöjä kirjanmerkkeihisi ja pystyt aloittamaan valmennuksen.",
+    "REGISTER": "Rekisteröidy",
+    "ALREADY": "Oletko jo rekisteröitynyt? ",
+    "LOGIN_INSTEAD": "Kirjaudu täältä."
   },
 
   "en": "In English",

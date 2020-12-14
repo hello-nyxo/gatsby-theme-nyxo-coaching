@@ -28,7 +28,8 @@
       "@graphql/*": ["src/graphql/*"],
       "@hooks/*": ["src/hooks/*"],
       "@styles/*": ["src/styles/*"],
-      "@gatsby/*": ["src/gatsby/*"]
+      "@gatsby/*": ["src/gatsby/*"],
+      "@context/*": ["src/context/*"]
     }
   },
 

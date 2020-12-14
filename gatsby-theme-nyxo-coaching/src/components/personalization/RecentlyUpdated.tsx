@@ -1,5 +1,4 @@
 import { H5, H6 } from "@components/html/Html"
-import { LessonItem } from "@components/lesson/LessonItem"
 import { device } from "@components/Primitives"
 import { format } from "date-fns"
 import Image, { GatsbyImageProps } from "gatsby-image"
@@ -35,7 +34,7 @@ export const RecentyUpdated: FC<Props> = ({ lessons }) => {
                     {lesson.authorCard[0].name}{" "}
                   </Author>
                   in
-                  <Week to={`/week/${lesson.week[0].weekSlug}`}>
+                  <Week to={`/week/${lesson.week[0]?.slug}`}>
                     {" "}
                     {lesson.week[0].weekName}
                   </Week>

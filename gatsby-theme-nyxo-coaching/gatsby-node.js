@@ -29,6 +29,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         "@graphql": path.resolve(__dirname, "src/graphql/"),
         "@helpers": path.resolve(__dirname, "src/helpers/"),
         "@gatsby": path.resolve(__dirname, "src/gatsby/"),
+        "@context": path.resolve(__dirname, "src/context/"),
       },
     },
   })

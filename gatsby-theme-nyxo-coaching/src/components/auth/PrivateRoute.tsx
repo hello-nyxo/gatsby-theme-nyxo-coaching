@@ -13,6 +13,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
   component: Component,
   ...rest
 }) => {
+  console.log(isLoggedIn())
   return isLoggedIn() ? <Component {...rest} /> : <Login />
 }
 

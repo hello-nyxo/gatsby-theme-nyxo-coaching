@@ -4,12 +4,9 @@ import React, { FC } from "react"
 import styled from "styled-components"
 import { PrimaryButton } from "@components/buttons/PrimaryButton"
 import { useCreateCoaching } from "@hooks/useCoaching"
-import { getTimeOrDistance } from "@helpers/time"
 import { ContentfulLesson } from "graphql-types"
-// Ei aloitettu
-// Aloitettu / kesken
-// Voi lopettaa
-// Lopetettu
+import { useTranslation } from "gatsby-plugin-react-i18next"
+import { isLoggedIn } from "@auth/auth"
 
 type Props = {
   slug: string | undefined | null
@@ -17,6 +14,7 @@ type Props = {
 }
 
 export const CoachingPrompt: FC<Props> = ({ slug, lessons }) => {
+  const { t } = useTranslation()
   const { data } = useGetActiveCoaching()
   const [start] = useCreateCoaching()
 
@@ -27,15 +25,24 @@ export const CoachingPrompt: FC<Props> = ({ slug, lessons }) => {
   const startWeek = () => {}
   const completeWeek = () => {}
 
+  if (!isLoggedIn()) {
+    ;<Container>
+      <H5>{t("COACHING_PROGRESS.REGISTER")}</H5>
+      <P>{t("COACHING_PROGRESS.REGISTER_TEXT")}</P>
+      <PrimaryButton onClick={startCoaching}>
+        {t("COACHING_PROGRESS.REGISTER_BUTTON")}
+      </PrimaryButton>
+    </Container>
+  }
+
   if (!data) {
     return (
       <Container>
-        <H5>Aloita valmennus</H5>
-        <P>
-          Ennenkuin voit merkitä viikkoja ja oppitunteja suoritetuksi sinun on
-          aloitettava univalmennus.
-        </P>
-        <PrimaryButton onClick={startCoaching}>COACHING.</PrimaryButton>
+        <H5>{t("COACHING_PROGRESS.START_COACHING")}</H5>
+        <P>{t("COACHING_PROGRESS.START_COACHING_TEXT")}</P>
+        <PrimaryButton onClick={startCoaching}>
+          {t("COACHING_PROGRESS.START_COACHING_BUTTON")}
+        </PrimaryButton>
       </Container>
     )
   }
@@ -51,21 +58,11 @@ export const CoachingPrompt: FC<Props> = ({ slug, lessons }) => {
   return (
     <Container>
       <H5></H5>
-
-      <Time>Viikko aloitettu {getTimeOrDistance(data?.started)}</Time>
-      <Time>{getTimeOrDistance(data?.ended)}</Time>
-
-      {completedThisWeek ? (
-        <div>
-          Olet suorittanut tältä viikolta: {completedThisWeek.length} oppituntia
-        </div>
-      ) : null}
-
+      {/* <Time>Viikko aloitettu {getTimeOrDistance(data?.started)}</Time>
+      <Time>{getTimeOrDistance(data?.ended)}</Time> */}
       <PrimaryButton onClick={completeWeek}>
-        COACHING.COMPLETE_WEEK
+        {t("COACHING_PROGRESS.COMPLETE_WEEK")}
       </PrimaryButton>
-
-      {/* <pre>{JSON.stringify(data, undefined, 2)}</pre> */}
     </Container>
   )
 }

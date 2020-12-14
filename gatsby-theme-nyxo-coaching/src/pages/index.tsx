@@ -4,6 +4,7 @@ import Layout from "@components/Layout/Layout"
 import { RecentyUpdated } from "@components/personalization/RecentlyUpdated"
 import { SuggestedContent } from "@components/personalization/SuggestedContent"
 import { Container, P } from "@components/Primitives"
+import { GlobalSearch } from "@components/search/Search"
 import SEO from "@components/SEO/SEO"
 import Details from "@components/user/pages/Details"
 import Login from "@components/user/pages/Login"
@@ -68,6 +69,8 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
 
       <Container>
         <SuggestedContent lessons={lessons} habits={habits} />
+
+        <GlobalSearch />
         {/* <CoachingPath weeks={weeks} /> */}
         <H2>{t("COACHING.WEEKS")}</H2>
         <P>{t("COACHING.WEEKS_TEXT")}</P>

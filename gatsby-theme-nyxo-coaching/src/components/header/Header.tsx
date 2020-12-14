@@ -9,6 +9,7 @@ import styled from "styled-components"
 
 const Header: FC = () => {
   const { title } = useSiteMetadata()
+
   const { t } = useTranslation()
   const { originalPath, language } = useI18next()
   const links = isLoggedIn()

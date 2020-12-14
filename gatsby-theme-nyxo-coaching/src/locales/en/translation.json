@@ -232,6 +232,45 @@
     "TITLE": "Register"
   },
 
+  "COACHEES": {
+    "TITLE": "Coachees"
+  },
+
+  "REQUEST": {
+    "TITLE": "Send Coaching Request",
+    "INFO": "Syötä uuden valmennettavan sähköpostiosoite. Aktivoidakseen valmennuksen valmennettavan täytyy luoda tili tällä sähköpostiosoitteella ja hyväksyä valmennuskutsu.",
+    "SENT_TITLE": "Lähetetyt valmennuskutsut",
+    "RECEIVED_TITLE": "Saapuneet valmennuskutsut",
+
+    "ACTIVE_TITLE": "Activate",
+    "ACTIVE_INFO": "Pyydä valmentajaltasi kutsu aktivoidaksesi valmennuksen.",
+    "REQUEST_SENT": "Valmennuskutsu lähetetty",
+    "REQUEST_RECEIVED": "Uusi valmennuskutsu",
+
+    "ACCEPT": "Hyväksy",
+    "DELETE": "Poista"
+  },
+
+  "WEEK": "Week",
+
+  "COACHING_PROGRESS": {
+    "REGISTER": "Register to take part in coaching",
+    "REGISTER_TEXT": "",
+    "REGISTER_BUTTON": "Register",
+
+    "START_COACHING": "Start Coaching Weeek",
+    "START_COACHING_TEXT": "",
+    "COACHING_PROGRESS": "Start Week"
+  },
+
+  "CONTENT_BLOCK": {
+    "TITLE": "Read the rest of this lesson by registering",
+    "TEXT": "You’ll also discover more lessons about sleep personalized to your interests and can bookmark your favorite lessons, weeks and habits.",
+    "REGISTER": "Register",
+    "ALREADY": "Already registered? ",
+    "LOGIN_INSTEAD": "Login instead."
+  },
+
   "en": "english",
   "fi": "Suomeksi"
 }

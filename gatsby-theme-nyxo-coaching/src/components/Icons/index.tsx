@@ -240,10 +240,16 @@ const Icons: Icons = {
       <path d="M19.5 16.247L23.25 12.497 19.5 8.747" />
     </g>
   ),
+  search: (
+    <g>
+      <path d="M0.750 9.812 A9.063 9.063 0 1 0 18.876 9.812 A9.063 9.063 0 1 0 0.750 9.812 Z"></path>
+      <path d="M16.221 16.22L23.25 23.25"></path>
+    </g>
+  ),
 }
 
 interface Props {
-  name: string
+  name?: string
   fill?: string
   stroke?: string
   width?: string

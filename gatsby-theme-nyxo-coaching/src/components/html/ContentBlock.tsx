@@ -2,7 +2,7 @@ import { isLoggedIn } from "@auth/auth"
 import { PrimaryButton } from "@components/buttons/PrimaryButton"
 import { Document } from "@contentful/rich-text-types"
 import { Link, useI18next } from "gatsby-plugin-react-i18next"
-import React, { FC, ReactElement } from "react"
+import React, { FC } from "react"
 import styled from "styled-components"
 import { H4, HtmlContentWithoutEmbeds, P } from "./Html"
 
@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const ContentBlock: FC<Props> = ({ children, preview }) => {
-  const { navigate } = useI18next()
+  const { navigate, t } = useI18next()
 
   const previewContent = getPreviewFromDocument(
     JSON.parse(preview.raw) as Document
@@ -35,16 +35,16 @@ export const ContentBlock: FC<Props> = ({ children, preview }) => {
         <Overlay />
       </PreviewContainer>
       <Prompt>
-        <H4>Read the rest of this story by registering</H4>
-        <P>
-          You’ll also discover more lessons about sleep personalized to your
-          interests and can bookmark your favorite lessons, weeks and habits.
-        </P>
+        <H4>{t("CONTENT_BLOCK.TITLE")}</H4>
+        <P>{t("CONTENT_BLOCK.TEXT")}</P>
         <ButtonContainer>
-          <PrimaryButton onClick={register}>Register</PrimaryButton>
+          <PrimaryButton onClick={register}>
+            {t("CONTENT_BLOCK.REGISTER")}
+          </PrimaryButton>
         </ButtonContainer>
         <P>
-          Already registered? <Link to="/me/login">Login</Link>.
+          {t("CONTENT_BLOCK.ALREADY")}
+          <Link to="/me/login">{t("CONTENT_BLOCK.LOGIN_INSTEAD")}</Link>.
         </P>
       </Prompt>
     </Container>

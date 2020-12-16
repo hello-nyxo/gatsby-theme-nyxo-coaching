@@ -11,7 +11,7 @@ type Props = {
   lessons: ContentfulLesson[]
 }
 
-export const RecentyUpdated: FC<Props> = ({ lessons }) => {
+export const RecentlyUpdated: FC<Props> = ({ lessons }) => {
   const { t } = useTranslation()
   return (
     <Container>

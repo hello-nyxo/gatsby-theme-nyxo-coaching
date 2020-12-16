@@ -1,7 +1,7 @@
 import PrivateRoute from "@components/auth/PrivateRoute"
 import { H2 } from "@components/html/Html"
 import Layout from "@components/Layout/Layout"
-import { RecentyUpdated } from "@components/personalization/RecentlyUpdated"
+import { RecentlyUpdated } from "@components/personalization/RecentlyUpdated"
 import { SuggestedContent } from "@components/personalization/SuggestedContent"
 import { Container, P } from "@components/Primitives"
 import { GlobalSearch } from "@components/search/Search"
@@ -93,7 +93,7 @@ const CoachingPage: FC<PageProps<Props, { language: string }>> = (props) => {
           })}
         </Weeks>
 
-        <RecentyUpdated lessons={recentlyUpdated} />
+        <RecentlyUpdated lessons={recentlyUpdated} />
       </Container>
     </Layout>
   )

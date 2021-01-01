@@ -259,8 +259,9 @@
     "REGISTER_BUTTON": "Register",
 
     "START_COACHING": "Start Coaching Weeek",
-    "START_COACHING_TEXT": "",
-    "COACHING_PROGRESS": "Start Week"
+    "START_COACHING_TEXT": "Start Coaching",
+    "COACHING_PROGRESS": "Start Week",
+    "START_COACHING_BUTTON": "Start Coaching"
   },
 
   "CONTENT_BLOCK": {
@@ -269,6 +270,11 @@
     "REGISTER": "Register",
     "ALREADY": "Already registered? ",
     "LOGIN_INSTEAD": "Login instead."
+  },
+
+  "SEARCH_BOX": {
+    "TITLE": "Search",
+    "PLACEHOLDER": "Search for sleep lessons"
   },
 
   "en": "english",

@@ -2,21 +2,52 @@ import { isLoggedIn } from "@auth/auth"
 import { PrimaryButton } from "@components/buttons/PrimaryButton"
 import { Document } from "@contentful/rich-text-types"
 import { Link, useI18next } from "gatsby-plugin-react-i18next"
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import styled from "styled-components"
 import { H4, HtmlContentWithoutEmbeds, P } from "./Html"
 
 type Props = {
   children?: (Element | null | undefined | JSX.Element)[]
   preview: undefined | any
+  slug: string
 }
 
-export const ContentBlock: FC<Props> = ({ children, preview }) => {
+const getVisited = (): Array<string> => {
+  if (window.localStorage.visited) {
+    const visited = JSON.parse(window.localStorage.visited)
+    return visited ? visited : []
+  }
+  return []
+}
+
+const setVisited = (article: string) => {
+  if (window.localStorage.visited) {
+    const visited = JSON.parse(window.localStorage.visited)
+    const newVisited = visited ? [...visited, article] : [article]
+    window.localStorage.setItem(
+      "visited",
+      JSON.stringify([...new Set(newVisited)])
+    )
+  } else {
+    window.localStorage.setItem("visited", JSON.stringify([article]))
+  }
+}
+
+export const ContentBlock: FC<Props> = ({ children, preview, slug }) => {
   const { navigate, t } = useI18next()
+  useEffect(() => {
+    setVisited(slug)
+  }, [])
 
   const previewContent = getPreviewFromDocument(
     JSON.parse(preview.raw) as Document
   )
+
+  const visited = getVisited()
+
+  if (!isLoggedIn() && visited.length < 6) {
+    return <>{children}</>
+  }
 
   if (!isBrowser || isLoggedIn()) {
     return <>{children}</>

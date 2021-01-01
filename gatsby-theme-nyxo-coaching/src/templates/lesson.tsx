@@ -142,7 +142,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
 
         {/* <div>{JSON.stringify(weights)}</div> */}
 
-        <ContentBlock preview={content}>
+        <ContentBlock preview={content} slug={`${slug}`}>
           <HtmlContent document={content} />
           {habits && <H3>{t("HABITS_TO_TRY")}</H3>}
           <Habits>

@@ -1,6 +1,12 @@
-import React, { ChangeEventHandler, FC, useRef, useState } from "react"
+import React, {
+  ChangeEventHandler,
+  FC,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import { Link } from "gatsby-plugin-react-i18next"
+import { Link, useI18next, useTranslation } from "gatsby-plugin-react-i18next"
 import { Index } from "elasticlunr"
 import styled from "styled-components"
 import { Icon } from "@components/Icons"
@@ -17,7 +23,23 @@ type SearchResult = {
   content: string
 }
 
+const searchContent = throttle((queryString: string, locale: string) => {
+  if (window.__LUNR__[locale]) {
+    try {
+      const lunrIndex = window.__LUNR__[locale]
+      const searchResults = lunrIndex.index
+        .search(`${queryString}*`)
+        .slice(0, 40)
+      return searchResults.map(({ ref }) => lunrIndex.store[ref])
+    } catch {
+      console.error(`Lunr is having issues querying for '${queryString}'`)
+    }
+  }
+}, 150)
+
 export const GlobalSearch: FC = () => {
+  const { t } = useTranslation()
+  const { language } = useI18next()
   const data = useStaticQuery(graphql`
     query SearchIndexQuery {
       siteSearchIndex {
@@ -31,13 +53,21 @@ export const GlobalSearch: FC = () => {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<Array<SearchResult>>([])
 
-  const search: ChangeEventHandler<HTMLInputElement> = throttle((event) => {
+  useEffect(() => {
+    if (query) {
+      const searchResults = searchContent(query, language) || []
+      setResults(searchResults)
+    } else {
+      setResults([])
+    }
+    return () => {
+      setResults([])
+    }
+  }, [query])
+
+  const search: ChangeEventHandler<HTMLInputElement> = (event) => {
     setQuery(event.target.value)
-    const res: SearchResult[] = index
-      .search(query, { expand: true })
-      .map(({ ref }) => index.documentStore.getDoc(ref)) as SearchResult[]
-    setResults(res)
-  }, 150)
+  }
 
   const transitions = useTransition(
     results.map((data) => ({ ...data, height: 20, y: 0 })),
@@ -58,7 +88,7 @@ export const GlobalSearch: FC = () => {
   return (
     <Container>
       <InnerContainer>
-        <H3>Try search</H3>
+        <H3>{t("SEARCH_BOX.TITLE")}</H3>
         <SearchContainer ref={containerRef}>
           <SearchBox>
             <MagnifyingGlass name="search" height="30" width="30" />
@@ -66,17 +96,21 @@ export const GlobalSearch: FC = () => {
               type="text"
               value={query}
               onChange={search}
-              placeholder="Search for anything"
+              placeholder="SEARCH_BOX.PLACEHOLDER"
             />
           </SearchBox>
+
           <Results>
+            {results.length > 0 && <ResultType>Lessons</ResultType>}
             {results.map((item) => (
               <Result key={item.id + index}>
                 <Link to={`/${item.type}/${item.slug}`}>
+                  <Type>{item.type}</Type>
                   <Title>{item.title}</Title>
                 </Link>
               </Result>
             ))}
+            {results.length > 0 && <ResultCount>{results.length}</ResultCount>}
           </Results>
         </SearchContainer>
       </InnerContainer>
@@ -102,13 +136,35 @@ const InnerContainer = styled.div`
   margin: 2rem auto;
 `
 
+const ResultType = styled.div`
+  margin: 1rem 0.5rem;
+  font-size: 1rem;
+
+  height: 1rem;
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+`
+
+const Type = styled.span`
+  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  color: white;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.4rem;
+  margin-right: 0.5rem;
+`
 const Title = styled.span`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 
 const Results = styled.ul`
-  max-height: 30rem;
+  max-height: 10rem;
   overflow-y: scroll;
+`
+
+const ResultCount = styled.div`
+  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `
 
 const Result = styled(animated.li)`

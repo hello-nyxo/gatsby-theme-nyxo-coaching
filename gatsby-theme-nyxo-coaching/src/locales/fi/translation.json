@@ -263,6 +263,7 @@
 
     "START_COACHING": "Aloita valmennusviikko",
     "START_COACHING_TEXT": "",
+    "START_COACHING_BUTTON": "Aloita valmennus",
     "COACHING_PROGRESS": "Aloita viikko"
   },
 
@@ -272,6 +273,11 @@
     "REGISTER": "Rekisteröidy",
     "ALREADY": "Oletko jo rekisteröitynyt? ",
     "LOGIN_INSTEAD": "Kirjaudu täältä."
+  },
+
+  "SEARCH_BOX": {
+    "TITLE": "Haku",
+    "PLACEHOLDER": "Hae sisältöjä"
   },
 
   "en": "In English",

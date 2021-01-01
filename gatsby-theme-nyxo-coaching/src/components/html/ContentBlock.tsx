@@ -13,6 +13,8 @@ type Props = {
 }
 
 const getVisited = (): Array<string> => {
+  if (!isBrowser) return []
+
   if (window.localStorage.visited) {
     const visited = JSON.parse(window.localStorage.visited)
     return visited ? visited : []
@@ -21,6 +23,8 @@ const getVisited = (): Array<string> => {
 }
 
 const setVisited = (article: string) => {
+  if (!isBrowser) return
+
   if (window.localStorage.visited) {
     const visited = JSON.parse(window.localStorage.visited)
     const newVisited = visited ? [...visited, article] : [article]

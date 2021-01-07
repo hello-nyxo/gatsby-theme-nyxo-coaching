@@ -53,8 +53,9 @@ const SEO: FC<HelmetProps> = ({
     languages,
     language,
     originalPath,
+    path,
     defaultLanguage,
-    siteUrl = "",
+    siteUrl = "https://nyxo.app",
   } = useI18next()
   const { company } = useSiteMetadata()
 
@@ -65,9 +66,7 @@ const SEO: FC<HelmetProps> = ({
     return url.endsWith("/") ? url : `${url}/`
   }
 
-  const canonicalUrl = canonical
-    ? canonical
-    : `${siteUrl}${originalPath.replace(`/${language}`, "")}`
+  const canonicalUrl = canonical ? canonical : `${siteUrl}${path}`
 
   return (
     <Helmet htmlAttributes={{ lang: language }} title={`${title} – ${company}`}>

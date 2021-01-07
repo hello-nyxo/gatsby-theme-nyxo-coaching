@@ -41,7 +41,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
       updatedAt,
       cover,
       keywords,
-      fields: { readingTime },
+      fields,
       weights,
       authorCard,
       additionalInformation: readMore,
@@ -52,8 +52,7 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
     nextLesson: ContentfulLesson
     previousLesson: ContentfulLesson
   }
-
-  const description = content?.fields?.excerpt
+  const description = fields?.excerpt
   const { t } = useTranslation()
   const {
     data: { bookmarked, id },
@@ -87,7 +86,6 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
   }
 
   const mainAuthor = getFirstAuthor(authorCard)
-
   return (
     <Layout>
       <SEO
@@ -113,7 +111,9 @@ const Lesson: FC<PageProps<LessonByIdQuery, { locale: string }>> = ({
                 <Info>{format(new Date(updatedAt), "MMM dd")}</Info>
               )}
               <Info> · </Info>
-              {readingTime && <Info>{`${readingTime} min read`}</Info>}
+              {fields?.readingTime && (
+                <Info>{`${fields?.readingTime} min read`}</Info>
+              )}
             </Column>
           </Author>
         </TitleContainer>

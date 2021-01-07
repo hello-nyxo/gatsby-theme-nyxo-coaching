@@ -96,7 +96,7 @@ export const GlobalSearch: FC = () => {
               type="text"
               value={query}
               onChange={search}
-              placeholder="SEARCH_BOX.PLACEHOLDER"
+              placeholder={`${t("SEARCH_BOX.PLACEHOLDER")}`}
             />
           </SearchBox>
 

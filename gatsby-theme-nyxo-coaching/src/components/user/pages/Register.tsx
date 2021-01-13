@@ -122,7 +122,7 @@ const RegisterSchema = Yup.object().shape({
     .required("LOGIN.REQUIRED_EMAIL"),
   password: Yup.string()
     .required("LOGIN.PASSWORD_REQUIRED")
-    .min(8, "Password is too short - should be 8 chars minimum.")
+    .min(6, "Password is too short - should be 8 chars minimum.")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
 })
 

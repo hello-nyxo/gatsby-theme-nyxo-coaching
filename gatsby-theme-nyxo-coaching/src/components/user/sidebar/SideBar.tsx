@@ -5,13 +5,15 @@ import styled from "styled-components"
 import colors from "@styles/colors"
 import { useGetUser } from "@hooks/useUser"
 import { isCoach, logout } from "@auth/auth"
+import { Auth } from "aws-amplify"
 
 const SideBar: FC = () => {
   const { data: user } = useGetUser()
   const { t } = useTranslation()
   const { navigate } = useI18next()
 
-  const signOut = () => {
+  const signOut = async () => {
+    await Auth.signOut()
     logout(() => navigate("/me/login"))
   }
 

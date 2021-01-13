@@ -239,16 +239,16 @@
   "REQUEST": {
     "TITLE": "Send Coaching Request",
     "INFO": "Syötä uuden valmennettavan sähköpostiosoite. Aktivoidakseen valmennuksen valmennettavan täytyy luoda tili tällä sähköpostiosoitteella ja hyväksyä valmennuskutsu.",
-    "SENT_TITLE": "Lähetetyt valmennuskutsut",
-    "RECEIVED_TITLE": "Saapuneet valmennuskutsut",
+    "SENT_TITLE": "Sent Coaching Requests",
+    "RECEIVED_TITLE": "New Coaching Requests",
 
     "ACTIVE_TITLE": "Activate",
-    "ACTIVE_INFO": "Pyydä valmentajaltasi kutsu aktivoidaksesi valmennuksen.",
-    "REQUEST_SENT": "Valmennuskutsu lähetetty",
-    "REQUEST_RECEIVED": "Uusi valmennuskutsu",
+    "ACTIVE_INFO": "Ask your sleep coach for a .",
+    "REQUEST_SENT": "Coaching request sent",
+    "REQUEST_RECEIVED": "New Coaching Request",
 
-    "ACCEPT": "Hyväksy",
-    "DELETE": "Poista"
+    "ACCEPT": "Accept",
+    "DELETE": "Delete"
   },
 
   "WEEK": "Week",

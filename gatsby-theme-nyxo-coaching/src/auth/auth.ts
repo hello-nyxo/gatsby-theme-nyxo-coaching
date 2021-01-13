@@ -2,8 +2,9 @@ import { Auth } from "aws-amplify"
 
 export const isBrowser = typeof window !== `undefined`
 
-export const setUser = (user: unknown) =>
-  (window.localStorage.gatsbyUser = JSON.stringify(user))
+export const setUser = (user: unknown): void => {
+  window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
+}
 
 const getUser = () => {
   if (window.localStorage.gatsbyUser) {

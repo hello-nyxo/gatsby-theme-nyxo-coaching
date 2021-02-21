@@ -1,13 +1,6 @@
 import type { GatsbyNode } from "gatsby"
 import { kebabCase } from "lodash"
 import path from "path"
-import {
-  ContentfulAuthor,
-  ContentfulHabit,
-  ContentfulLesson,
-  ContentfulQuestionnaire,
-  ContentfulWeek,
-} from "@typings/gatsby-graphql"
 import { contentfulData } from "../contentful/queries"
 import { getLocalizedPath } from "../helpers/i18n"
 // import { BlogPostNode } from "../typings/blog-types"
@@ -62,7 +55,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     }
   })
 
-  weeks.forEach((week: ContentfulWeek, index: number) => {
+  weeks.forEach((week: any, index: number) => {
     const previousWeek =
       index === weeks.length - 1 ? null : weeks[index + 1].slug
     const nextWeek = index === 0 ? null : weeks[index - 1].slug
@@ -79,7 +72,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     })
   })
 
-  lessons.forEach((lesson: ContentfulLesson, index: number) => {
+  lessons.forEach((lesson: any, index: number) => {
     const previousLesson =
       index === lessons.length - 1 ? null : lessons[index + 1].slug
     const nextLesson = index === 0 ? null : lessons[index - 1].slug
@@ -97,7 +90,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     })
   })
 
-  habits.forEach((habit: ContentfulHabit, index: number) => {
+  habits.forEach((habit: any, index: number) => {
     const previousHabit =
       index === habits.length - 1 ? null : habits[index + 1].slug
     const nextHabit = index === 0 ? null : habits[index - 1].slug
@@ -114,29 +107,27 @@ export const createPages: GatsbyNode["createPages"] = async ({
     })
   })
 
-  questionnaires.forEach(
-    (questionnaire: ContentfulQuestionnaire, index: number) => {
-      const previousQuestionnaire =
-        index === lessons.length - 1 ? null : lessons[index + 1].slug
-      const nextQuestionnaire = index === 0 ? null : lessons[index - 1].slug
+  questionnaires.forEach((questionnaire: any, index: number) => {
+    const previousQuestionnaire =
+      index === lessons.length - 1 ? null : lessons[index + 1].slug
+    const nextQuestionnaire = index === 0 ? null : lessons[index - 1].slug
 
-      createPage({
-        path: getLocalizedPath(
-          `/questionnaire/${questionnaire.slug}`,
-          questionnaire.node_locale
-        ),
-        component: questionnaireTemplate,
-        context: {
-          locale: questionnaire.node_locale,
-          slug: questionnaire.slug,
-          next: nextQuestionnaire,
-          previous: previousQuestionnaire,
-        },
-      })
-    }
-  )
+    createPage({
+      path: getLocalizedPath(
+        `/questionnaire/${questionnaire.slug}`,
+        questionnaire.node_locale
+      ),
+      component: questionnaireTemplate,
+      context: {
+        locale: questionnaire.node_locale,
+        slug: questionnaire.slug,
+        next: nextQuestionnaire,
+        previous: previousQuestionnaire,
+      },
+    })
+  })
 
-  authors.forEach((author: ContentfulAuthor) => {
+  authors.forEach((author: any) => {
     const scholar = author.slug ? author.slug.replace(/-/g, " ") : "no"
 
     createPage({

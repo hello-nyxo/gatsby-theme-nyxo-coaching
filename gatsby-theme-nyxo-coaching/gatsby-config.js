@@ -122,7 +122,7 @@ module.exports = (options) => {
         resolve: `gatsby-source-google-analytics-reporting-api`,
         options: {
           email: process.env.CLIENT_EMAIL,
-          key: Buffer.from(process.env.PRIVATE_KEY, "base64")
+          key: Buffer.from(process.env.ACCOUNT_KEY, "base64")
             .toString()
             .replace(/\\n/g, "\n"),
           viewId: process.env.VIEW_ID,

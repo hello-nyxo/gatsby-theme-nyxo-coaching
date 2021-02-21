@@ -1,3 +1,8 @@
+import { H3 } from "@components/html/Html"
+import { Icon } from "@components/Icons"
+import useOnClickOutside from "@hooks/useOnClickOutside"
+import { Link, useI18next, useTranslation } from "gatsby-plugin-react-i18next"
+import { throttle } from "lodash"
 import React, {
   ChangeEventHandler,
   FC,
@@ -5,22 +10,31 @@ import React, {
   useRef,
   useState,
 } from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import { Link, useI18next, useTranslation } from "gatsby-plugin-react-i18next"
-import { Index } from "elasticlunr"
+import { animated } from "react-spring"
 import styled from "styled-components"
-import { Icon } from "@components/Icons"
-import { H3 } from "@components/html/Html"
-import { useTransition, animated } from "react-spring"
-import { throttle } from "lodash"
-import useOnClickOutside from "@hooks/useOnClickOutside"
 
 type SearchResult = {
+  ref: string
   id: string
   type: string
   slug: string
   title: string
   content: string
+}
+
+declare global {
+  interface Window {
+    __LUNR__: {
+      [key: string]: {
+        store: {
+          [key: string]: SearchResult
+        }
+        index: {
+          search: (val: string) => SearchResult[]
+        }
+      }
+    }
+  }
 }
 
 const searchContent = throttle((queryString: string, locale: string) => {
@@ -40,16 +54,9 @@ const searchContent = throttle((queryString: string, locale: string) => {
 export const GlobalSearch: FC = () => {
   const { t } = useTranslation()
   const { language } = useI18next()
-  const data = useStaticQuery(graphql`
-    query SearchIndexQuery {
-      siteSearchIndex {
-        index
-      }
-    }
-  `)
+
   const containerRef = useRef(null)
 
-  const index = Index.load(data.siteSearchIndex.index)
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<Array<SearchResult>>([])
 
@@ -68,17 +75,6 @@ export const GlobalSearch: FC = () => {
   const search: ChangeEventHandler<HTMLInputElement> = (event) => {
     setQuery(event.target.value)
   }
-
-  const transitions = useTransition(
-    results.map((data) => ({ ...data, height: 20, y: 0 })),
-    (d) => d.id,
-    {
-      from: { height: 0, opacity: 0 },
-      leave: { height: 0, opacity: 0 },
-      enter: ({ y, height }) => ({ y, height, opacity: 1 }),
-      update: ({ y, height }) => ({ y, height }),
-    }
-  )
 
   useOnClickOutside(containerRef, () => {
     setQuery("")
@@ -102,8 +98,8 @@ export const GlobalSearch: FC = () => {
 
           <Results>
             {results.length > 0 && <ResultType>Lessons</ResultType>}
-            {results.map((item) => (
-              <Result key={item.id + index}>
+            {results.map((item, i) => (
+              <Result key={`${item.id}_${i}`}>
                 <Link to={`/${item.type}/${item.slug}`}>
                   <Type>{item.type}</Type>
                   <Title>{item.title}</Title>
@@ -159,7 +155,7 @@ const Title = styled.span`
 `
 
 const Results = styled.ul`
-  max-height: 10rem;
+  max-height: 20rem;
   overflow-y: scroll;
 `
 

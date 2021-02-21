@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.onCreateNode = void 0;
 const reading_time_1 = __importDefault(require("reading-time"));
 const rich_text_plain_text_renderer_1 = require("@contentful/rich-text-plain-text-renderer");
-exports.onCreateNode = async ({ node, actions, }) => {
+const onCreateNode = async ({ node, actions, }) => {
     const { internal } = node;
     const { owner, type } = internal;
     if (owner !== "gatsby-source-contentful") {
@@ -52,3 +52,4 @@ exports.onCreateNode = async ({ node, actions, }) => {
         console.warn(error);
     }
 };
+exports.onCreateNode = onCreateNode;

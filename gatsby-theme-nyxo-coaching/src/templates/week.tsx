@@ -12,7 +12,7 @@ import {
   ContentfulHabit,
   ContentfulLesson,
   ContentfulWeek,
-} from "../../graphql-types"
+} from "@typings/gatsby-graphql"
 import HabitCard from "../components/habit/HabitCard"
 import HtmlContent, { H1, H3, H5, H6, P } from "../components/html/Html"
 import { Icon } from "../components/Icons"
@@ -74,8 +74,8 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
     isLoading: getLoading,
   } = useGetBookmark(slug as string, "week")
 
-  const [remove, { isLoading: removeLoading }] = useDeleteBookmark()
-  const [add, { isLoading: addLoading }] = useAddBookmark()
+  const { mutate: remove, isLoading: removeLoading } = useDeleteBookmark()
+  const { mutate: add, isLoading: addLoading } = useAddBookmark()
 
   const initialLessons: Lesson[] = pageLessons?.map((lesson) => ({
     ...(lesson as Lesson),
@@ -124,7 +124,7 @@ const Week: FC<PageProps<Props, { locale: string }>> = ({
     bookmarkType: string
   }) => {
     if (weekBookmarked) {
-      remove({ id: id, type: "lesson" })
+      remove({ id: id, slug: `${slug}`, type: "lesson" })
     } else {
       await add({
         name: bookmarkTitle,
@@ -268,6 +268,7 @@ export const pageQuery = graphql`
     $locale: String!
     $previous: String
     $next: String
+    $language: String
   ) {
     tags: allContentfulLesson(
       filter: {
@@ -277,6 +278,13 @@ export const pageQuery = graphql`
     ) {
       group(field: keywords) {
         fieldValue
+      }
+    }
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
       }
     }
     nextWeek: contentfulWeek(

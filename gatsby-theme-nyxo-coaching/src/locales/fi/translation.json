@@ -281,5 +281,16 @@
   },
 
   "en": "In English",
-  "fi": "Suomeksi"
+  "fi": "Suomeksi",
+
+  "READING_TIME": {
+    "SHORT": "min",
+    "LONG": "minuuttia"
+  },
+  "READY_TO_COMPLETE": {
+    "TITLE": "Merkitse suoritetuksi?",
+    "TEXT": "Arvioi artikkeli suorittaaksesi oppitunnin. Käytämme palautettasi parantaaksemme sisältöä.",
+    "NO_BUTTON": "Pidin tästä",
+    "YES_BUTTON": "En pitänyt tästä"
+  }
 }

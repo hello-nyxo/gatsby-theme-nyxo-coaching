@@ -8,7 +8,7 @@ import { H2, H4, H5 } from "@components/html/Html"
 import { graphql, useStaticQuery } from "gatsby"
 import WeekCard from "@components/week/WeekCard"
 import { getTimeOrDistance } from "@helpers/time"
-import { ContentfulLesson, ContentfulWeek } from "graphql-types"
+import { ContentfulLesson, ContentfulWeek } from "@typings/gatsby-graphql"
 
 type CoachingData = {
   allContentfulWeek: { nodes: ContentfulWeek[] }

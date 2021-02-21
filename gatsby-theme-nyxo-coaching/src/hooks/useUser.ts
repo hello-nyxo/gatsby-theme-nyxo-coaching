@@ -1,10 +1,4 @@
-import {
-  useQuery,
-  QueryResult,
-  useMutation,
-  MutationResult,
-  MutationFunction,
-} from "react-query"
+import { useQuery, QueryResult, useMutation } from "react-query"
 import { Auth, API, graphqlOperation } from "aws-amplify"
 import {
   GetUserQuery,
@@ -36,7 +30,6 @@ export const updateUserData = async ({
     return data
   } catch (error) {
     console.log("UpdateUserMutation", error)
-
     return error
   }
 }

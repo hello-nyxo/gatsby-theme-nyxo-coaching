@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.onCreateNode = void 0;
-exports.onCreateNode = async ({ node, loadNodeContent, actions: { createNodeField }, }) => {
+const onCreateNode = async ({ node, loadNodeContent, actions: { createNodeField }, }) => {
     const { internal } = node;
     const { type, owner } = internal;
     if (owner !== "gatsby-source-contentful") {
@@ -13,3 +13,4 @@ exports.onCreateNode = async ({ node, loadNodeContent, actions: { createNodeFiel
         value: node.node_locale === "en-US" ? "en" : "fi",
     });
 };
+exports.onCreateNode = onCreateNode;

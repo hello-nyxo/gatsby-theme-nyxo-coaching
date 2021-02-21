@@ -1,7 +1,7 @@
 import Image, { FluidObject } from "gatsby-image"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulWeek } from "../../../graphql-types"
+import { ContentfulWeek } from "@typings/gatsby-graphql"
 import colors from "../../styles/colors"
 import { Icon } from "../Icons"
 import { device } from "../Primitives"

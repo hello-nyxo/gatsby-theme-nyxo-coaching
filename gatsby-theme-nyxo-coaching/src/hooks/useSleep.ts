@@ -1,9 +1,9 @@
-import { useInfiniteQuery, useQuery } from "react-query"
+import { useQuery } from "react-query"
 import { Auth, API, graphqlOperation } from "aws-amplify"
 import { listNights } from "../graphql/queries"
 import { ListNightsQuery } from "../API"
 
-const listSleep = async () => {
+const listSleep = async (): Promise<ListNightsQuery["listNights"]> => {
   try {
     const { username } = await Auth.currentUserInfo()
     const {
@@ -12,9 +12,11 @@ const listSleep = async () => {
       data: ListNightsQuery
     }
 
+    console.log(data)
     return data
   } catch (error) {
     console.log(error)
+    return error
   }
 }
 

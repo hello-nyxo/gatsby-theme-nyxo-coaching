@@ -1,21 +1,48 @@
 /* Amplify Params - DO NOT EDIT
 	AUTH_NYXODEV_USERPOOLID
 Amplify Params - DO NOT EDIT */
+const Handlebars = require("handlebars")
+const fs = require("fs")
+var aws = require("aws-sdk")
+var ses = new aws.SES({ region: "eu-central-1" })
 
 exports.handler = (event, context, callback) => {
-  // Confirm the user
-  event.response.autoConfirmUser = true
+  const template = fs.readFileSync("./email.html").toString()
 
-  // Set the email as verified if it is in the request
   if (event.request.userAttributes.hasOwnProperty("email")) {
-    //    event.response.autoVerifyEmail = true;
-  }
+    event.response.autoConfirmUser = true
+    //  event.response.autoVerifyEmail = true;
 
-  // Set the phone number as verified if it is in the request
-  if (event.request.userAttributes.hasOwnProperty("phone_number")) {
-    event.response.autoVerifyPhone = true
-  }
+    const body = Handlebars.compile(template)({
+      email: event.request.userAttributes.email,
+    })
 
-  // Return to Amazon Cognito
-  callback(null, event)
+    const params = {
+      Destination: {
+        ToAddresses: [event.request.userAttributes.email],
+      },
+      Message: {
+        Body: {
+          Html: {
+            Data: body,
+          },
+        },
+
+        Subject: { Data: "👋 Hello from Nyxo" },
+      },
+      Source: "Nyxo <welcome@nyxo.fi>",
+    }
+
+    ses.sendEmail(params, function (err, data) {
+      if (err) {
+        console.log(err)
+        context.fail(err)
+      } else {
+        console.log(data)
+        context.succeed(event)
+      }
+    })
+
+    callback(null, event)
+  }
 }

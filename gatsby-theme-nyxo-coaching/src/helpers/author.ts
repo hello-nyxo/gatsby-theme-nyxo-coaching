@@ -1,4 +1,4 @@
-import { ContentfulAuthor, Maybe } from "../../graphql-types"
+import { ContentfulAuthor, Maybe } from "@typings/gatsby-graphql"
 
 export const getFirstAuthorName = (
   authorCards?: Maybe<Array<Maybe<ContentfulAuthor>>> | null

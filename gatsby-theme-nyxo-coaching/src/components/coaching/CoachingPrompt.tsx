@@ -4,9 +4,9 @@ import React, { FC } from "react"
 import styled from "styled-components"
 import { PrimaryButton } from "@components/buttons/PrimaryButton"
 import { useCreateCoaching } from "@hooks/useCoaching"
-import { ContentfulLesson } from "graphql-types"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { isLoggedIn } from "@auth/auth"
+import { ContentfulLesson } from "@typings/gatsby-graphql"
 
 type Props = {
   slug: string | undefined | null
@@ -16,7 +16,7 @@ type Props = {
 export const CoachingPrompt: FC<Props> = ({ slug, lessons }) => {
   const { t } = useTranslation()
   const { data } = useGetActiveCoaching()
-  const [start] = useCreateCoaching()
+  const { mutate: start } = useCreateCoaching()
 
   const startCoaching = () => {
     start()

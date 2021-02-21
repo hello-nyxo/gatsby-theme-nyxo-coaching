@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getLocalizedPath = void 0;
-exports.getLocalizedPath = (path = "/", locale) => {
+const getLocalizedPath = (path = "/", locale) => {
     switch (locale) {
         case "fi-FI":
             return `/fi${path}`;
@@ -11,3 +11,4 @@ exports.getLocalizedPath = (path = "/", locale) => {
             return `${path}`;
     }
 };
+exports.getLocalizedPath = getLocalizedPath;

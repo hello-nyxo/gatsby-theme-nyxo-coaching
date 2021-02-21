@@ -1,5 +1,13 @@
 import { graphql } from "gatsby"
 
+export const localeFragment = graphql`
+  fragment LocaleFragment on Locale {
+    ns
+    data
+    language
+  }
+`
+
 export const lessonFragment = graphql`
   fragment LessonFragment on ContentfulLesson {
     lessonName
@@ -35,7 +43,7 @@ export const lessonFragment = graphql`
       excerpt
       readingTime
     }
-    weights: childContentfulLessonWeightsJsonNode {
+    weights {
       jetlag
       duration
       efficiency
@@ -142,11 +150,12 @@ export const habitFragment = graphql`
         }
       }
     }
-    updatedAt(formatString: "DD/MM/YYYY")
-    createdAt(formatString: "DD/MM/YYYY")
+    updatedAt(formatString: "")
+    createdAt(formatString: "")
     lesson {
       lessonName
       slug
+      keywords
       habit {
         title
         slug

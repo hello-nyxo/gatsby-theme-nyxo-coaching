@@ -7,13 +7,15 @@ import {
   TwitterShareButton,
 } from "react-share"
 import styled, { css } from "styled-components"
+import { animated } from "react-spring"
+import { useBoop } from "@hooks/use-boop"
 
 type Props = {
   shareUrl?: string
   summary: string
   title: string
 
-  bookmarked: boolean
+  bookmarked: boolean | undefined
   loading: boolean
   bookmark: () => void
 }
@@ -28,27 +30,44 @@ export const SharingOptions: FC<Props> = ({
 }) => {
   const url = typeof window !== "undefined" ? window.location.href : ""
 
+  const [style1, trigger1] = useBoop({ scale: 0.8 })
+  const [style2, trigger2] = useBoop({ y: 2 })
+  const [style3, trigger3] = useBoop({ x: 2 })
+  const [style4, trigger4] = useBoop({ rotation: 2 })
+
   return (
     <Container>
       <Email url={url} subject={title} body={summary}>
         <EmailIcon />
       </Email>
 
-      <Facebook url={url} quote={summary}>
-        <FacebookIcon />
-      </Facebook>
+      <animated.div style={style1}>
+        <Facebook url={url} quote={summary} onMouseEnter={trigger1}>
+          <FacebookIcon />
+        </Facebook>
+      </animated.div>
 
-      <LinkedIn url={url} title={title} summary={summary} source="nyxo.app">
-        <LinkedInIcon />
-      </LinkedIn>
+      <animated.div style={style2} onMouseEnter={trigger2}>
+        <LinkedIn url={url} title={title} summary={summary} source="nyxo.app">
+          <LinkedInIcon />
+        </LinkedIn>
+      </animated.div>
 
-      <Twitter url={url} title={title} via="helloNyxo" related={["helloNyxo"]}>
-        <TwitterIcon />
-      </Twitter>
+      <animated.div style={style3} onMouseEnter={trigger3}>
+        <Twitter
+          url={url}
+          title={title}
+          via="helloNyxo"
+          related={["helloNyxo"]}>
+          <TwitterIcon />
+        </Twitter>
+      </animated.div>
 
-      <Bookmark disabled={loading} onClick={bookmark} bookmarked={bookmarked}>
-        <BookmarkIcon bookmarked={bookmarked} />
-      </Bookmark>
+      <animated.div style={style4} onMouseEnter={trigger4}>
+        <Bookmark disabled={loading} onClick={bookmark} bookmarked={bookmarked}>
+          <BookmarkIcon bookmarked={bookmarked} />
+        </Bookmark>
+      </animated.div>
     </Container>
   )
 }
@@ -61,14 +80,7 @@ const Container = styled.div`
   flex-direction: row;
 `
 
-const sharedStyle = css`
-  transition: all 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  :hover {
-    transform: translateY(-2px);
-    text-shadow: 1px 1px black;
-  }
-`
+const sharedStyle = css``
 
 const Email = styled(EmailShareButton)`
   ${sharedStyle}

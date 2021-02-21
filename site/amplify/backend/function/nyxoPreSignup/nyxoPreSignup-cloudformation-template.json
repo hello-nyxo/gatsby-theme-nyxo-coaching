@@ -76,7 +76,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "nyxocloud-dev-20190813125556-deployment",
-					"S3Key": "amplify-builds/nyxoPreSignup-7a306e68353772783349-build.zip"
+					"S3Key": "amplify-builds/nyxoPreSignup-4a3163414d5933656479-build.zip"
 				}
 			}
 		},

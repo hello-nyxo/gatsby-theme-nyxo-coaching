@@ -2,16 +2,15 @@ import Image, { FluidObject } from "gatsby-image"
 import { Link, useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
-import {
-  ContentfulLesson,
-  ContentfulWeekWeekDescriptionRichTextNode,
-  Maybe,
-} from "@graphql-types"
-import colors from "@styles/colors"
 import BookmarkButton from "@components/bookmark/BookmarkButtonSmall"
 import { Icon } from "../Icons"
 import { device } from "../Primitives"
-import HtmlContent, { H3, H4 } from "@components/html/Html"
+import HtmlContent, { H4 } from "@components/html/Html"
+import {
+  ContentfulLesson,
+  Maybe,
+  ContentfulWeekWeekDescription,
+} from "@typings/gatsby-graphql"
 
 type Props = {
   name?: string | null
@@ -19,7 +18,7 @@ type Props = {
   duration?: number | null
   intro?: string | null
   lessons?: Maybe<Array<Maybe<ContentfulLesson>>>
-  description: Maybe<ContentfulWeekWeekDescriptionRichTextNode>
+  description: Maybe<ContentfulWeekWeekDescription>
   coverPhoto?: FluidObject | null
   slug?: string | null
   excerpt?: string | null

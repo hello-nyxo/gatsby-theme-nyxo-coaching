@@ -1,14 +1,11 @@
 import PrivateRoute from "@components/auth/PrivateRoute"
 import Layout from "@components/Layout/Layout"
-import Details from "@components/user/pages/Details"
 import { Home } from "@components/user/pages/Home"
 import Login from "@components/user/pages/Login"
 import SignUp from "@components/user/pages/Register"
 import Reset from "@components/user/pages/Reset"
-import Sleep from "@components/user/pages/Sleep"
-import SideBar from "@components/user/sidebar/SideBar"
 import { Router } from "@reach/router"
-import { PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import React, { FC } from "react"
 
 const Me: FC<PageProps> = () => {
@@ -25,3 +22,15 @@ const Me: FC<PageProps> = () => {
 }
 
 export default Me
+
+export const pageQueryCoaching = graphql`
+  query MePageQuery($language: String) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
+      }
+    }
+  }
+`

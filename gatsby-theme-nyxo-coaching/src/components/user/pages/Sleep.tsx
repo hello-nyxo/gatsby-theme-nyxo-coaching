@@ -1,36 +1,30 @@
-import SleepChart, { Night, Value } from "@components/charts/SleepChart"
+import { Night, Value } from "@components/charts/SleepChart"
 import { H3 } from "@components/html/Html"
 import { useGetSleep } from "@hooks/useSleep"
-import { format, isDate } from "date-fns"
+import { useRelativeFormat } from "@hooks/useTime"
+import { useI18next } from "gatsby-plugin-react-i18next"
 import React, { FC, useMemo } from "react"
 import { useTable, useFlexLayout, useResizeColumns } from "react-table"
-import styled from "styled-components"
-
-const dateFormat = "dd.MM.yyyy"
+import tw, { styled } from "twin.macro"
 
 const Sleep: FC = () => {
-  const { data } = useGetSleep()
-
+  const { data, isLoading } = useGetSleep()
+  const relativeFormat = useRelativeFormat()
+  const { t } = useI18next()
   const items = data?.items ? data?.items : []
-  console.log(data)
+
   const columns = useMemo(
     () => [
       {
         Header: "Started",
         accessor: ({ startDate: date }: { startDate: string }) =>
-          format(
-            isDate(new Date(date)) ? new Date(date) : new Date(),
-            dateFormat
-          ),
+          relativeFormat(new Date(date), new Date()),
         id: "startDate",
       },
       {
         Header: "End",
         accessor: ({ endDate: date }: { endDate: string }) =>
-          format(
-            isDate(new Date(date)) ? new Date(date) : new Date(),
-            dateFormat
-          ),
+          relativeFormat(new Date(date), new Date()),
         id: "endDate",
       },
       {
@@ -41,10 +35,7 @@ const Sleep: FC = () => {
       {
         Header: "createdAt",
         accessor: ({ createdAt: date }: { createdAt: string }) =>
-          format(
-            isDate(new Date(date)) ? new Date(date) : new Date(),
-            dateFormat
-          ),
+          relativeFormat(new Date(date), new Date()),
         id: "createdAt",
       },
       {
@@ -53,7 +44,7 @@ const Sleep: FC = () => {
       },
       {
         Header: "User",
-        accessor: ({ user: { email } }) => email,
+        accessor: ({ user }: any) => user.email,
         id: "user",
       },
     ],
@@ -76,7 +67,7 @@ const Sleep: FC = () => {
 
   return (
     <>
-      <H3>SLEEP</H3>
+      <H3>{t("NAVIGATION.SLEEP")}</H3>
 
       {/* <SleepChart data={items} /> */}
 
@@ -90,24 +81,36 @@ const Sleep: FC = () => {
       <TableContainer>
         <Table {...getTableProps()}>
           <Thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <Th {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </Th>
-                ))}
-              </tr>
-            ))}
+            {headerGroups.map((headerGroup) => {
+              const { key, ...rest } = headerGroup.getHeaderGroupProps()
+              return (
+                <tr key={key} {...rest}>
+                  {headerGroup.headers.map((column) => {
+                    const { key, ...rest } = column.getHeaderProps()
+                    return (
+                      <Th key={key} {...rest}>
+                        {column.render("Header")}
+                      </Th>
+                    )
+                  })}
+                </tr>
+              )
+            })}
           </Thead>
+
           <tbody {...getTableBodyProps()}>
+            {/* {isLoading ? <div>{t("LOADING_DATA")}</div> : null} */}
             {rows.map((row) => {
               prepareRow(row)
+              const { key, ...rest } = row.getRowProps()
               return (
-                <Tr {...row.getRowProps()}>
+                <Tr key={key} {...rest}>
                   {row.cells.map((cell) => {
+                    const { key, ...rest } = cell.getCellProps()
                     return (
-                      <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
+                      <Td key={key} {...rest}>
+                        {cell.render("Cell")}
+                      </Td>
                     )
                   })}
                 </Tr>
@@ -129,12 +132,7 @@ const TableContainer = styled.div`
 `
 
 const Table = styled.table`
-  width: 100%;
-  font-size: 0.85rem;
-  table-layout: auto;
-  border-collapse: collapse;
-  overflow: scroll;
-  height: 500px;
+  ${tw`border-collapse table-auto w-full whitespace-nowrap bg-white relative`}
 `
 
 const Thead = styled.thead`

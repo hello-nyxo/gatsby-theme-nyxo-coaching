@@ -2,7 +2,7 @@ import { graphql, PageProps } from "gatsby"
 import Image, { FluidObject } from "gatsby-image"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulLesson } from "../../graphql-types"
+import { ContentfulLesson } from "@typings/gatsby-graphql"
 // import BlogPost from "../components/BlogPost"
 import { H1 } from "../components/html/Html"
 import Layout from "../components/Layout/Layout"
@@ -147,7 +147,7 @@ const Tag: FC<PageProps<Props, Context>> = ({
 export default Tag
 
 export const pageQuery = graphql`
-  query Tags($tag: String) {
+  query Tags($tag: String, $language: String) {
     # allMarkdownRemark(
     #   limit: 2000
     #   sort: { fields: [frontmatter___date], order: DESC }
@@ -175,6 +175,14 @@ export const pageQuery = graphql`
     #     }
     #   }
     # }
+
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
+      }
+    }
 
     allContentfulLesson(filter: { keywords: { in: [$tag] } }) {
       totalCount

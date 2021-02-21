@@ -15,9 +15,8 @@ const weekTemplate = path_1.default.resolve(templatesDirectory, `week.tsx`);
 const habitTemplate = path_1.default.resolve(templatesDirectory, `habit.tsx`);
 const questionnaireTemplate = path_1.default.resolve(templatesDirectory, `questionnaire.tsx`);
 const authorTemplate = path_1.default.resolve(templatesDirectory, `author.tsx`);
-exports.createPages = async ({ graphql, actions, }) => {
+const createPages = async ({ graphql, actions, }) => {
     const { createPage } = actions;
-    // const allMarkdown = await graphql(markdownQuery)
     const { data: { allContentfulWeek: { nodes: weeks }, allContentfulLesson: { nodes: lessons }, allContentfulHabit: { nodes: habits }, allContentfulAuthor: { nodes: authors }, allContentfulQuestionnaire: { nodes: questionnaires }, contentfulTagsQuery: { group: contentfulTags }, }, } = (await graphql(queries_1.contentfulData));
     const allTags = [
         ...new Set([...contentfulTags.map((tag) => tag.fieldValue)]),
@@ -55,6 +54,7 @@ exports.createPages = async ({ graphql, actions, }) => {
             path: i18n_1.getLocalizedPath(`/lesson/${lesson.slug}`, lesson.node_locale),
             component: lessonTemplate,
             context: {
+                pathRegex: `/.*${lesson.slug}.*/`,
                 slug: lesson.slug,
                 locale: lesson.node_locale,
                 previous: previousLesson,
@@ -104,3 +104,4 @@ exports.createPages = async ({ graphql, actions, }) => {
     });
     return null;
 };
+exports.createPages = createPages;

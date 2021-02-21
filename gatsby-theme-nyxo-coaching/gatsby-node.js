@@ -5,6 +5,7 @@ exports.onCreateNode = async (options) => {
     // require("./src/gatsby/reading-time").onCreateNode(options),
     require("./src/gatsby/excerpt").onCreateNode(options),
     require("./src/gatsby/locale").onCreateNode(options),
+    require("./src/gatsby/order").onCreateNode(options),
   ])
 }
 
@@ -18,8 +19,12 @@ exports.onPostBuild = () => {
   )
 }
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
+  const config = getConfig()
+  const devTools = config.mode === "production" ? { devtool: false } : {}
+
   actions.setWebpackConfig({
+    ...devTools,
     resolve: {
       alias: {
         "@auth": path.resolve(__dirname, "src/auth/"),
@@ -27,6 +32,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         "@hooks": path.resolve(__dirname, "src/hooks/"),
         "@styles": path.resolve(__dirname, "src/styles/"),
         "@graphql": path.resolve(__dirname, "src/graphql/"),
+        "@typings": path.resolve(__dirname, "src/typings/"),
         "@helpers": path.resolve(__dirname, "src/helpers/"),
         "@gatsby": path.resolve(__dirname, "src/gatsby/"),
         "@context": path.resolve(__dirname, "src/context/"),

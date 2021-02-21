@@ -142,10 +142,12 @@ const Links = styled.ul`
 
 const Li = styled.li`
   list-style: none;
-  font-family: var(--medium);
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   font-weight: 500;
   font-style: normal;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @media ${minDevice.mobileS} {
     font-size: 0.9rem;
     margin: 0rem 0.5rem 0rem 0.5rem;

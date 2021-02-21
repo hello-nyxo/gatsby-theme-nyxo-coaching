@@ -8,6 +8,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const key = require("../team/nyxo-275315-66e37c6ad2fd.json")
+
 module.exports = (options) => {
   return {
     siteMetadata: {
@@ -24,6 +26,17 @@ module.exports = (options) => {
     plugins: [
       `gatsby-plugin-styled-components`,
       `gatsby-plugin-typescript`,
+      `@m5r/gatsby-transformer-blurhash`,
+      `gatsby-plugin-sharp`,
+      `gatsby-transformer-sharp`,
+      `gatsby-plugin-fontawesome-css`,
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/src/locales`,
+          name: `locales`,
+        },
+      },
       {
         resolve: `gatsby-source-contentful`,
         options: {
@@ -52,28 +65,6 @@ module.exports = (options) => {
       {
         resolve: `gatsby-plugin-create-client-paths`,
         options: { prefixes: [`/me/*`, `/fi/me/*`] },
-      },
-      {
-        resolve: "gatsby-plugin-i18n",
-        options: {
-          langKeyDefault: "en",
-          useLangKeyLayout: false,
-        },
-      },
-      {
-        resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
-        options: {
-          fields: ["title", "slug", "type", "content"],
-          resolvers: {
-            ContentfulLesson: {
-              type: (_) => `lesson`,
-              title: (node) => node.lessonName,
-              slug: (node) => node.slug,
-              content: (node) =>
-                documentToPlainTextString(JSON.parse(node.lessonContent.raw)),
-            },
-          },
-        },
       },
       {
         resolve: `gatsby-plugin-lunr`,
@@ -109,13 +100,41 @@ module.exports = (options) => {
           },
         },
       },
-
+      // {
+      //   resolve: `gatsby-plugin-graphql-codegen`,
+      //   options: {
+      //     documentPaths: [
+      //       "./src/**/*.{ts,tsx}",
+      //       "./node_modules/gatsby-*/**/*.js",
+      //     ],
+      //     fileName: `${__dirname}/gatsby-graphql.ts`,
+      //   },
+      // },
+      {
+        resolve: `gatsby-plugin-google-analytics`,
+        options: {
+          trackingId: "UA-111729679-1",
+          head: false,
+          anonymize: true,
+          respectDNT: true,
+          defer: true,
+        },
+      },
+      {
+        resolve: `gatsby-source-google-analytics-reporting-api`,
+        options: {
+          email: process.env.CLIENT_EMAIL,
+          key: key.private_key,
+          viewId: process.env.VIEW_ID,
+          startDate: `2009-01-01`,
+        },
+      },
       {
         resolve: `gatsby-plugin-react-i18next`,
         options: {
-          path: `${__dirname}/src/locales`,
           languages: [`en`, `fi`],
           defaultLanguage: `en`,
+          localeJsonSourceName: `locales`,
           redirect: false,
           siteUrl: "https://nyxo.app",
           i18nextOptions: {

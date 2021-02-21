@@ -3,7 +3,7 @@ import { device } from "@components/Primitives"
 import { format } from "date-fns"
 import Image, { GatsbyImageProps } from "gatsby-image"
 import { Link, useTranslation } from "gatsby-plugin-react-i18next"
-import { ContentfulLesson } from "graphql-types"
+import { ContentfulLesson } from "@typings/gatsby-graphql"
 import React, { FC } from "react"
 import styled from "styled-components"
 
@@ -13,6 +13,7 @@ type Props = {
 
 export const RecentlyUpdated: FC<Props> = ({ lessons }) => {
   const { t } = useTranslation()
+
   return (
     <Container>
       <H5>{t("INDEX.RECENTLY_UPDATED")}</H5>
@@ -129,6 +130,7 @@ const Number = styled.span`
   font-size: 1.5rem;
   color: #d8d8d8;
   font-weight: bold;
+  font-style: normal;
   font-family: ${({ theme }) => theme.FONT_BOLD};
 `
 
@@ -155,6 +157,7 @@ const Info = styled.span`
 
 const LessonFrom = styled.div`
   font-size: 0.75rem;
+  font-weight: 500;
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

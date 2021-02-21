@@ -7,7 +7,7 @@ import {
   ContentfulLesson,
   ContentfulQuestionnaire,
   ContentfulWeek,
-} from "../../graphql-types"
+} from "@typings/gatsby-graphql"
 import { contentfulData } from "../contentful/queries"
 import { getLocalizedPath } from "../helpers/i18n"
 // import { BlogPostNode } from "../typings/blog-types"
@@ -34,7 +34,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
 }): Promise<null> => {
   const { createPage } = actions
 
-  // const allMarkdown = await graphql(markdownQuery)
   const {
     data: {
       allContentfulWeek: { nodes: weeks },
@@ -89,6 +88,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
       path: getLocalizedPath(`/lesson/${lesson.slug}`, lesson.node_locale),
       component: lessonTemplate,
       context: {
+        pathRegex: `/.*${lesson.slug}.*/`,
         slug: lesson.slug,
         locale: lesson.node_locale,
         previous: previousLesson,

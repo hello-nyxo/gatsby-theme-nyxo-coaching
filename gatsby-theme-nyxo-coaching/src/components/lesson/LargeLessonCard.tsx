@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import Image, { GatsbyImageProps } from "gatsby-image"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulLesson } from "../../../graphql-types"
+import { ContentfulLesson } from "@typings/gatsby-graphql"
 import { truncate } from "../../helpers/truncater"
 import { Icon } from "../Icons"
 import { device } from "../Primitives"
@@ -18,7 +18,7 @@ const LargeLessonCard: FC<Props> = ({ path = `/`, lesson }) => {
   return (
     <Card to={path as string}>
       <ImageContainer>
-        <Cover fluid={lesson?.cover?.fluid} />
+        {!!lesson?.cover?.fluid && <Cover fluid={lesson?.cover?.fluid} />}
         <Wrap>
           <Icon height="15px" width="15px" name="clock" />
           <ReadingTime>

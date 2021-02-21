@@ -2,9 +2,9 @@ import { DefaultTheme } from "styled-components"
 import colors from "@styles/colors"
 
 export const fonts = {
-  regular: "Montserrat-Regular",
-  medium: "Montserrat-Medium",
-  bold: "Montserrat-Bold",
+  regular: "Montserrat",
+  medium: "Montserrat",
+  bold: "Montserrat",
 }
 declare module "styled-components" {
   export interface DefaultTheme {

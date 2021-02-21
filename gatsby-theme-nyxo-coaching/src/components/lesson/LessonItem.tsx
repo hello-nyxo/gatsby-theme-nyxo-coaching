@@ -7,16 +7,14 @@ import {
   ContentfulAuthor,
   ContentfulLessonLessonContentRichTextNodeFieldsReadingTime,
   Maybe,
-} from "graphql-types"
+} from "@typings/gatsby-graphql"
 import React, { FC } from "react"
 import styled from "styled-components"
 
 type Props = {
   title?: string | null
   cover?: ContentfulAsset | null
-  readingTime?: Maybe<
-    ContentfulLessonLessonContentRichTextNodeFieldsReadingTime
-  >
+  readingTime?: Maybe<ContentfulLessonLessonContentRichTextNodeFieldsReadingTime>
   author?: ContentfulAuthor | null
   weekName?: string | null
   weekSlug?: string | null
@@ -109,6 +107,7 @@ const AuthorPhoto = styled(Image)<GatsbyImageProps>`
 
 const Author = styled(Link)`
   font-weight: 600;
+  font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
 `
 

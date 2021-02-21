@@ -7,30 +7,28 @@ import {
   ContentfulAnswer,
   ContentfulQuestion,
   ContentfulQuestionnaire,
-} from "../../graphql-types"
-import HtmlContent, { H4 } from "../components/html/Html"
+} from "@typings/gatsby-graphql"
+import HtmlContent, { H1, H4 } from "../components/html/Html"
 import Layout from "../components/Layout/Layout"
-import { Container } from "../components/Primitives"
+import { TextContainer } from "../components/Primitives"
 import SEO from "../components/SEO/SEO"
 
 interface Props {
   contentfulQuestionnaire: ContentfulQuestionnaire
 }
 
-const Questionnaire: FC<PageProps<Props>> = (props) => {
-  const {
-    data: {
-      contentfulQuestionnaire: {
-        title,
-        questions,
-        results,
-        fields: { excerpt },
-        description: { raw: description },
-      },
+const Questionnaire: FC<PageProps<Props>> = ({
+  data: {
+    contentfulQuestionnaire: {
+      title,
+      questions,
+      results,
+      fields: { excerpt },
+      description,
     },
-    location: { pathname },
-  } = props
-
+  },
+  location: { pathname },
+}) => {
   const [score, setScore] = useState(0)
   const defaultValues = questions?.map((question) => {
     const score = question?.answers ? question?.answers[0]?.score : 0
@@ -47,7 +45,9 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
     }
   })
 
-  const calculateResult = (values: [any]) => {
+  // console.log(questions)
+
+  const calculateResult = (values: any[]) => {
     values.forEach((value, index) => {
       setScore(score + value[`Question_${index + 1}`]["answer"]["value"])
     })
@@ -56,7 +56,10 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
   return (
     <Layout>
       <SEO pathName={pathname} title={title} description={excerpt} />
-      <Container>
+      <TextContainer>
+        <H1>{title}</H1>
+
+        <HtmlContent document={description} />
         <Formik initialValues={defaultValues} onSubmit={calculateResult}>
           {({ handleChange, submitForm, values }) => (
             <>
@@ -73,7 +76,7 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
                     value: answer?.score,
                     label: answer?.title,
                   }))
-                  // const defaultValue = values.find(value => )
+
                   return (
                     <Question key={title as string}>
                       <QuestionTitle>{question}</QuestionTitle>
@@ -85,7 +88,7 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
                         isLoading={false}
                         isClearable={true}
                         onChange={(options) => handleChange(title)}
-                        name={title}
+                        name={`${title}`}
                         options={options}
                       />
                     </Question>
@@ -103,8 +106,8 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
                     <Question key={title as string}>
                       <H4>{question}</H4>
 
-                      {answers?.map(({ title = "" }: ContentfulAnswer) => (
-                        <Answer key={title}>{title}</Answer>
+                      {answers?.map((answer: ContentfulAnswer) => (
+                        <Answer key={answer.title}>{answer.title}</Answer>
                       ))}
                     </Question>
                   )
@@ -118,13 +121,10 @@ const Questionnaire: FC<PageProps<Props>> = (props) => {
                   <HtmlContent document={result?.details} />
                 </Result>
               ))}
-
-              <button onClick={submitForm}>get results</button>
-              {score}
             </>
           )}
         </Formik>
-      </Container>
+      </TextContainer>
     </Layout>
   )
 }
@@ -134,11 +134,17 @@ export default Questionnaire
 const Question = styled.div``
 const Answer = styled.div``
 const Result = styled.div``
-
 const QuestionTitle = styled.h5``
 
 export const pageQuery = graphql`
-  query QuestionById($slug: String!) {
+  query QuestionById($slug: String!, $language: String) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
+      }
+    }
     contentfulQuestionnaire(slug: { eq: $slug }) {
       title
       slug

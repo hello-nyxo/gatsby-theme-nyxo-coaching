@@ -16,7 +16,7 @@ import { FluidObject } from "gatsby-image"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulWeek } from "../../graphql-types"
+import { ContentfulWeek } from "@typings/gatsby-graphql"
 
 type Props = {
   weeksFI: {
@@ -129,6 +129,14 @@ export const pageQueryCoaching = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
       }
     }
 

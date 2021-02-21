@@ -1,11 +1,16 @@
 import { API, graphqlOperation } from "aws-amplify"
 import { navigate } from "gatsby"
-import { queryCache, useMutation, useQuery } from "react-query"
+import {
+  QueryFunctionContext,
+  useMutation,
+  useQuery,
+  QueryFunction,
+} from "react-query"
 import {
   ContentfulHabit,
   ContentfulLesson,
   ContentfulWeek,
-} from "../../graphql-types"
+} from "@typings/gatsby-graphql"
 import {
   CreateLikedContentInput,
   CreateLikedContentMutation,
@@ -17,9 +22,6 @@ import {
 import { isLoggedIn } from "../auth/auth"
 import { createLikedContent, deleteLikedContent } from "../graphql/mutations"
 import { likedContentBySlug, listLikedContents } from "../graphql/queries"
-
-// FIXME, remove when types for react-query become stable
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 export const fetchAllBookmarks = async () => {
   try {
@@ -37,10 +39,13 @@ export const fetchAllBookmarks = async () => {
   }
 }
 
-export const fetchUserBookmarks = async (
-  key: string,
-  { content }: { content: ContentData }
-) => {
+export const fetchUserBookmarks: QueryFunction<{
+  weeks: ContentfulWeek
+  lessons: ContentfulLesson
+  habits: ContentfulHabit
+}> = async ({ queryKey }: QueryFunctionContext<["_key", { content: any }]>) => {
+  const [_key, { content }] = queryKey
+
   try {
     const {
       data: { listLikedContents: result },
@@ -81,8 +86,6 @@ export const fetchUserBookmarks = async (
       habits,
     }
   } catch (error) {
-    console.log(error)
-
     return error
   }
 }
@@ -95,11 +98,10 @@ export const fetchWeekBookmarks = async () => {
   return data
 }
 
-export const fetchLessonBookmarks = async (
-  key: string,
-  type: string,
-  { slug }: { slug: string }
-) => {
+export const fetchLessonBookmarks: QueryFunction<LikedContentBySlugQuery> = async ({
+  queryKey,
+}) => {
+  const [_key, { type, slug }] = queryKey
   try {
     const query: LikedContentBySlugQueryVariables = {
       slug: slug,
@@ -131,40 +133,39 @@ export const fetchLessonBookmarks = async (
   }
 }
 
-export const fetchHabitBookmarks = async () => {
-  return (await API.graphql(
-    graphqlOperation(listLikedContents, { filter: { type: { eq: "habit" } } })
-  )) as { data: ListLikedContentsQuery }
-}
-
 export const fetchWeekNLessonBookmarks = async (
   key: string,
   { initialLessons }: { initialLessons: ContentfulLesson[] }
 ) => {
-  if (isLoggedIn()) {
-    try {
-      const {
-        data: { listLikedContents: res },
-      } = (await API.graphql(graphqlOperation(listLikedContents))) as {
-        data: ListLikedContentsQuery
-      }
-
-      return initialLessons.map((lesson) => {
-        if (res?.items?.some((item) => item?.slug === lesson.slug)) {
-          return { ...lesson, bookmarked: true }
-        } else {
-          return lesson
-        }
-      })
-    } catch (error) {
-      return initialLessons
+  try {
+    const {
+      data: { listLikedContents: res },
+    } = (await API.graphql(graphqlOperation(listLikedContents))) as {
+      data: ListLikedContentsQuery
     }
-  } else {
-    return initialLessons
+
+    return initialLessons.map((lesson) => {
+      if (res?.items?.some((item) => item?.slug === lesson.slug)) {
+        return { ...lesson, bookmarked: true }
+      } else {
+        return lesson
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    return error
   }
 }
 
-const removeBookmark = async ({ id }: { id: string; type: string }) => {
+const removeBookmark = async ({
+  id,
+  slug,
+  type,
+}: {
+  id: string
+  type: string
+  slug: string
+}) => {
   if (isLoggedIn()) {
     try {
       const {
@@ -172,8 +173,8 @@ const removeBookmark = async ({ id }: { id: string; type: string }) => {
       } = (await API.graphql(
         graphqlOperation(deleteLikedContent, { input: { id: id } })
       )) as { data: DeleteLikedContentMutation }
-
-      return response
+      console.log(response)
+      return { slug }
     } catch (error) {
       return error
     }
@@ -190,7 +191,7 @@ const addBookmark = async ({ name, slug, type }: CreateLikedContentInput) => {
       } = (await API.graphql(
         graphqlOperation(createLikedContent, { input: { name, slug, type } })
       )) as { data: CreateLikedContentMutation }
-      return response
+      return { ...response, slug }
     } catch (error) {
       return error
     }
@@ -201,35 +202,57 @@ const addBookmark = async ({ name, slug, type }: CreateLikedContentInput) => {
 
 export const useDeleteBookmark = () => {
   return useMutation(removeBookmark, {
-    onSuccess: ({ slug }, { type }) =>
-      queryCache.setQueryData(["bookmark", type, { slug: slug }], {
-        bookmarked: false,
-        id: "",
-      }),
+    // onMutate: async (newBookmark) => {
+    //   await queryClient.cancelQueries(["bookmarks", newBookmark.slug])
+    //   const previousBookmark = queryClient.getQueryData([
+    //     "todos",
+    //     newBookmark.id,
+    //   ])
+    //   queryClient.setQueryData(["bookmarks", newBookmark.id], newBookmark)
+    //   // Return a context with the previous and new todo
+    //   return { previousBookmark, newBookmark }
+    // },
+    // onError: (err, bookmark, context) => {
+    //   queryClient.setQueryData(
+    //     ["bookmarks", context.bookmark.id],
+    //     context.previousBookmark
+    //   )
+    // },
+    // onSettled: (bookmark) => {
+    //   queryClient.invalidateQueries(["bookmarks", bookmark.id])
+    // },
   })
 }
 
 export const useAddBookmark = () => {
   return useMutation(addBookmark, {
-    onSuccess: ({ slug, id }, { type }) =>
-      queryCache.setQueryData(["bookmark", type, { slug: slug }], {
-        bookmarked: true,
-        id: id,
-      }),
+    // onSuccess: (data) =>
+    //   queryClient.setQueryData(["bookmarks", { id: data.slug }], data),
+    // onMutate: async (newBookmark) => {
+    //   await queryClient.cancelQueries("bookmarks")
+    //   const previousBookmarks = queryClient.getQueryData("bookmarks")
+    //   queryClient.setQueryData("bookmarks", (old) => [...old, newBookmark])
+    //   return { previousBookmarks }
+    // },
+    // onError: (err, newBookmark, context) => {
+    //   queryClient.setQueryData("bookmarks", context.previousBookmarks)
+    // },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries("bookmarks")
+    // },
   })
 }
 
 export const useGetBookmark = (slug: string, type: string) => {
   if (isLoggedIn()) {
     return useQuery(
-      ["bookmark", type, { slug: slug as string }],
+      ["bookmark", { type, slug: slug as string }],
       fetchLessonBookmarks,
       {
         initialData: () => ({
           bookmarked: false,
           id: "",
         }),
-        initialStale: true,
       }
     )
   } else {
@@ -247,9 +270,7 @@ type InitialData = ContentfulLesson[] | ContentfulHabit[] | ContentfulWeek[]
 
 export const useGetAllBookmarks = (initialData: InitialData) => {
   if (isLoggedIn()) {
-    return useQuery("allBookmarks", fetchAllBookmarks, {
-      initialStale: true,
-    })
+    return useQuery("bookmark", fetchAllBookmarks)
   } else {
     return initialData
   }
@@ -266,7 +287,6 @@ export const useGetUserBookmarks = (content: ContentData) => {
       weeks: [],
       habits: [],
     }),
-    initialStale: true,
   })
 }
 

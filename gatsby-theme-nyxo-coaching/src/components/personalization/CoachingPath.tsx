@@ -1,6 +1,6 @@
 import { H4 } from "@components/html/Html"
 import colors from "@styles/colors"
-import { ContentfulWeek } from "graphql-types"
+import { ContentfulWeek } from "@typings/gatsby-graphql"
 import React, { FC } from "react"
 import styled from "styled-components"
 

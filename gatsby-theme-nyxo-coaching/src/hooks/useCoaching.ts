@@ -18,6 +18,7 @@ import {
 } from "@graphql/mutations"
 import { getCoachingData, listCoachingDatas } from "@graphql/queries"
 import { isLoggedIn } from "@auth/auth"
+import { queryClient } from "@gatsby/wrap-root-element"
 
 export type CoachingData = Omit<
   Exclude<GetCoachingDataQuery["getCoachingData"], null>,
@@ -90,10 +91,9 @@ export const createCoaching = async ({
   }
 }
 
-export const getLessonCompleted = async (
-  _: string,
-  { slug }: { slug: string }
-): Promise<boolean> => {
+export const getLessonCompleted = async ({ queryKey }): Promise<boolean> => {
+  const [_key, { slug }] = queryKey
+
   if (isLoggedIn()) {
     try {
       const { username } = await Auth.currentUserInfo()
@@ -182,29 +182,22 @@ export const useCreateCoaching = () => {
 export const useCompleteLesson = () => {
   return useMutation(completeLesson, {
     onMutate: (data) => {
-      const previousLesson = queryCache.getQueryData("lesson", [
+      const previousLesson = queryClient.getQueryData([
+        "lesson",
         { slug: data.lesson },
       ])
-      queryCache.setQueryData("lesson", [{ slug: data.lesson }])
+      queryClient.setQueryData("lesson", [{ slug: data.lesson }])
 
       return () => queryCache.setQueryData("lessons", previousLesson)
     },
     onSettled: () => {
-      queryCache.invalidateQueries("lesson")
+      queryClient.invalidateQueries("lesson")
     },
   })
 }
 
 export const useUpdateCoaching = () => {
-  return useMutation(updateCoaching, {
-    onSuccess: (data) => {
-      queryCache.invalidateQueries("listCoaching")
-      queryCache.setQueryData(["coaching", { id: data?.id }], data)
-    },
-    onSettled: () => {
-      queryCache.invalidateQueries("listCoaching")
-    },
-  })
+  return useMutation(updateCoaching, {})
 }
 
 export const useGetLesson = (slug: string): QueryResult<boolean> => {

@@ -3,8 +3,11 @@ import { createElement } from "react"
 import { setUser } from "@auth/auth"
 import Auth from "@aws-amplify/auth"
 import { get } from "lodash"
+import "react-tippy/dist/tippy.css"
 import Modal from "react-modal"
 import { ReplaceComponentRenderer } from "./src/gatsby/component-renderer/ReplaceComponentRenderer"
+
+export { wrapRootElement } from "@gatsby/wrap-root-element"
 
 export const onClientEntry = () => {
   Modal.setAppElement(`#___gatsby`)

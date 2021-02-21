@@ -3,10 +3,8 @@ import {
   formatRelative,
   format,
   differenceInDays,
-  isDate,
 } from "date-fns"
 import fi from "date-fns/locale/fi"
-import us from "date-fns/locale/en-US"
 
 const dateFormat = "dd.MM.yyyy"
 
@@ -19,8 +17,6 @@ export const getTimeOrDistance = (
 
   const date = new Date(time)
   const difference = differenceInDays(new Date(), date)
-
-  console.log(difference)
 
   if (difference < 1) {
     return formatDistanceToNow(new Date(time), {

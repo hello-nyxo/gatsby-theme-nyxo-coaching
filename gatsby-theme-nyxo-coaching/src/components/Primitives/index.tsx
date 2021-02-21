@@ -53,6 +53,10 @@ export const TextContainer = styled.div`
   margin-right: auto;
   padding: 0rem 2rem;
   box-sizing: border-box;
+
+  @media ${minDevice.mobileS} {
+    padding: 0rem 1rem;
+  }
 `
 
 export const Container = styled.div`

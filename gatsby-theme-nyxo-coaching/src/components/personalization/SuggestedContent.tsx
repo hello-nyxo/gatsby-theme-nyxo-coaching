@@ -4,9 +4,9 @@ import { LessonItem } from "@components/lesson/LessonItem"
 import { device } from "@components/Primitives"
 import Image, { GatsbyImageProps } from "gatsby-image"
 import { Link } from "gatsby-plugin-react-i18next"
-import { ContentfulHabit, ContentfulLesson } from "graphql-types"
+import { ContentfulHabit, ContentfulLesson } from "@typings/gatsby-graphql"
 import { shuffle } from "lodash"
-import React, { FC } from "react"
+import React, { FC, useMemo } from "react"
 import styled, { css } from "styled-components"
 
 type Props = {
@@ -15,11 +15,11 @@ type Props = {
 }
 
 const getSelectedContent = ({ habits, lessons }: Props) => {
-  const shuffledLessons = shuffle(lessons)
+  const shuffledLessons = lessons.sort((lesson) => lesson.fields.order)
   const highlightedLesson = shuffledLessons[0]
   const selectedLessons = shuffledLessons.slice(1, 5)
 
-  const selectedHabits = shuffle(habits).slice(0, 3)
+  const selectedHabits = useMemo(() => shuffle(habits).slice(0, 3), [])
 
   return {
     highlightedLesson: highlightedLesson,
@@ -69,7 +69,7 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
             {selectedLessons.map((lesson) => (
               <LessonItem
                 updatedAt={lesson.updatedAt}
-                weekSlug={lesson.week[0].slug}
+                weekSlug={lesson?.week[0].slug}
                 weekName={lesson.week[0].weekName}
                 author={lesson.authorCard[0]}
                 lessonSlug={lesson.slug}
@@ -173,6 +173,7 @@ const ReadingTime = styled.span`
 
 const LessonFrom = styled.div`
   font-size: 0.9rem;
+  font-weight: normal;
   font-family: ${({ theme }) => theme.FONT_MEDIUM};
   color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
 `

@@ -11,7 +11,7 @@ const AWS = require("aws-sdk")
 const subWeeks = require("date-fns/subWeeks")
 const format = require("date-fns/format")
 const urlParse = require("url").URL
-import { scaleLinear } from "d3"
+const { scaleLinear } = require("d3")
 
 const appsyncUrl = process.env.API_NYXODEV_GRAPHQLAPIENDPOINTOUTPUT
 const region = "eu-central-1" //process.env.REGION

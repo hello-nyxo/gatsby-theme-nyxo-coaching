@@ -12,7 +12,7 @@ import {
   ContentfulHabit,
   ContentfulLesson,
   ContentfulWeek,
-} from "../../../../graphql-types"
+} from "@typings/gatsby-graphql"
 import { useGetUserBookmarks } from "../../../hooks/useBookmarks"
 import { H4 } from "../../html/Html"
 

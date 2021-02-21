@@ -2,7 +2,7 @@ import { graphql, PageProps } from "gatsby"
 import Img from "gatsby-image"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulAuthor } from "../../graphql-types"
+import { ContentfulAuthor } from "@typings/gatsby-graphql"
 import HtmlContent, { H1, H3 } from "../components/html/Html"
 import Layout from "../components/Layout/Layout"
 import LessonCard from "../components/lesson/LessonCard"
@@ -90,7 +90,15 @@ const Author: FC<PageProps<Props>> = ({
 export default Author
 
 export const pageQuery = graphql`
-  query AuthorBySlug($slug: String!, $locale: String!) {
+  query AuthorBySlug($slug: String!, $locale: String!, $language: String) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
+      }
+    }
+
     contentfulAuthor(slug: { eq: $slug }, node_locale: { eq: $locale }) {
       name
       slug

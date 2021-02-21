@@ -5,7 +5,7 @@ import Login from "@components/user/pages/Login"
 import SignUp from "@components/user/pages/Register"
 import Reset from "@components/user/pages/Reset"
 import { Router } from "@reach/router"
-import { PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 import React, { FC } from "react"
 
 const Me: FC<PageProps> = () => {
@@ -22,3 +22,15 @@ const Me: FC<PageProps> = () => {
 }
 
 export default Me
+
+export const pageQueryCoaching = graphql`
+  query FiMePageQuery($language: String) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
+      }
+    }
+  }
+`

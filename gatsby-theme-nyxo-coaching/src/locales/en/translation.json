@@ -25,11 +25,16 @@
   "NAVIGATION": {
     "YOU": "You",
     "ORGANIZATIONS": "Organizations",
-    "COACHING": "Sleep",
     "ME": "Me",
     "BLOG": "Blog",
     "LOGIN": "Login",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+
+    "OVERVIEW": "Overview",
+    "SLEEP": "Sleep",
+    "COACHING": "Coaching",
+    "BOOKMARKS": "Bookmarks",
+    "SETTINGS": "Settings"
   },
 
   "NEWSLETTER": {
@@ -278,5 +283,17 @@
   },
 
   "en": "english",
-  "fi": "Suomeksi"
+  "fi": "Suomeksi",
+
+  "READING_TIME": {
+    "SHORT": "min",
+    "LONG": "minutes"
+  },
+
+  "READY_TO_COMPLETE": {
+    "TITLE": "Ready to complete?",
+    "TEXT": "To complete the lesson rate this article. We will improve it with your feedback.",
+    "NO_BUTTON": "I don't like it",
+    "YES_BUTTON": "I like it"
+  }
 }

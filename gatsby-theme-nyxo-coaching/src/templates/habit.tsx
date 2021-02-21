@@ -1,14 +1,16 @@
+import { SharingOptions } from "@components/sharing/SharingOptions"
+import { getFirstLesson } from "@helpers/habit"
 import { graphql, PageProps } from "gatsby"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
+import { Blurhash } from "react-blurhash"
 import styled from "styled-components"
-import { ContentfulHabit } from "../../graphql-types"
-import BookmarkButton from "../components/bookmark/Bookmark"
+import { ContentfulHabit } from "@typings/gatsby-graphql"
 import HabitCard from "../components/habit/HabitCard"
 import HtmlContent, { H1, H3, H4 } from "../components/html/Html"
 import { Icon } from "../components/Icons"
 import Layout from "../components/Layout/Layout"
-import { Container } from "../components/Primitives"
+import { TextContainer } from "../components/Primitives"
 import SEO from "../components/SEO/SEO"
 import { getLocalizedPath } from "../helpers/i18n"
 import { getIcon } from "../helpers/icon"
@@ -31,8 +33,8 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
     data: { bookmarked, id },
     isLoading,
   } = useGetBookmark(habit.slug as string, "habit")
-  const [remove, { isLoading: removeLoading }] = useDeleteBookmark()
-  const [add, { isLoading: addLoading }] = useAddBookmark()
+  const { mutate: remove, isLoading: removeLoading } = useDeleteBookmark()
+  const { mutate: add, isLoading: addLoading } = useAddBookmark()
   const { t } = useTranslation()
 
   const handleBookmark = async () => {
@@ -47,6 +49,8 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
     }
   }
 
+  const { keywords } = getFirstLesson(habit)
+
   return (
     <Layout>
       <SEO
@@ -55,7 +59,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
         description={habit?.fields?.excerpt as string}
       />
 
-      <Container>
+      <TextContainer>
         <Type>
           <Period style={{ color: `${icon.color}` }}>
             <Icon
@@ -69,7 +73,29 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
           {t("HABIT")}
         </Type>
         <Title>{habit.title}</Title>
-
+        <Information>
+          <Keyword>{keywords[0]}</Keyword>
+          <Updated datetime={habit.createdAt}>{habit.createdAt}</Updated>
+          <Created datetime={habit.updatedAt}>
+            {t("UPDATED")}
+            {habit.updatedAt}
+          </Created>
+        </Information>
+        <SharingOptions
+          title={habit.title as string}
+          summary={habit?.fields?.excerpt as string}
+          bookmark={handleBookmark}
+          bookmarked={bookmarked}
+          loading={removeLoading || addLoading || isLoading}
+        />
+        <Blurhash
+          hash="LEHV6nWB2yk8pyo0adR*.7kCMdnj"
+          width="100%"
+          height={300}
+          resolutionX={32}
+          resolutionY={32}
+          punch={1}
+        />
         <H3>{t("DESCRIPTION")}</H3>
         <HtmlContent document={habit.description} />
 
@@ -85,14 +111,9 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
         ))}
 
         <hr />
-        <BookmarkButton
-          loading={removeLoading || addLoading || isLoading}
-          onClick={handleBookmark}
-          bookmarked={bookmarked}
-        />
-      </Container>
+      </TextContainer>
 
-      <Container>
+      <TextContainer>
         <H4>{t("MORE_HABITS")}</H4>
         <MoreHabitsContainer>
           {nextHabit && (
@@ -115,7 +136,7 @@ const Habit: FC<PageProps<Props>> = ({ data, location: { pathname } }) => {
             />
           )}
         </MoreHabitsContainer>
-      </Container>
+      </TextContainer>
     </Layout>
   )
 }
@@ -128,10 +149,19 @@ export const pageQuery = graphql`
     $locale: String!
     $next: String
     $previous: String
+    $language: String
   ) {
     contentfulHabit(slug: { eq: $slug }, node_locale: { eq: $locale }) {
       ...HabitFragment
     }
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ...LocaleFragment
+        }
+      }
+    }
+
     nextHabit: contentfulHabit(
       slug: { eq: $next }
       node_locale: { eq: $locale }
@@ -171,4 +201,17 @@ const MoreHabitsContainer = styled.div`
 
 const Title = styled(H1)`
   margin: 0;
+`
+
+const Information = styled.div``
+
+const Updated = styled.time`
+  font-size: 0.8rem;
+`
+const Created = styled.time`
+  font-size: 0.8rem;
+`
+
+const Keyword = styled.span`
+  font-size: 0.8rem;
 `

@@ -2,7 +2,6 @@ import React, { FC, ReactNode } from "react"
 import {
   Block,
   BLOCKS,
-  Document,
   Inline,
   INLINES,
   MARKS,
@@ -17,7 +16,7 @@ import styled from "styled-components"
 import Image, { GatsbyImageProps } from "gatsby-image"
 import { useImageZoom } from "react-medium-image-zoom"
 import HabitCard from "@components/habit/HabitCard"
-import { ContentfulLessonAdditionalInformationRichTextNode } from "graphql-types"
+import { ContentfulLessonAdditionalInformationRichTextNode } from "@typings/gatsby-graphql"
 
 interface ContentfulRichTextGatsbyReference {
   __typename: string
@@ -177,7 +176,7 @@ export const H1 = styled.h1`
   font-weight: bold;
   font-style: normal;
   color: ${({ theme }) => theme.titleColor};
-  line-height: 5rem;
+  line-height: 3.5rem;
 `
 
 export const H2 = styled.h2`

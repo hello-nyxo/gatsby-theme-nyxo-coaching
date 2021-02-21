@@ -2,18 +2,19 @@ import Image, { FluidObject } from "gatsby-image"
 import { Link, useTranslation } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
-import { ContentfulLesson, Maybe } from "../../../graphql-types"
+
 import colors from "@styles/colors"
 import BookmarkButton from "@components/bookmark/BookmarkButtonSmall"
 import { Icon } from "../Icons"
 import { device } from "../Primitives"
+import { ContentfulLesson } from "@typings/gatsby-graphql"
 
 type Props = {
   name?: string | null
   path?: string | null
   duration?: number | null
   intro?: string | null
-  lessons?: Maybe<Array<Maybe<ContentfulLesson>>>
+  lessons?: ContentfulLesson
   coverPhoto?: FluidObject | null
   slug?: string | null
   excerpt?: string | null

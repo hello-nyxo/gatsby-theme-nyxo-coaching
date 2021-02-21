@@ -155,7 +155,7 @@ const SEO: FC<HelmetProps> = ({
             }
           }, 
           "description": "${description
-            .replace(/"/g, '\\"')
+            ?.replace(/"/g, '\\"')
             .replace(/(\r\n|\n|\r)/gm, "")}"
         }
         `}

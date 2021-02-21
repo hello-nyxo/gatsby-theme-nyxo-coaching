@@ -8,8 +8,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const key = require("../team/nyxo-275315-66e37c6ad2fd.json")
-
 module.exports = (options) => {
   return {
     siteMetadata: {
@@ -124,7 +122,9 @@ module.exports = (options) => {
         resolve: `gatsby-source-google-analytics-reporting-api`,
         options: {
           email: process.env.CLIENT_EMAIL,
-          key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"),
+          key: Buffer.from(process.env.PRIVATE_KEY, "base64")
+            .toString()
+            .replace(/\\n/g, "\n"),
           viewId: process.env.VIEW_ID,
           startDate: `2009-01-01`,
         },

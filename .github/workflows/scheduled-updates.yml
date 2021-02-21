@@ -17,8 +17,6 @@ jobs:
         env:
           PASS_PHRASE: ${{ secrets.LARGE_SECRET_PASSPHRASE }}
 
-      - run: ./.github/scripts/copy-account-json.sh
-
       - name: Configure amplify
         uses: ambientlight/amplify-cli-action@0.2.1
         with:

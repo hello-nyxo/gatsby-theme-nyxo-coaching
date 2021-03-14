@@ -43,6 +43,6 @@ const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
   padding-bottom: 1rem;
 `

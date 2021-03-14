@@ -104,7 +104,7 @@ export const SuggestedContent: FC<Props> = ({ lessons, habits }) => {
 }
 
 const Container = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
   margin: 4rem 0 5rem;
 `
 
@@ -156,7 +156,7 @@ const Title = styled(H5)`
 const Text = styled.p`
   margin-bottom: 0.5rem;
   line-height: 1.4rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const Row = styled.div`
@@ -167,15 +167,15 @@ const Row = styled.div`
 `
 
 const ReadingTime = styled.span`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
   font-size: 0.9rem;
 `
 
 const LessonFrom = styled.div`
   font-size: 0.9rem;
   font-weight: normal;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.fontMedium};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const AuthorPhoto = styled(Image)<GatsbyImageProps>`
@@ -187,16 +187,16 @@ const AuthorPhoto = styled(Image)<GatsbyImageProps>`
 `
 
 const Author = styled(Link)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Week = styled(Link)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const ReadingList = styled.div`
   height: 100%;
-  border-left: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-left: 1px solid ${({ theme }) => theme.hairlineColor};
 `
 
 const ReadMore = styled(Link)``

@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { isWithinInterval, parse, Interval } from "date-fns"
+import { isWithinInterval, parse } from "date-fns"
 import styled from "styled-components"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { device } from "@components/Primitives"
@@ -14,8 +14,8 @@ const Text = styled.span`
   margin-left: 1rem;
   white-space: nowrap;
   padding-left: 1rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  border-left: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
+  border-left: 1px solid ${({ theme }) => theme.hairlineColor};
 
   @media ${device.tablet} {
     display: none;

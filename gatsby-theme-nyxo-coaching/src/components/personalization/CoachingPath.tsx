@@ -39,7 +39,7 @@ export const CoachingPath: FC<Props> = ({ weeks }) => {
 
 const Container = styled.div`
   padding: 2rem 0rem;
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
 `
 
 const Row = styled.div``
@@ -58,7 +58,7 @@ const Line = styled.div`
   position: absolute;
   border-radius: 1rem;
   width: 100%;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const ProgressLine = styled.div`
@@ -88,5 +88,5 @@ const Dot = styled.div<DotProps>`
   top: calc(-1.5rem / 2 + 0.3rem / 2);
   left: ${({ x }) => x}%;
   background-color: ${({ theme, completed }) =>
-    completed ? colors.radiantBlue : theme.PRIMARY_BACKGROUND_COLOR};
+    completed ? colors.radiantBlue : theme.bgPrimary};
 `

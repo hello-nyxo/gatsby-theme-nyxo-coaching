@@ -88,13 +88,13 @@ const Info = styled.span`
   font-size: 0.75rem;
   display: inline-block;
   margin: 0.5rem 0.2rem 0.5rem 0.2rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const LessonFrom = styled.div`
   font-size: 0.75rem;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.fontMedium};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const AuthorPhoto = styled(Image)<GatsbyImageProps>`
@@ -107,13 +107,13 @@ const AuthorPhoto = styled(Image)<GatsbyImageProps>`
 
 const Author = styled(Link)`
   font-weight: 600;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.fontMedium};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Week = styled(Link)`
   font-weight: 600;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Cover = styled(Image)<GatsbyImageProps>`

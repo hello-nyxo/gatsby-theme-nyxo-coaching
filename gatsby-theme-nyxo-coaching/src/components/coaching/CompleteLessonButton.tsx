@@ -41,8 +41,8 @@ const Container = styled.button<HeartIconProps>`
   border-radius: 0.5rem;
   padding: 0.8rem 1rem;
   transition: all 0.2s ease-in-out;
-  border: 1px solid ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
-  color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  border: 1px solid ${({ theme }) => theme.buttonColorPrimary};
+  color: ${({ theme }) => theme.buttonColorPrimary};
   outline: var(--radiantBlue);
   margin-right: 1rem;
 
@@ -50,7 +50,7 @@ const Container = styled.button<HeartIconProps>`
     box-shadow: var(--shadow);
     border: 1px solid white;
 
-    color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+    color: ${({ theme }) => theme.buttonColorPrimary};
   }
   &:active {
     box-shadow: inset 1px 1px 3px 3px #6d676712;

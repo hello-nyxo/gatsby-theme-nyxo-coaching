@@ -26,7 +26,7 @@ export const wrapRootElement: FC<Props> = ({ element }) => {
 const StyledToaster = styled(Toaster).attrs(({ theme }) => ({
   toastOptions: {
     style: {
-      backgroundColor: theme.SECONDARY_BACKGROUND_COLOR,
+      backgroundColor: theme.bgSecondary,
     },
   },
 }))``

@@ -89,7 +89,7 @@ export const ContentBlock: FC<Props> = ({ children, preview, slug }) => {
 const Container = styled.div`
   margin: 2rem 0rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
 `
 const isBrowser = typeof window !== `undefined`
 

@@ -141,7 +141,7 @@ const Thead = styled.thead`
   box-sizing: border-box;
   border-bottom: 1px solid #e2e8f0;
   background-color: #f7fafc;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.fontBold};
   font-size: 0.75rem;
   text-transform: uppercase;
 `
@@ -158,9 +158,9 @@ const Cards = styled.div`
 
 const Card = styled.div`
   padding: 1.5rem;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: 0.5rem;
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadow};
   margin: 1rem 0rem;
 `
 

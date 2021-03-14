@@ -117,7 +117,7 @@ export const GlobalSearch: FC = () => {
 const Container = styled.div`
   box-sizing: border-box;
   padding: 2rem;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   width: 100vw;
   position: relative;
   height: 30rem;
@@ -137,13 +137,13 @@ const ResultType = styled.div`
   font-size: 1rem;
 
   height: 1rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const Type = styled.span`
-  background-color: ${({ theme }) => theme.PRIMARY_BUTTON_COLOR};
+  background-color: ${({ theme }) => theme.buttonColorPrimary};
   color: white;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-size: 0.6rem;
   text-transform: uppercase;
   padding: 0.2rem 0.4rem;
@@ -151,7 +151,7 @@ const Type = styled.span`
   margin-right: 0.5rem;
 `
 const Title = styled.span`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Results = styled.ul`
@@ -160,29 +160,29 @@ const Results = styled.ul`
 `
 
 const ResultCount = styled.div`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const Result = styled(animated.li)`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
   padding: 0.5rem;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   margin: 0.5rem;
 
   ${Title} {
-    color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+    color: ${({ theme }) => theme.textColorPrimary};
   }
 `
 
 const SearchContainer = styled.div`
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  box-shadow: ${({ theme }) => theme.shadow};
   width: 100%;
   border-radius: 0.5rem;
 `
 
 const MagnifyingGlass = styled(Icon).attrs(({ theme }) => ({
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
 }))``
 
 const SearchField = styled.input`
@@ -200,5 +200,5 @@ const SearchBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
 `

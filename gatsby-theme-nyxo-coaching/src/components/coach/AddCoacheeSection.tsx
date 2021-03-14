@@ -59,7 +59,7 @@ const CoacheeSchema = Yup.object().shape({
 })
 
 const Container = styled.div`
-  border: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border: 1px solid ${({ theme }) => theme.hairlineColor};
   padding: 1rem;
   border-radius: 1rem;
 `

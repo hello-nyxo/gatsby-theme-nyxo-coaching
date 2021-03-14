@@ -58,8 +58,8 @@ export const RecentlyUpdated: FC<Props> = ({ lessons }) => {
 }
 
 const Container = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-top: 1px solid ${({ theme }) => theme.hairlineColor};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
   padding: 0rem 0rem 2rem;
   margin-bottom: 2rem;
 `
@@ -131,7 +131,7 @@ const Number = styled.span`
   color: #d8d8d8;
   font-weight: bold;
   font-style: normal;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
+  font-family: ${({ theme }) => theme.fontBold};
 `
 
 const Column = styled.div``
@@ -152,14 +152,14 @@ const Info = styled.span`
   font-size: 0.75rem;
   display: inline-block;
   margin: 1rem 0.2rem 1rem 0.2rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const LessonFrom = styled.div`
   font-size: 0.75rem;
   font-weight: 500;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.fontMedium};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const AuthorPhoto = styled(Image)<GatsbyImageProps>`
@@ -172,10 +172,10 @@ const AuthorPhoto = styled(Image)<GatsbyImageProps>`
 
 const Author = styled(Link)`
   font-weight: 600;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Week = styled(Link)`
   font-weight: 600;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `

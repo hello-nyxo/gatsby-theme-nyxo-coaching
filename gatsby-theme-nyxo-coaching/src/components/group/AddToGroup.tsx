@@ -52,7 +52,7 @@ export const AddToGroup: FC = () => {
 }
 
 const GroupSection = styled.div`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   padding: 1rem;
 `
 

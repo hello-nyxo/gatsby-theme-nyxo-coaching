@@ -157,7 +157,7 @@ export const P = styled.p`
   line-height: 2rem;
   margin-bottom: 2rem;
   white-space: pre-wrap;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Bold = styled.b`
@@ -234,7 +234,7 @@ const ImageBlock: FC<ImageProps> = ({ node }) => {
 }
 
 const ImageContainer = styled.figure`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Img = styled(Image)<GatsbyImageProps>``
@@ -244,14 +244,14 @@ const ImageTitle = styled.figcaption`
   line-height: 2rem;
   margin-bottom: 2rem;
   white-space: pre-wrap;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 const ImageDescription = styled.figcaption`
   font-size: 0.9rem;
   line-height: 2rem;
   margin-bottom: 2rem;
   white-space: pre-wrap;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 
 const Ol = styled.ol`

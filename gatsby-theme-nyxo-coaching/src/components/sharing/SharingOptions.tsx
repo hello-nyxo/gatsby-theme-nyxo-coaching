@@ -88,7 +88,7 @@ const Email = styled(EmailShareButton)`
 
 export const EmailIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
   name: "emailSend",
   height: 30,
 }))`
@@ -102,7 +102,7 @@ const Facebook = styled(FacebookShareButton)`
 
 const FacebookIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
   name: "facebook",
   height: 30,
 }))`
@@ -116,7 +116,7 @@ const LinkedIn = styled(LinkedinShareButton)`
 
 const LinkedInIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
   name: "linkedIn",
   strokeLinecap: "round",
   strokeLinejoin: "round",
@@ -132,7 +132,7 @@ const Twitter = styled(TwitterShareButton)`
 
 const TwitterIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
   name: "twitter",
   height: 30,
 }))`
@@ -153,7 +153,7 @@ const Bookmark = styled.button<IconProps>`
 `
 
 const BookmarkIcon = styled(Icon).attrs<IconProps>(({ theme, bookmarked }) => ({
-  fill: theme.SECONDARY_TEXT_COLOR,
+  fill: theme.textColorSecondary,
   stroke: "none",
   name: bookmarked ? "heartBookmarkFilled" : "heartBookmarkOutline",
   height: 30,

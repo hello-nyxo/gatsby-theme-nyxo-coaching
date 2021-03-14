@@ -70,14 +70,14 @@ export const CoachingPrompt: FC<Props> = ({ slug, lessons }) => {
 const Container = styled.div`
   position: sticky;
   padding: 1rem;
-  border: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  border: 1px solid ${({ theme }) => theme.hairlineColor};
+  box-shadow: ${({ theme }) => theme.shadow};
   border-radius: 0.5rem;
   top: 5rem;
 `
 
 const Time = styled.div`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_REGULAR};
+  color: ${({ theme }) => theme.textColorSecondary};
+  font-family: ${({ theme }) => theme.fontRegular};
   font-size: 0.75rem;
 `

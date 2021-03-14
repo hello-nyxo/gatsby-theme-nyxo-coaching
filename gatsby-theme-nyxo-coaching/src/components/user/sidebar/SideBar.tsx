@@ -144,7 +144,7 @@ const Logout = styled.div`
 
 const SideBarContainer = styled.div`
   flex: 1;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   min-width: 300px;
   width: 100%;
   max-width: 300px;
@@ -164,7 +164,7 @@ const ProfileContainer = styled.div`
 const ProfileHello = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
   font-weight: 700;
 `
 
@@ -200,7 +200,7 @@ const LinkItem = styled.li`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
   transition: color 0.3s ease-in-out;
   display: flex;
   flex-direction: row;

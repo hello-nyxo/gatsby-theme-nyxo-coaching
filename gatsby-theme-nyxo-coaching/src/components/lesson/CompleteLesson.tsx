@@ -65,7 +65,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem 1rem 4rem;
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Buttons = styled.div`

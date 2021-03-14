@@ -435,9 +435,9 @@ const Tags = styled.div`
 const Type = styled.div`
   font-size: 0.9rem;
   font-weight: normal;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   margin-top: 3rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
   display: inline-block;
   padding: 0.3rem;
   background-color: #f3f3f3;

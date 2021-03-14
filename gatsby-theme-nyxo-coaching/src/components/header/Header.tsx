@@ -142,7 +142,7 @@ const Links = styled.ul`
 
 const Li = styled.li`
   list-style: none;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-weight: 500;
   font-style: normal;
   display: flex;

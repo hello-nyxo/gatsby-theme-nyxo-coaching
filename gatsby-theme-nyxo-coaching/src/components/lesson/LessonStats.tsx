@@ -63,32 +63,32 @@ const Avatar = styled(Image)<GatsbyImageProps>`
 `
 
 const Info = styled.span`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
   margin-right: 0.75rem;
 `
 
 const Updated = styled.time`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
   margin-right: 0.75rem;
 `
 
 const Column = styled.div``
 
 const Name = styled.div`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-size: 0.9rem;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
   margin-bottom: 0.5rem;
 `
 
 const ClockIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
   name: "clock",
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
   viewBox: `0 0 ${30} ${30}`,
   height: 15,
   width: 15,
@@ -97,16 +97,16 @@ const ClockIcon = styled(Icon).attrs(({ theme }) => ({
 const EyeIcon = styled(Icon).attrs(({ theme }) => ({
   fill: "none",
   name: "eye",
-  stroke: theme.SECONDARY_TEXT_COLOR,
+  stroke: theme.textColorSecondary,
   viewBox: `0 0 ${25} ${25}`,
   height: 15,
   width: 15,
 }))``
 
 const PageViews = styled.span`
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-size: 0.75rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const InfoItemContainer = styled.div`

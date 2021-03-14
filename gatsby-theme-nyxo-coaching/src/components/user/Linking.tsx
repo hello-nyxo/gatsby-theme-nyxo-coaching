@@ -33,7 +33,7 @@ export const Linking: FC = () => {
 }
 
 const Container = styled.div`
-  background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgPrimary};
   padding: 1rem;
   border-radius: 2px;
 
@@ -52,13 +52,13 @@ const InputField = styled.input`
   box-sizing: border-box;
   outline: none;
   border: none;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   transition: background-color 200ms ease, outline 200ms ease, color 200ms ease,
     box-shadow 200ms ease, -webkit-box-shadow 200ms ease;
 
   &:focus,
   :hover {
-    background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+    background-color: ${({ theme }) => theme.bgSecondary};
     box-shadow: 0 0 0 4px rgba(76, 132, 234, 0.1);
   }
 `
@@ -67,6 +67,6 @@ const FieldLabel = styled.label`
   display: block;
   font-size: 0.9rem;
   padding-bottom: 0.5rem;
-  font-family: ${({ theme }) => theme.FONT_BOLD};
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.fontBold};
+  color: ${({ theme }) => theme.textColorPrimary};
 `

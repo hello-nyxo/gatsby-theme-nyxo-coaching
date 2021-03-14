@@ -174,12 +174,12 @@ const Introduction = styled.span`
   font-size: 1rem;
   height: 3rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 const Description = styled.div`
   font-size: 0.7rem;
   margin-bottom: 1rem;
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorSecondary};
 
   p {
     font-size: 1rem;
@@ -193,16 +193,16 @@ const InformationRow = styled.div`
   padding: 0.5rem 0rem;
   margin: 1.5rem 0rem;
   box-sizing: border-box;
-  border-top: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
-  border-bottom: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-top: 1px solid ${({ theme }) => theme.hairlineColor};
+  border-bottom: 1px solid ${({ theme }) => theme.hairlineColor};
 `
 
 const Lessons = styled.span`
   font-size: 0.9rem;
   margin-right: 1rem;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `
 const Habits = styled.span`
   font-size: 0.9rem;
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
+  color: ${({ theme }) => theme.textColorPrimary};
 `

@@ -61,9 +61,9 @@ const OuterContainer = styled.div`
 const Container = styled.div`
   width: auto;
 
-  box-shadow: ${({ theme }) => theme.SHADOW};
+  box-shadow: ${({ theme }) => theme.shadow};
   margin: 1rem 0rem;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.bgSecondary};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: row;
@@ -74,21 +74,21 @@ const Container = styled.div`
 const Buttons = styled.div`
   display: flex;
   flex-direction: column;
-  border-left: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-left: 1px solid ${({ theme }) => theme.hairlineColor};
 `
 
 const AcceptButton = styled.button`
   border: none;
-  border-top: 1px solid ${({ theme }) => theme.HAIRLINE_COLOR};
+  border-top: 1px solid ${({ theme }) => theme.hairlineColor};
   padding: 0.75rem 1.5rem;
   font-size: 0.8rem;
   height: 100%;
   border-bottom-right-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  font-family: ${({ theme }) => theme.fontMedium};
 
   &:hover {
-    background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+    background-color: ${({ theme }) => theme.bgPrimary};
   }
 `
 
@@ -99,10 +99,10 @@ const DeleteButton = styled.button`
   background-color: none;
   height: 100%;
   border-top-right-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.SECONDARY_BACKGROUND_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  background-color: ${({ theme }) => theme.bgSecondary};
+  font-family: ${({ theme }) => theme.fontMedium};
   &:hover {
-    background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};
+    background-color: ${({ theme }) => theme.bgPrimary};
   }
 `
 
@@ -113,15 +113,15 @@ const Column = styled.div`
 `
 
 const Sender = styled.div`
-  color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
+  color: ${({ theme }) => theme.textColorPrimary};
+  font-family: ${({ theme }) => theme.fontMedium};
   font-size: 0.9rem;
 `
 
 const Text = styled.p`
   font-size: 0.9rem;
-  font-family: ${({ theme }) => theme.FONT_MEDIUM};
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
+  font-family: ${({ theme }) => theme.fontMedium};
+  color: ${({ theme }) => theme.textColorSecondary};
 `
 
 const Row = styled.div`
@@ -133,7 +133,7 @@ const Row = styled.div`
 `
 
 const Time = styled.div`
-  color: ${({ theme }) => theme.SECONDARY_TEXT_COLOR};
-  font-family: ${({ theme }) => theme.FONT_REGULAR};
+  color: ${({ theme }) => theme.textColorSecondary};
+  font-family: ${({ theme }) => theme.fontRegular};
   font-size: 0.75rem;
 `

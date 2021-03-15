@@ -1,6 +1,6 @@
 import { navigate } from "@reach/router"
 import { Auth } from "aws-amplify"
-import { Link } from "gatsby"
+import { Link } from "gatsby-plugin-react-i18next"
 import React, { FC, useState } from "react"
 import styled from "styled-components"
 import colors from "@styles/colors"

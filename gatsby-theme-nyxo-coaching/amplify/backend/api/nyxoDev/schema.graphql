@@ -217,7 +217,11 @@ type NightRating
   @model
   @auth(
     rules: [
-      { allow: owner }
+      {
+        allow: owner
+        ownerField: "owner"
+        operations: [create, update, delete, read]
+      }
       { allow: groups, groups: ["admin"], operations: [delete, read] }
       { allow: owner, ownerField: "viewers", operations: [read] }
     ]

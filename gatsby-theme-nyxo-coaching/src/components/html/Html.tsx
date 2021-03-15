@@ -30,7 +30,7 @@ interface RenderRichTextData<T extends ContentfulRichTextGatsbyReference> {
 
 type Props = {
   document?:
-    | RenderRichTextData
+    | RenderRichTextData<ContentfulRichTextGatsbyReference>
     | ContentfulLessonAdditionalInformationRichTextNode
 }
 
@@ -39,6 +39,7 @@ export interface RenderNode {
 }
 
 export interface NodeRenderer {
+  // eslint-disable-next-line unused-imports/no-unused-vars-ts
   (node: Block | Inline, children: ReactNode): ReactNode
 }
 
@@ -77,9 +78,6 @@ function defaultInline(type: string, node: Inline): ReactNode {
   }
 
   return null
-  // <Link to={`${contentType.path}`} key={node.data.target.sys.id}>
-  //   {contentType.title}
-  // </Link>
 }
 
 /* eslint-disable react/display-name */
@@ -234,16 +232,19 @@ const ImageBlock: FC<ImageProps> = ({ node }) => {
 }
 
 const ImageContainer = styled.figure`
+  max-width: 80%;
   background-color: ${({ theme }) => theme.bgPrimary};
 `
 
 const Img = styled(Image)<GatsbyImageProps>``
 
 const ImageTitle = styled.figcaption`
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 2rem;
   margin-bottom: 2rem;
   white-space: pre-wrap;
+  font-family: ${({ theme }) => theme.fontMedium};
+  font-weight: bold;
   color: ${({ theme }) => theme.textColorPrimary};
 `
 const ImageDescription = styled.figcaption`

@@ -163,12 +163,12 @@ const MenuLink = styled(Link)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: var(--radiantBlue);
+  color: ${({ theme }) => theme.buttonColorPrimary};
   opacity: 0.9;
 
   &:hover,
   &:active {
     opacity: 1;
-    color: var(--radiantBlue);
+    color: ${({ theme }) => theme.buttonColorPrimary};
   }
 `

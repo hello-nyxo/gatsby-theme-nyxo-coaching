@@ -1,3 +1,4 @@
+import { Wiggle } from "@components/animated/Wiggle"
 import { Icon } from "@components/Icons"
 import React, { FC } from "react"
 import {
@@ -7,8 +8,6 @@ import {
   TwitterShareButton,
 } from "react-share"
 import styled, { css } from "styled-components"
-import { animated } from "react-spring"
-import { useBoop } from "@hooks/use-boop"
 
 type Props = {
   shareUrl?: string
@@ -21,7 +20,6 @@ type Props = {
 }
 
 export const SharingOptions: FC<Props> = ({
-  shareUrl,
   title,
   summary,
   bookmarked,
@@ -30,30 +28,27 @@ export const SharingOptions: FC<Props> = ({
 }) => {
   const url = typeof window !== "undefined" ? window.location.href : ""
 
-  const [style1, trigger1] = useBoop({ scale: 0.8 })
-  const [style2, trigger2] = useBoop({ y: 2 })
-  const [style3, trigger3] = useBoop({ x: 2 })
-  const [style4, trigger4] = useBoop({ rotation: 2 })
-
   return (
     <Container>
-      <Email url={url} subject={title} body={summary}>
-        <EmailIcon />
-      </Email>
+      <Wiggle>
+        <Email url={url} subject={title} body={summary}>
+          <EmailIcon />
+        </Email>
+      </Wiggle>
 
-      <animated.div style={style1}>
-        <Facebook url={url} quote={summary} onMouseEnter={trigger1}>
+      <Wiggle>
+        <Facebook url={url} quote={summary}>
           <FacebookIcon />
         </Facebook>
-      </animated.div>
+      </Wiggle>
 
-      <animated.div style={style2} onMouseEnter={trigger2}>
+      <Wiggle>
         <LinkedIn url={url} title={title} summary={summary} source="nyxo.app">
           <LinkedInIcon />
         </LinkedIn>
-      </animated.div>
+      </Wiggle>
 
-      <animated.div style={style3} onMouseEnter={trigger3}>
+      <Wiggle>
         <Twitter
           url={url}
           title={title}
@@ -61,13 +56,13 @@ export const SharingOptions: FC<Props> = ({
           related={["helloNyxo"]}>
           <TwitterIcon />
         </Twitter>
-      </animated.div>
+      </Wiggle>
 
-      <animated.div style={style4} onMouseEnter={trigger4}>
+      <Wiggle>
         <Bookmark disabled={loading} onClick={bookmark} bookmarked={bookmarked}>
           <BookmarkIcon bookmarked={bookmarked} />
         </Bookmark>
-      </animated.div>
+      </Wiggle>
     </Container>
   )
 }
@@ -141,7 +136,7 @@ const TwitterIcon = styled(Icon).attrs(({ theme }) => ({
 `
 
 type IconProps = {
-  bookmarked: boolean
+  bookmarked: boolean | undefined
   name?: string
 }
 

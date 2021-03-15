@@ -201,46 +201,11 @@ const addBookmark = async ({ name, slug, type }: CreateLikedContentInput) => {
 }
 
 export const useDeleteBookmark = () => {
-  return useMutation(removeBookmark, {
-    // onMutate: async (newBookmark) => {
-    //   await queryClient.cancelQueries(["bookmarks", newBookmark.slug])
-    //   const previousBookmark = queryClient.getQueryData([
-    //     "todos",
-    //     newBookmark.id,
-    //   ])
-    //   queryClient.setQueryData(["bookmarks", newBookmark.id], newBookmark)
-    //   // Return a context with the previous and new todo
-    //   return { previousBookmark, newBookmark }
-    // },
-    // onError: (err, bookmark, context) => {
-    //   queryClient.setQueryData(
-    //     ["bookmarks", context.bookmark.id],
-    //     context.previousBookmark
-    //   )
-    // },
-    // onSettled: (bookmark) => {
-    //   queryClient.invalidateQueries(["bookmarks", bookmark.id])
-    // },
-  })
+  return useMutation(removeBookmark)
 }
 
 export const useAddBookmark = () => {
-  return useMutation(addBookmark, {
-    // onSuccess: (data) =>
-    //   queryClient.setQueryData(["bookmarks", { id: data.slug }], data),
-    // onMutate: async (newBookmark) => {
-    //   await queryClient.cancelQueries("bookmarks")
-    //   const previousBookmarks = queryClient.getQueryData("bookmarks")
-    //   queryClient.setQueryData("bookmarks", (old) => [...old, newBookmark])
-    //   return { previousBookmarks }
-    // },
-    // onError: (err, newBookmark, context) => {
-    //   queryClient.setQueryData("bookmarks", context.previousBookmarks)
-    // },
-    // onSettled: () => {
-    //   queryClient.invalidateQueries("bookmarks")
-    // },
-  })
+  return useMutation(addBookmark)
 }
 
 export const useGetBookmark = (slug: string, type: string) => {

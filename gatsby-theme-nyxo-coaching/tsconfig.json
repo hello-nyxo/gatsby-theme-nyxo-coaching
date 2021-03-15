@@ -19,7 +19,6 @@
     "types": ["node", "jest"],
     "typeRoots": ["./node_modules/@types"],
     "esModuleInterop": true,
-    "include": ["src/typings/twin.d.ts"],
     "baseUrl": "./",
     "paths": {
       "@components/*": ["src/components/*"],
@@ -31,9 +30,10 @@
       "@styles/*": ["src/styles/*"],
       "@gatsby/*": ["src/gatsby/*"],
       "@typings/*": ["src/typings/*"],
-      "@context/*": ["src/context/*"]
+      "@context/*": ["src/context/*"],
+      "@API": ["src/API.ts"]
     }
   },
-
+  "include": ["src/typings/twin.d.ts", "./src", "./src/typings"],
   "exclude": ["node_modules", "public", ".cache", "gatsby-config.js"]
 }

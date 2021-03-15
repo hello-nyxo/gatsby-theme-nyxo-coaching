@@ -1,14 +1,25 @@
-import { useQuery } from "react-query"
+import { useMutation, useQuery } from "react-query"
 import { Auth, API, graphqlOperation } from "aws-amplify"
 import { listNights } from "../graphql/queries"
-import { ListNightsQuery } from "../API"
+import { createNight } from "../graphql/mutations"
+import { toast } from "react-hot-toast"
+
+import {
+  ListNightsQuery,
+  CreateNightMutation,
+  CreateNightInput,
+  ListNightsQueryVariables,
+} from "../API"
 
 const listSleep = async (): Promise<ListNightsQuery["listNights"]> => {
   try {
     const { username } = await Auth.currentUserInfo()
+    const variables: ListNightsQueryVariables = {
+      filter: { userId: { eq: username } },
+    }
     const {
       data: { listNights: data },
-    } = (await API.graphql(graphqlOperation(listNights, { id: username }))) as {
+    } = (await API.graphql(graphqlOperation(listNights, variables))) as {
       data: ListNightsQuery
     }
 
@@ -20,12 +31,27 @@ const listSleep = async (): Promise<ListNightsQuery["listNights"]> => {
   }
 }
 
+const createNewNight = async (night: CreateNightInput) => {
+  console.log(night)
+  try {
+    const {
+      data: { createNight: response },
+    } = (await API.graphql(
+      graphqlOperation(createNight, { input: night })
+    )) as {
+      data: CreateNightMutation
+    }
+  } catch (error) {
+    console.log(error)
+    toast.error("Night could not be saved")
+    return error
+  }
+}
+
 export const useGetSleep = () => {
   return useQuery("sleep", listSleep)
 }
 
-export const useGetAllSleep = () => {
-  return useInfiniteQueryeQuery("sleep", listSleep, {
-    getFetchMore: (lastGroup, allGroups) => lastGroup.nextToken,
-  })
+export const useCreateNight = () => {
+  return useMutation(createNewNight)
 }

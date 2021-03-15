@@ -1,5 +1,5 @@
-import { Link } from "gatsby"
 import Image, { GatsbyImageProps } from "gatsby-image"
+import { Link } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import { ContentfulLesson } from "@typings/gatsby-graphql"

@@ -6,6 +6,7 @@ import { useTranslation, useI18next, Link } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import * as Yup from "yup"
+import { toast } from "react-hot-toast"
 
 type Props = {
   path?: string
@@ -40,7 +41,7 @@ const Register: FC<Props> = () => {
       setUser(userInfo)
       navigate("/me/")
     } catch (err) {
-      console.log("error signing up...", err)
+      toast.error(`${t(`LOGIN.${err.name}`)}`)
     }
   }
 
@@ -106,7 +107,8 @@ const Register: FC<Props> = () => {
         </Formik>
         <RegisterContainer>
           <p>
-            Already registered? <Link to="/me/login">Login</Link>.
+            {t("REGISTER.EXISTING_ACCOUNT_1")}{" "}
+            <Link to="/me/login">{t("REGISTER.EXISTING_ACCOUNT_2")}</Link>.
           </p>
         </RegisterContainer>
       </OverlayDiv>

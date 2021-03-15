@@ -35,6 +35,7 @@ exports.onCreateWebpackConfig = ({ actions, getConfig }) => {
         "@typings": path.resolve(__dirname, "src/typings/"),
         "@helpers": path.resolve(__dirname, "src/helpers/"),
         "@gatsby": path.resolve(__dirname, "src/gatsby/"),
+        "@API": path.resolve(__dirname, "src/API"),
         "@context": path.resolve(__dirname, "src/context/"),
       },
     },

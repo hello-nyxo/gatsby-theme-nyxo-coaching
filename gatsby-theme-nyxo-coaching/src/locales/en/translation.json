@@ -226,15 +226,30 @@
   "GOOD_NIGHT": "Good night!",
 
   "LOGIN": {
+    "INVALID_EMAIL": "Email is invalid",
+    "REQUIRED_EMAIL": "Email is needed",
+    "PASSWORD_REQUIRED": "Password is needed",
     "TITLE": "Login",
     "EMAIL_FIELD": "Username or Email",
     "PASSWORD": "Password",
     "BUTTON": "Login",
-    "NOT_A_MEMBER": "Register"
+    "NOT_A_MEMBER": "Register",
+
+    "UserNotFoundException": "Wrong email or password.",
+    "UserNotConfirmedException": "This account has not been confirmed yet.",
+    "PasswordResetRequiredException": "Password reset needed. Contact support.",
+    "NotAuthorizedException": "Wrong email or password.",
+    "UsernameExistsException": "Email has been taken",
+    "Error": "An error occurred.",
+
+    "NOT_A_MEMBER_1": "Not a member yet?",
+    "NOT_A_MEMBER_2": "Create an account."
   },
 
   "REGISTER": {
-    "TITLE": "Register"
+    "TITLE": "Register",
+    "EXISTING_ACCOUNT_1": "Already registered",
+    "EXISTING_ACCOUNT_2": "Log in here."
   },
 
   "COACHEES": {

@@ -823,7 +823,6 @@ export const getNightRating = /* GraphQL */ `
       date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -871,7 +870,6 @@ export const listNightRatings = /* GraphQL */ `
         date
         createdAt
         updatedAt
-        owner
       }
       nextToken
     }

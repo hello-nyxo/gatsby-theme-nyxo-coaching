@@ -28,3 +28,6 @@ export const getTimeOrDistance = (
     return format(date, dateFormat)
   }
 }
+
+export const getDurationToTime = (duration: number): string =>
+  `${Math.floor(duration / 60)}h ${Math.floor(duration % 60)}`

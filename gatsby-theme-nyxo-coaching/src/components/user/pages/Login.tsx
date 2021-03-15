@@ -2,14 +2,20 @@ import { setUser } from "@auth/auth"
 import { H1 } from "@components/html/Html"
 import { Auth } from "aws-amplify"
 import { Formik, Form } from "formik"
-import { Link } from "gatsby"
-import { useTranslation, useI18next } from "gatsby-plugin-react-i18next"
+import { useTranslation, useI18next, Link } from "gatsby-plugin-react-i18next"
 import React, { FC } from "react"
 import styled from "styled-components"
 import * as Yup from "yup"
+import { toast } from "react-hot-toast"
 
 type Props = {
   path?: string
+}
+
+type Error = {
+  name: string
+  message: string
+  stack?: string
 }
 
 const Login: FC<Props> = () => {
@@ -37,7 +43,7 @@ const Login: FC<Props> = () => {
       setUser(userInfo)
       navigate("/me/")
     } catch (err) {
-      console.log(err)
+      toast.error(`${t(`LOGIN.${err.name}`)}`)
     }
   }
 
@@ -55,6 +61,7 @@ const Login: FC<Props> = () => {
             values,
             errors,
             touched,
+            isValid,
             isSubmitting,
           }) => (
             <FormContainer>
@@ -90,7 +97,7 @@ const Login: FC<Props> = () => {
                 </Errors>
               </InputContainer>
 
-              <Submit type="submit" onClick={handleSubmit}>
+              <Submit type="submit" disabled={!isValid} onClick={handleSubmit}>
                 {t("LOGIN.TITLE")}
                 {isSubmitting && <Loader />}
               </Submit>
@@ -99,7 +106,8 @@ const Login: FC<Props> = () => {
         </Formik>
         <RegisterContainer>
           <p>
-            Not a member? <Link to="/me/register">Sign up now</Link>.
+            {t("LOGIN.NOT_A_MEMBER_1")}{" "}
+            <Link to="/me/register">{t("LOGIN.NOT_A_MEMBER_2")}</Link>.
           </p>
         </RegisterContainer>
       </OverlayDiv>

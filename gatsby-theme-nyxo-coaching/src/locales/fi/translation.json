@@ -224,15 +224,30 @@
   "GOOD_NIGHT": "Hyvää yötä",
 
   "LOGIN": {
+    "INVALID_EMAIL": "Sähköposti ei kelpaa",
+    "REQUIRED_EMAIL": "Sähköposti puuttuu",
+    "PASSWORD_REQUIRED": "Salasana puuttuu",
     "TITLE": "Kirjaudu",
     "EMAIL_FIELD": "Käyttäjänimi tai sähköposti",
     "PASSWORD": "Salasana",
     "BUTTON": "Kirjaudu",
-    "NOT_A_MEMBER": "Rekisteröidy"
+    "NOT_A_MEMBER": "Rekisteröidy",
+
+    "UserNotFoundException": "Sähköposti tai tunnus on väärin, tai tätä tiliä ei ole vielä luotu.",
+    "UserNotConfirmedException": "Tätä tiliä ei ole vielä vahvistettu.",
+    "PasswordResetRequiredException": "Salasanan resetointi vaaditaan. Ota yhteys ylläpitoon.",
+    "NotAuthorizedException": "Sähköposti tai tunnus on väärin.",
+    "UsernameExistsException": "Sähköposti on jo käytössä.",
+    "Error": "Tapahtui virhe.",
+
+    "NOT_A_MEMBER_1": "Etkö ole vielä jäsen?",
+    "NOT_A_MEMBER_2": "Luo tili"
   },
 
   "REGISTER": {
-    "TITLE": "Rekisteröidy"
+    "TITLE": "Rekisteröidy",
+    "EXISTING_ACCOUNT_1": "Oletko jo rekisteröitynyt?",
+    "EXISTING_ACCOUNT_2": "Kirjaudu täältä."
   },
 
   "COACHEES": {

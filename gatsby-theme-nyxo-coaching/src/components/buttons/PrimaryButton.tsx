@@ -23,7 +23,7 @@ export const PrimaryButton: FC<Props> = ({
 
 const Button = styled.button`
   position: relative;
-  background-color: var(--radiantBlue);
+  background-color: ${({ theme }) => theme.buttonColorPrimary};
   display: flex;
   border: none;
   align-items: center;
@@ -34,6 +34,6 @@ const Button = styled.button`
   transition: 0.2s ease-in-out;
   color: white;
   font-size: 1.1rem;
-  outline: var(--radiantBlue);
-  box-shadow: var(--shadow);
+  outline: ${({ theme }) => theme.buttonColorPrimary};
+  box-shadow: ${({ theme }) => theme.shadow};
 `

@@ -1370,7 +1370,6 @@ export const onCreateNightRating = /* GraphQL */ `
       date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -1443,7 +1442,6 @@ export const onUpdateNightRating = /* GraphQL */ `
       date
       createdAt
       updatedAt
-      owner
     }
   }
 `;
@@ -1516,7 +1514,6 @@ export const onDeleteNightRating = /* GraphQL */ `
       date
       createdAt
       updatedAt
-      owner
     }
   }
 `;

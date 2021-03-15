@@ -1,5 +1,5 @@
 import React, { useEffect, createContext, useContext } from "react"
-import { Link } from "gatsby"
+import { Link } from "gatsby-plugin-react-i18next"
 
 export const MenuContext = createContext()
 
